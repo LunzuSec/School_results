@@ -19,7 +19,6 @@
             color: white;
             padding: 20px;
             text-align: center;
-            position: relative;
         }
 
         h1 {
@@ -71,39 +70,13 @@
             bottom: 0;
             width: 100%;
         }
-
-        /* Slideshow Styles */
-        .slideshow {
-            margin: 20px auto;
-            max-width: 800px;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .slideshow img {
-            width: 100%;
-            display: none;
-            border-radius: 8px;
-        }
-
-        .slideshow img.active {
-            display: block;
-        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <h1>Lunzu Secondary School..........System</h1>
+        <h1>Lunzu Secondary School Management System</h1>
     </header>
-
-    <!-- Slideshow -->
-    <div class="slideshow">
-        <img src="https://via.placeholder.com/800x300?text=Welcome+to+Lunzu+Secondary+School" alt="Slide 1" class="active">
-        <img src="https://via.placeholder.com/800x300?text=Quality+Education+for+All" alt="Slide 2">
-        <img src="https://via.placeholder.com/800x300?text=Empowering+Students+for+the+Future" alt="Slide 3">
-    </div>
 
     <!-- Main Content -->
     <div class="container">
@@ -143,25 +116,8 @@
         <p>© <span id="current-year"></span> Lunzu Secondary, All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript for Slideshow and Footer Year -->
+    <!-- JavaScript for Footer Year -->
     <script>
-        // Slideshow Logic
-        let slides = document.querySelectorAll('.slideshow img');
-        let currentSlide = 0;
-
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.toggle('active', i === index);
-            });
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        setInterval(nextSlide, 3000); // Change slide every 3 seconds
-
         // Footer Year Logic
         const yearElement = document.getElementById('current-year');
         yearElement.textContent = new Date().getFullYear();
