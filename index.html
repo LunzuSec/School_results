@@ -3,56 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lunzu Secondary School - Teacher Portal</title>
+    <title>Lunzu Secondary School Portal</title>
     <style>
+        /* General Styles */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        h1 {
+            background-color: #f4f4f9;
             color: #333;
         }
-        .links {
+
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            color: #007BFF;
             margin-top: 20px;
         }
+
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
         .links a {
             display: block;
             margin: 10px 0;
             padding: 10px;
             background-color: #007BFF;
-            color: #fff;
+            color: white;
             text-decoration: none;
             border-radius: 5px;
+            text-align: center;
             transition: background-color 0.3s ease;
         }
+
         .links a:hover {
             background-color: #0056b3;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Slideshow Styles */
+        .slideshow {
+            margin: 20px auto;
+            max-width: 800px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .slideshow img {
+            width: 100%;
+            display: none;
+            border-radius: 8px;
+        }
+
+        .slideshow img.active {
+            display: block;
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <h1>Lunzu Secondary School..........System</h1>
+    </header>
+
+    <!-- Slideshow -->
+    <div class="slideshow">
+        <img src="https://via.placeholder.com/800x300?text=Welcome+to+Lunzu+Secondary+School" alt="Slide 1" class="active">
+        <img src="https://via.placeholder.com/800x300?text=Quality+Education+for+All" alt="Slide 2">
+        <img src="https://via.placeholder.com/800x300?text=Empowering+Students+for+the+Future" alt="Slide 3">
+    </div>
+
+    <!-- Main Content -->
     <div class="container">
-        <h1>Lunzu Secondary School - Teacher Portal</h1>
-        <div class="links">
-            <a href="https://script.google.com/macros/s/AKfycbyA4wD7kOv_R6NPGZjjk5yx4uQ6LEtdoTNzcjjbZTJD8IJOgMfpDsIXkGizxlftHHp4DA/exec" target="_blank">Submit Scores - Form 1</a>
-            <a href="https://script.google.com/macros/s/AKfycbztSwvQz0YekykakdCgjE7Wrsfj3t8Khm8IbDpqq3x0kWXxoDDRLu3hY_VDh6C-ATRR/exec" target="_blank">Submit Scores - Form 2</a>
-            <a href="https://script.google.com/macros/s/AKfycbyzVzpwRiJQGuvlCV2lg8frTiXVZhqJWmHABjbQ20jNskT156iWg7EptPIY65q1o3AG/exec" target="_blank">Submit Scores - Form 3</a>
-            <a href="https://script.google.com/macros/s/AKfycbzK01zhIWzhkJqq29Qb8ch_V_2Nfs8_0aY22uHTTAXv_7v1TVakFGCq4v7Polt2Uhf_cw/exec" target="_blank">Submit Scores - Form 4</a>
-            <a href="https://script.google.com/macros/s/AKfycbxSdL3OC7QSc2z5Eis47q6Q7dKQzE12eBaqB-i67igJmF26mzm1empfQUmQ03QdwSPkwQ/exec" target="_blank">Results Submission Summary Report</a>
+        <!-- Teachers Section -->
+        <div class="section">
+            <h2>For Teachers</h2>
+            <p>Submit scores and download the results submission summary.</p>
+            <div class="links">
+                <a href="https://script.google.com/macros/s/AKfycbyA4wD7kOv_R6NPGZjjk5yx4uQ6LEtdoTNzcjjbZTJD8IJOgMfpDsIXkGizxlftHHp4DA/exec" target="_blank">Submit Scores - Form 1</a>
+                <a href="https://script.google.com/macros/s/AKfycbztSwvQz0YekykakdCgjE7Wrsfj3t8Khm8IbDpqq3x0kWXxoDDRLu3hY_VDh6C-ATRR/exec" target="_blank">Submit Scores - Form 2</a>
+                <a href="https://script.google.com/macros/s/AKfycbyzVzpwRiJQGuvlCV2lg8frTiXVZhqJWmHABjbQ20jNskT156iWg7EptPIY65q1o3AG/exec" target="_blank">Submit Scores - Form 3</a>
+                <a href="https://script.google.com/macros/s/AKfycbzK01zhIWzhkJqq29Qb8ch_V_2Nfs8_0aY22uHTTAXv_7v1TVakFGCq4v7Polt2Uhf_cw/exec" target="_blank">Submit Scores - Form 4</a>
+                <a href="https://script.google.com/macros/s/AKfycbyA4wD7kOv_R6NPGZjjk5yx4uQ6LEtdoTNzcjjbZTJD8IJOgMfpDsIXkGizxlftHHp4DA/exec" target="_blank">Download Results Submission Summary</a>
+            </div>
+        </div>
+
+        <!-- Parents Section -->
+        <div class="section">
+            <h2>For Parents</h2>
+            <p>View and download your ward's results or inquire about their fee balance.</p>
+            <div class="links">
+                <a href="https://example.com/results-link-1" target="_blank">Results Link 1</a>
+                <a href="https://example.com/results-link-2" target="_blank">Results Link 2</a>
+                <a href="https://example.com/results-link-3" target="_blank">Results Link 3</a>
+                <a href="https://example.com/results-link-4" target="_blank">Results Link 4</a>
+                <a href="https://example.com/results-link-5" target="_blank">Results Link 5</a>
+                <a href="https://example.com/results-link-6" target="_blank">Results Link 6</a>
+                <a href="https://example.com/results-link-7" target="_blank">Results Link 7</a>
+                <a href="https://example.com/results-link-8" target="_blank">Results Link 8</a>
+                <a href="https://example.com/fee-balance-inquiry" target="_blank">Inquire Fee Balance</a>
+            </div>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© <span id="current-year"></span> Lunzu Secondary, All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Slideshow and Footer Year -->
+    <script>
+        // Slideshow Logic
+        let slides = document.querySelectorAll('.slideshow img');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        setInterval(nextSlide, 3000); // Change slide every 3 seconds
+
+        // Footer Year Logic
+        const yearElement = document.getElementById('current-year');
+        yearElement.textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
