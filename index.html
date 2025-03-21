@@ -65,6 +65,19 @@
       border-radius: 50%;
       padding: 10px;
     }
+
+    /* Floating Animation */
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    .floating-card {
+      animation: float 3s ease-in-out infinite;
+    }
   </style>
 </head>
 <body>
@@ -105,48 +118,59 @@
     </div>
   </div>
 
-  <!-- Features Section -->
+  <!-- Key Features Section -->
   <div class="container my-5">
     <h2 class="text-center mb-4">Key Features</h2>
-    <div class="row">
-      <!-- Feature 1: Performance Tracking -->
-      <div class="col-md-4 mb-4">
-        <div class="card card-custom h-100 text-center">
-          <div class="card-header card-custom-header">
-            <i class="fas fa-chart-line fa-2x"></i>
-            <h5 class="mt-2">Performance Tracking</h5>
+    <div id="featuresCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <!-- Feature 1: Performance Tracking -->
+        <div class="carousel-item active">
+          <div class="card card-custom text-center mx-auto" style="max-width: 600px;">
+            <div class="card-header card-custom-header">
+              <i class="fas fa-chart-line fa-2x"></i>
+              <h5 class="mt-2">Performance Tracking</h5>
+            </div>
+            <div class="card-body">
+              <p>Monitor and analyze student performance across various subjects with detailed reports.</p>
+            </div>
           </div>
-          <div class="card-body">
-            <p>Monitor and analyze student performance across various subjects with detailed reports.</p>
+        </div>
+        
+        <!-- Feature 2: User Management -->
+        <div class="carousel-item">
+          <div class="card card-custom text-center mx-auto" style="max-width: 600px;">
+            <div class="card-header card-custom-header">
+              <i class="fas fa-users fa-2x"></i>
+              <h5 class="mt-2">User Management</h5>
+            </div>
+            <div class="card-body">
+              <p>Manage different user roles including Teachers, Parents, and Admins with ease.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Feature 3: Report Generation -->
+        <div class="carousel-item">
+          <div class="card card-custom text-center mx-auto" style="max-width: 600px;">
+            <div class="card-header card-custom-header">
+              <i class="fas fa-file-pdf fa-2x"></i>
+              <h5 class="mt-2">Report Generation</h5>
+            </div>
+            <div class="card-body">
+              <p>Generate comprehensive PDF reports to keep track of academic progress and achievements.</p>
+            </div>
           </div>
         </div>
       </div>
-      
-      <!-- Feature 2: User Management -->
-      <div class="col-md-4 mb-4">
-        <div class="card card-custom h-100 text-center">
-          <div class="card-header card-custom-header">
-            <i class="fas fa-users fa-2x"></i>
-            <h5 class="mt-2">User Management</h5>
-          </div>
-          <div class="card-body">
-            <p>Manage different user roles including Teachers, Parents, and Admins with ease.</p>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Feature 3: Report Generation -->
-      <div class="col-md-4 mb-4">
-        <div class="card card-custom h-100 text-center">
-          <div class="card-header card-custom-header">
-            <i class="fas fa-file-pdf fa-2x"></i>
-            <h5 class="mt-2">Report Generation</h5>
-          </div>
-          <div class="card-body">
-            <p>Generate comprehensive PDF reports to keep track of academic progress and achievements.</p>
-          </div>
-        </div>
-      </div>
+      <!-- Carousel Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#featuresCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#featuresCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
   </div>
 
