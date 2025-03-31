@@ -8,7 +8,7 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   
-  <!-- Font Awesome for Icons (Optional) -->
+  <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-pj6VsoMV3Pn0aO5/KE1qPBD6gEijSdykOqYlCkgVgJt+5UrHhHgfKgnA9yGo0A37uj5yK69IaMzuq8wRA3+4qA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -23,16 +23,23 @@
       color: white !important;
     }
     .jumbotron {
-      background-color: #f8f9fa;
+      background: linear-gradient(rgba(0, 123, 255, 0.8), rgba(0, 86, 179, 0.8)), 
+                  url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
       padding: 100px 0;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
     }
     .card-custom {
       border: none;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 10px;
+      overflow: hidden;
     }
     .card-custom:hover {
-      transform: translateY(-10px) scale(1.05);
+      transform: translateY(-10px);
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
     .card-custom-header {
@@ -43,9 +50,26 @@
     .btn-custom {
       background-color: #007BFF;
       color: white;
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-weight: 500;
+      transition: all 0.3s;
     }
     .btn-custom:hover {
       background-color: #0056b3;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    .btn-portal {
+      font-size: 1.1rem;
+      padding: 15px 30px;
+      margin: 10px;
+      border-radius: 10px;
+      transition: all 0.3s;
+    }
+    .btn-portal:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     }
     .hidden {
       display: none;
@@ -93,19 +117,48 @@
     .contact-info a:hover {
       text-decoration: underline;
     }
+    
+    /* Portal Buttons Section */
+    .portal-section {
+      background-color: #f8f9fa;
+      padding: 50px 0;
+      border-radius: 15px;
+      margin: 40px 0;
+      box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* Testimonial Cards */
+    .testimonial-card {
+      border-left: 5px solid #007BFF;
+    }
+    
+    /* Footer */
+    .footer {
+      background-color: #343a40;
+      color: white;
+      padding: 30px 0;
+    }
   </style>
 </head>
 <body>
   <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-custom">
+  <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Lunzu Secondary School</a>
+      <a class="navbar-brand" href="#">
+        <i class="fas fa-school me-2"></i>Lunzu Secondary School
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#features">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#testimonials">Testimonials</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="#contact">Contact Us</a>
           </li>
@@ -115,16 +168,19 @@
   </nav>
 
   <!-- Hero Section -->
-  <div class="jumbotron text-center py-5 position-relative">
-    <div class="container position-relative">
-      <h1 class="display-4">Welcome to Lunzu Secondary School</h1>
-      <p class="lead">Manage and track academic performance effortlessly.</p>
+  <div class="jumbotron text-center py-5">
+    <div class="container">
+      <h1 class="display-4 fw-bold">Welcome to Lunzu Secondary School</h1>
+      <p class="lead fs-4">Manage and track academic performance effortlessly with our digital platform.</p>
+      <a href="#portals" class="btn btn-light btn-lg mt-3 px-4 py-2">
+        <i class="fas fa-arrow-down me-2"></i>Access Portals
+      </a>
     </div>
   </div>
 
   <!-- Key Features Section -->
-  <div class="container my-5">
-    <h2 class="text-center mb-4">Key Features</h2>
+  <div id="features" class="container my-5 py-4">
+    <h2 class="text-center mb-5">Key Features</h2>
     <div id="featuresCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <!-- Feature 1: Performance Tracking -->
@@ -135,7 +191,7 @@
               <h5 class="mt-2">Performance Tracking</h5>
             </div>
             <div class="card-body">
-              <p>Monitor and analyze student performance across various subjects with detailed reports.</p>
+              <p>Monitor and analyze student performance across various subjects with detailed reports and analytics.</p>
             </div>
           </div>
         </div>
@@ -148,7 +204,7 @@
               <h5 class="mt-2">User Management</h5>
             </div>
             <div class="card-body">
-              <p>Manage different user roles including Teachers, Parents, and Admins with ease.</p>
+              <p>Manage different user roles including Teachers, Parents, and Admins with secure access controls.</p>
             </div>
           </div>
         </div>
@@ -179,153 +235,106 @@
   </div>
 
   <!-- Portal Buttons Section -->
-  <div class="container text-center my-5">
-    <h2 class="mb-4">Access Your Portal</h2>
-    <div class="mt-4">
-      <button class="btn btn-primary btn-lg mx-2" onclick="showTeachers()">
-        <i class="fas fa-chalkboard-teacher"></i> Teachers Portal
-      </button>
-      <button class="btn btn-success btn-lg mx-2" onclick="showParents()">
-        <i class="fas fa-users"></i> Parents/Students/Guardians Portal
-      </button>
-    </div>
-  </div>
-
-  <!-- Teachers Portal Section -->
-  <div id="teachers-section" class="container my-5 hidden">
-    <h2 class="text-center mb-4">Teachers Portal</h2>
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <div class="card card-custom">
-          <div class="card-header card-custom-header">
-            <h5 class="mt-2">Submit Scores and Download Reports</h5>
-          </div>
-          <div class="card-body">
-            <div class="d-grid gap-2">
-              <a href="https://script.google.com/macros/s/AKfycbyZjG6wFOjYgye73jtuHm1fuXwif8QtFashV9-bkYq5KCuxMVJVuLgI_DZLwn4qkJR-/exec" 
-                 class="btn btn-custom" target="_blank">Submit Scores - Link 1</a>
-              <a href="https://script.google.com/macros/s/AKfycbztSwvQz0YekykakdCgjE7Wrsfj3t8Khm8IbDpqq3x0kWXxoDDRLu3hY_VDh6C-ATRR/exec" 
-                 class="btn btn-custom" target="_blank">Submit Scores - Link 2</a>
-              <a href="https://script.google.com/macros/s/AKfycbyzVzpwRiJQGuvlCV2lg8frTiXVZhqJWmHABjbQ20jNskT156iWg7EptPIY65q1o3AG/exec" 
-                 class="btn btn-custom" target="_blank">Submit Scores - Link 3</a>
-              <a href="https://script.google.com/macros/s/AKfycbzK01zhIWzhkJqq29Qb8ch_V_2Nfs8_0aY22uHTTAXv_7v1TVakFGCq4v7Polt2Uhf_cw/exec" 
-                 class="btn btn-custom" target="_blank">Submit Scores - Link 4</a>
-              <a href="https://script.google.com/macros/s/AKfycbxSdL3OC7QSc2z5Eis47q6Q7dKQzE12eBaqB-i67igJmF26mzm1empfQUmQ03QdwSPkwQ/exec" 
-                 class="btn btn-custom" target="_blank">Download Results Summary</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Parents/Students/Guardians Portal Section -->
-  <div id="parents-section" class="container my-5 hidden">
-    <h2 class="text-center mb-4">Parents/Students/Guardians Portal</h2>
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <div class="card card-custom">
-          <div class="card-header card-custom-header">
-            <h5 class="mt-2">View Results and Inquire Fee Balance</h5>
-          </div>
-          <div class="card-body">
-            <div class="d-grid gap-2">
-              <a href="https://script.google.com/macros/s/AKfycbw4Arkd7ntqZlDcttEhzoKrAesSLubPLt1t84TY6q1PRH6Wb8bxep8CERXqVBRa2QItpg/exec" class="btn btn-custom" target="_blank">Results Link 1</a>
-              <a href="https://script.google.com/macros/s/AKfycbxLDB5bgyBwF5yU-AVn-1lmNzDmYrJLRa2naDSML0KkGEusx0SlmgS3u2aCHB0DFGTleQ/exec" class="btn btn-custom" target="_blank">Results Link 2</a>
-              <a href="https://script.google.com/macros/s/AKfycby5PfgSeo7lWfdoQto1ccoIVySRyCra45BwUw4rj0W1DXu6uvEeev-PEFeIHi5ssTr-jQ/exec" class="btn btn-custom" target="_blank">Results Link 3</a>
-              <a href="https://script.google.com/macros/s/AKfycby3LfveNJltBRyD0R619BtDqtljv1GZu4H6qmb0MZnDTQ0OcF2ed-nEcXUt3JaKs5Xd/exec" class="btn btn-custom" target="_blank">Results Link 4</a>
-              <a href="https://script.google.com/macros/s/AKfycbwSe_HeUAigVjBiN-rmcq0FPiJRKsLBBtw2VGGhLWlMCrIvT3WeQ0MpjdMdI4HDGnkbZQ/exec" class="btn btn-custom" target="_blank">Results Link 5</a>
-              <a href="https://script.google.com/macros/s/AKfycbxAk3Tly0MuRPGxlEPaevLFRn4zDrcV4Ua5aDPKqej1Z57hG1zY0g6l0QbtmYr-PrErGA/exec" class="btn btn-custom" target="_blank">Results Link 6</a>
-              <a href="https://script.google.com/macros/s/AKfycbxqZ0ZguQd2VBsEDG16_PDstM0os9-KuWRByM6b-Jj0DgobiPbX8FZFwiefgocbLda_EA/exec" class="btn btn-custom" target="_blank">Results Link 7</a>
-              <a href="https://script.google.com/macros/s/AKfycbzMZ52d7CcvcxO069KOM9af9M17-wrI3CvWAkYDdmNVs9XV2HR6VMKsu0QfGCxDrMCm/exec" class="btn btn-custom" target="_blank">Results Link 8</a>
-            </div>
-          </div>
-        </div>
+  <div id="portals" class="portal-section">
+    <div class="container text-center">
+      <h2 class="mb-4">Access Your Portal</h2>
+      <p class="lead mb-5">Select your role to access the appropriate portal</p>
+      <div class="mt-4">
+        <a href="teachers-portal.html" class="btn btn-primary btn-portal mx-2" target="_blank">
+          <i class="fas fa-chalkboard-teacher me-2"></i> Teachers Portal
+        </a>
+        <a href="student-portal.html" class="btn btn-success btn-portal mx-2" target="_blank">
+          <i class="fas fa-user-graduate me-2"></i> Students Portal
+        </a>
+        <a href="student-portal.html" class="btn btn-info btn-portal mx-2" target="_blank">
+          <i class="fas fa-users me-2"></i> Parents/Guardians
+        </a>
       </div>
     </div>
   </div>
 
   <!-- Testimonials Section -->
-<div class="container my-5">
-  <h2 class="text-center mb-4">What Our Users Say</h2>
-  <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <!-- Testimonial 1 -->
-      <div class="carousel-item active">
-        <div class="card card-custom text-center mx-auto" style="max-width: 600px;">
-          <div class="card-body">
-            <p class="card-text">"Lunzu Secondary School's RMS has revolutionized the way we track student performance. It's intuitive and efficient."</p>
-            <h5 class="card-title">- Mr. D. Basikolo</h5>
-            <p class="card-subtitle mb-2 text-muted">Teacher</p>
+  <div id="testimonials" class="container my-5 py-5">
+    <h2 class="text-center mb-5">What Our Community Says</h2>
+    <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <!-- Testimonial 1 -->
+        <div class="carousel-item active">
+          <div class="card card-custom text-center mx-auto testimonial-card" style="max-width: 600px;">
+            <div class="card-body">
+              <p class="card-text fs-5">"Lunzu Secondary School's RMS has revolutionized the way we track student performance. It's intuitive and efficient."</p>
+              <h5 class="card-title mt-3">- Mr. D. Basikolo</h5>
+              <p class="card-subtitle mb-2 text-muted">Teacher</p>
+            </div>
           </div>
         </div>
-      </div>
-      
-      <!-- Testimonial 2 -->
-      <div class="carousel-item">
-        <div class="card card-custom text-center mx-auto" style="max-width: 600px;">
-          <div class="card-body">
-            <p class="card-text">"As a parent, I appreciate the transparency and accessibility of my child's academic records at Lunzu."</p>
-            <h5 class="card-title">- Mrs. Phiri</h5>
-            <p class="card-subtitle mb-2 text-muted">Parent</p>
+        
+        <!-- Testimonial 2 -->
+        <div class="carousel-item">
+          <div class="card card-custom text-center mx-auto testimonial-card" style="max-width: 600px;">
+            <div class="card-body">
+              <p class="card-text fs-5">"As a parent, I appreciate the transparency and accessibility of my child's academic records at Lunzu."</p>
+              <h5 class="card-title mt-3">- Mrs. Phiri</h5>
+              <p class="card-subtitle mb-2 text-muted">Parent</p>
+            </div>
           </div>
         </div>
-      </div>
-      
-      <!-- Testimonial 3: Mr. M. Kamndaya (Headteacher) -->
-      <div class="carousel-item">
-        <div class="card card-custom text-center mx-auto" style="max-width: 600px;">
-          <div class="card-body">
-            <p class="card-text">"I am thrilled to see how this system has simplified the process of accessing results and submitting scores. Teachers can now work from the comfort of their homes, and parents can easily track their children's progress."</p>
-            <h5 class="card-title">- Mr. M. Kamndaya</h5>
-            <p class="card-subtitle mb-2 text-muted">Headteacher</p>
+        
+        <!-- Testimonial 3: Mr. M. Kamndaya (Headteacher) -->
+        <div class="carousel-item">
+          <div class="card card-custom text-center mx-auto testimonial-card" style="max-width: 600px;">
+            <div class="card-body">
+              <p class="card-text fs-5">"I am thrilled to see how this system has simplified the process of accessing results and submitting scores. Teachers can now work from the comfort of their homes, and parents can easily track their children's progress."</p>
+              <h5 class="card-title mt-3">- Mr. M. Kamndaya</h5>
+              <p class="card-subtitle mb-2 text-muted">Headteacher</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Testimonial 4: Mr. S. Madula (Deputy Headteacher) -->
-      <div class="carousel-item">
-        <div class="card card-custom text-center mx-auto" style="max-width: 600px;">
-          <div class="card-body">
-            <p class="card-text">"The number of parents visiting the school to collect reports has significantly decreased due to the challenges they face. This system has made it easier for parents to access their children's academic records remotely."</p>
-            <h5 class="card-title">- Mr. Madula</h5>
-            <p class="card-subtitle mb-2 text-muted">Deputy Headteacher</p>
+        <!-- Testimonial 4: Mr. S. Madula (Deputy Headteacher) -->
+        <div class="carousel-item">
+          <div class="card card-custom text-center mx-auto testimonial-card" style="max-width: 600px;">
+            <div class="card-body">
+              <p class="card-text fs-5">"The number of parents visiting the school to collect reports has significantly decreased due to the challenges they face. This system has made it easier for parents to access their children's academic records remotely."</p>
+              <h5 class="card-title mt-3">- Mr. Madula</h5>
+              <p class="card-subtitle mb-2 text-muted">Deputy Headteacher</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Testimonial 5: Long-Distance Report Retrieval -->
-      <div class="carousel-item">
-        <div class="card card-custom text-center mx-auto" style="max-width: 600px;">
-          <div class="card-body">
-            <p class="card-text">"Previously, I had to travel long distances to obtain my child's school report. With Lunzu Secondary School's online system, I can now access academic records from the comfort of my home."</p>
-            <h5 class="card-title">- Mrs. A. Banda</h5>
-            <p class="card-subtitle mb-2 text-muted">Parent</p>
+        <!-- Testimonial 5: Long-Distance Report Retrieval -->
+        <div class="carousel-item">
+          <div class="card card-custom text-center mx-auto testimonial-card" style="max-width: 600px;">
+            <div class="card-body">
+              <p class="card-text fs-5">"Previously, I had to travel long distances to obtain my child's school report. With Lunzu Secondary School's online system, I can now access academic records from the comfort of my home."</p>
+              <h5 class="card-title mt-3">- Mrs. A. Banda</h5>
+              <p class="card-subtitle mb-2 text-muted">Parent</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Testimonial 6: Fee Balance Inquiry -->
-      <div class="carousel-item">
-        <div class="card card-custom text-center mx-auto" style="max-width: 600px;">
-          <div class="card-body">
-            <p class="card-text">"The ability to view my child's school and fee balance online has made financial planning much easier. It’s a transparent and efficient system that saves time and effort."</p>
-            <h5 class="card-title">- Mr. P. Chapola</h5>
-            <p class="card-subtitle mb-2 text-muted">Parent</p>
+        <!-- Testimonial 6: Fee Balance Inquiry -->
+        <div class="carousel-item">
+          <div class="card card-custom text-center mx-auto testimonial-card" style="max-width: 600px;">
+            <div class="card-body">
+              <p class="card-text fs-5">"The ability to view my child's school and fee balance online has made financial planning much easier. It's a transparent and efficient system that saves time and effort."</p>
+              <h5 class="card-title mt-3">- Mr. P. Chapola</h5>
+              <p class="card-subtitle mb-2 text-muted">Parent</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 7: Mr. P. Madziakapita (Parent) -->
+        <div class="carousel-item">
+          <div class="card card-custom text-center mx-auto testimonial-card" style="max-width: 600px;">
+            <div class="card-body">
+              <p class="card-text fs-5">"I am truly grateful for this system. It reflects the modern standards we aspire to, and it's wonderful to see Lunzu Secondary School embracing progress and innovation."</p>
+              <h5 class="card-title mt-3">- Mr. P. Madziakapita</h5>
+              <p class="card-subtitle mb-2 text-muted">Parent</p>
+            </div>
           </div>
         </div>
       </div>
-<!-- Testimonial 7: Mr. P. Madziakapita (Parent) -->
-<div class="carousel-item">
-  <div class="card card-custom text-center mx-auto" style="max-width: 600px;">
-    <div class="card-body">
-      <p class="card-text">"I am truly grateful for this system. It reflects the modern standards we aspire to, and it’s wonderful to see Lunzu Secondary School embracing progress and innovation."</p>
-      <h5 class="card-title">- Mr. P. Madziakapita</h5>
-      <p class="card-subtitle mb-2 text-muted">Parent</p>
-    </div>
-  </div>
-</div>
-    </div>
       <!-- Carousel Controls -->
       <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -339,38 +348,49 @@
   </div>
 
   <!-- Contact Section -->
-  <div id="contact" class="container my-5">
-    <h2 class="text-center mb-4">Contact Us</h2>
+  <div id="contact" class="container my-5 py-5">
+    <h2 class="text-center mb-5">Contact Us</h2>
     <div class="contact-info">
       <div class="row">
         <div class="col-md-6">
-          <h5>School Address</h5>
+          <h5><i class="fas fa-map-marker-alt me-2"></i>School Address</h5>
           <p>Lunzu Secondary School</p>
           <p>Private Bag 130, Lunzu</p>
           <p>Blantyre, Malawi</p>
+          <div class="mt-4">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.123456789012!2d35.01234567891234!3d-15.67890123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTXCsDQwJzQ0LjAiUyAzNcKwMDAnNDkuNiJF!5e0!3m2!1sen!2smw!4v1234567890123!5m2!1sen!2smw" 
+                    width="100%" height="250" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
         </div>
         <div class="col-md-6">
-          <h5>School Contact Information</h5>
-          <p><i class="fas fa-envelope"></i> Email: <a href="mailto:mayeso.kamndaya@gmail.com">mayeso.kamndaya@gmail.com</a></p>
-          <p><i class="fas fa-phone"></i> Phone: <a href="tel:+265884454660">0884454660</a></p>
-          <p><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/265999746675" target="_blank">0999746675</a></p>
-          <p><i class="fas fa-map-marker-alt"></i> Google Map: <a href="https://maps.app.goo.gl/hyxMqeQ5Jd4EqPBPA" target="_blank">View Location</a></p>
-        </div>
-      </div>
-      <hr>
-      <div class="row mt-4">
-        <div class="col-md-12">
-          <h5>Technical Assistance</h5>
-          <p><i class="fab fa-whatsapp"></i> Developer WhatsApp: <a href="https://wa.me/265888866269" target="_blank">0888866269</a></p>
+          <h5><i class="fas fa-address-book me-2"></i>Contact Information</h5>
+          <p><i class="fas fa-envelope me-2"></i> Email: <a href="mailto:mayeso.kamndaya@gmail.com">mayeso.kamndaya@gmail.com</a></p>
+          <p><i class="fas fa-phone me-2"></i> Phone: <a href="tel:+265884454660">0884454660</a></p>
+          <p><i class="fab fa-whatsapp me-2"></i> WhatsApp: <a href="https://wa.me/265999746675" target="_blank">0999746675</a></p>
+          <p><i class="fas fa-globe me-2"></i> Google Map: <a href="https://maps.app.goo.gl/hyxMqeQ5Jd4EqPBPA" target="_blank">View Location</a></p>
+          
+          <div class="mt-4">
+            <h5><i class="fas fa-life-ring me-2"></i>Technical Support</h5>
+            <p><i class="fab fa-whatsapp me-2"></i> Developer WhatsApp: <a href="https://wa.me/265888866269" target="_blank">0888866269</a></p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Footer -->
-  <footer class="bg-light text-center text-lg-start py-4">
+  <footer class="footer">
     <div class="container">
-      <span class="text-muted">&copy; <span id="current-year"></span> Lunzu Secondary School. All rights reserved.</span>
+      <div class="row">
+        <div class="col-md-6 text-center text-md-start">
+          <h5><i class="fas fa-school me-2"></i>Lunzu Secondary School</h5>
+          <p>Excellence in Education Since 1975</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <p class="mb-0">&copy; <span id="current-year"></span> Lunzu Secondary School. All rights reserved.</p>
+          <p class="mb-0">Designed with <i class="fas fa-heart text-danger"></i> for our students</p>
+        </div>
+      </div>
     </div>
   </footer>
 
@@ -379,21 +399,18 @@
   
   <!-- Custom JavaScript -->
   <script>
-    // Function to show Teachers Section
-    function showTeachers() {
-      document.getElementById('teachers-section').classList.remove('hidden');
-      document.getElementById('parents-section').classList.add('hidden');
-    }
-
-    // Function to show Parents Section
-    function showParents() {
-      document.getElementById('parents-section').classList.remove('hidden');
-      document.getElementById('teachers-section').classList.add('hidden');
-    }
-
     // Footer Year Logic
-    const yearElement = document.getElementById('current-year');
-    yearElement.textContent = new Date().getFullYear();
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
   </script>
 </body>
 </html>
