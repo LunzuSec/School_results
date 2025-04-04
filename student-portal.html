@@ -16,14 +16,14 @@
       background-color: #f8f9fa;
     }
     .navbar-custom {
-      background-color: #28a745;
+      background-color: #2c3e50; /* Dark blue-gray for navbar */
     }
     .navbar-custom .navbar-brand,
     .navbar-custom .nav-link {
       color: white !important;
     }
     .portal-header {
-      background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+      background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); /* Blue gradient for header */
       color: white;
       padding: 40px 0;
       margin-bottom: 30px;
@@ -43,13 +43,14 @@
       box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
     }
     .card-custom-header {
-      background-color: #28a745;
+      background-color: #2c3e50; /* Matching navbar color */
       color: white;
       padding: 20px;
       font-weight: 600;
     }
-    .btn-portal {
-      background-color: #28a745;
+    /* Results links styling - different from dashboard */
+    .btn-result-link {
+      background-color: #27ae60; /* Green color for result links */
       color: white;
       border-radius: 8px;
       padding: 12px 20px;
@@ -59,11 +60,30 @@
       text-align: left;
       transition: all 0.3s;
     }
-    .btn-portal:hover {
-      background-color: #1e7e34;
+    .btn-result-link:hover {
+      background-color: #219653; /* Darker green on hover */
       transform: translateX(5px);
     }
-    .btn-portal i {
+    .btn-result-link i {
+      margin-right: 10px;
+    }
+    /* Dashboard/quick links styling - different from results links */
+    .btn-dashboard {
+      background-color: #3498db; /* Blue color for dashboard links */
+      color: white;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-weight: 500;
+      margin: 5px 0;
+      width: 100%;
+      text-align: left;
+      transition: all 0.3s;
+    }
+    .btn-dashboard:hover {
+      background-color: #2980b9; /* Darker blue on hover */
+      transform: translateX(5px);
+    }
+    .btn-dashboard i {
       margin-right: 10px;
     }
     .nav-buttons {
@@ -79,6 +99,15 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 15px;
+    }
+    /* Back to home button styling */
+    .btn-home {
+      background-color: #9b59b6; /* Purple color for home button */
+      color: white;
+    }
+    .btn-home:hover {
+      background-color: #8e44ad; /* Darker purple on hover */
+      color: white;
     }
   </style>
 </head>
@@ -104,7 +133,7 @@
   <div class="container">
     <!-- Navigation Buttons -->
     <div class="nav-buttons text-center">
-      <a href="index.html" class="btn btn-success">
+      <a href="index.html" class="btn btn-home">
         <i class="fas fa-home"></i> Back to Home
       </a>
     </div>
@@ -117,35 +146,35 @@
       <div class="card-body">
         <div class="result-link-grid">
           <a href="https://script.google.com/macros/s/AKfycbw4Arkd7ntqZlDcttEhzoKrAesSLubPLt1t84TY6q1PRH6Wb8bxep8CERXqVBRa2QItpg/exec" 
-             class="btn btn-portal" target="_blank">
+             class="btn btn-result-link" target="_blank">
             <i class="fas fa-link"></i> Results Link 1
           </a>
           <a href="https://script.google.com/macros/s/AKfycbxLDB5bgyBwF5yU-AVn-1lmNzDmYrJLRa2naDSML0KkGEusx0SlmgS3u2aCHB0DFGTleQ/exec" 
-             class="btn btn-portal" target="_blank">
+             class="btn btn-result-link" target="_blank">
             <i class="fas fa-link"></i> Results Link 2
           </a>
           <a href="https://script.google.com/macros/s/AKfycby5PfgSeo7lWfdoQto1ccoIVySRyCra45BwUw4rj0W1DXu6uvEeev-PEFeIHi5ssTr-jQ/exec" 
-             class="btn btn-portal" target="_blank">
+             class="btn btn-result-link" target="_blank">
             <i class="fas fa-link"></i> Results Link 3
           </a>
           <a href="https://script.google.com/macros/s/AKfycby3LfveNJltBRyD0R619BtDqtljv1GZu4H6qmb0MZnDTQ0OcF2ed-nEcXUt3JaKs5Xd/exec" 
-             class="btn btn-portal" target="_blank">
+             class="btn btn-result-link" target="_blank">
             <i class="fas fa-link"></i> Results Link 4
           </a>
           <a href="https://script.google.com/macros/s/AKfycbwSe_HeUAigVjBiN-rmcq0FPiJRKsLBBtw2VGGhLWlMCrIvT3WeQ0MpjdMdI4HDGnkbZQ/exec" 
-             class="btn btn-portal" target="_blank">
+             class="btn btn-result-link" target="_blank">
             <i class="fas fa-link"></i> Results Link 5
           </a>
           <a href="https://script.google.com/macros/s/AKfycbxAk3Tly0MuRPGxlEPaevLFRn4zDrcV4Ua5aDPKqej1Z57hG1zY0g6l0QbtmYr-PrErGA/exec" 
-             class="btn btn-portal" target="_blank">
+             class="btn btn-result-link" target="_blank">
             <i class="fas fa-link"></i> Results Link 6
           </a>
           <a href="https://script.google.com/macros/s/AKfycbxqZ0ZguQd2VBsEDG16_PDstM0os9-KuWRByM6b-Jj0DgobiPbX8FZFwiefgocbLda_EA/exec" 
-             class="btn btn-portal" target="_blank">
+             class="btn btn-result-link" target="_blank">
             <i class="fas fa-link"></i> Results Link 7
           </a>
           <a href="https://script.google.com/macros/s/AKfycbzMZ52d7CcvcxO069KOM9af9M17-wrI3CvWAkYDdmNVs9XV2HR6VMKsu0QfGCxDrMCm/exec" 
-             class="btn btn-portal" target="_blank">
+             class="btn btn-result-link" target="_blank">
             <i class="fas fa-link"></i> Results Link 8
           </a>
         </div>
@@ -160,12 +189,12 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-6">
-            <a href="index.html" class="btn btn-portal">
+            <a href="index.html" class="btn btn-dashboard">
               <i class="fas fa-home"></i> Main Homepage
             </a>
           </div>
           <div class="col-md-6">
-            <a href="#contact" class="btn btn-portal">
+            <a href="#contact" class="btn btn-dashboard">
               <i class="fas fa-envelope"></i> Contact Support
             </a>
           </div>
