@@ -16,14 +16,14 @@
       background-color: #f8f9fa;
     }
     .navbar-custom {
-      background-color: #007BFF;
+      background-color: #2c3e50; /* Dark blue-gray for navbar */
     }
     .navbar-custom .navbar-brand,
     .navbar-custom .nav-link {
       color: white !important;
     }
     .portal-header {
-      background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
+      background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); /* Blue gradient for header */
       color: white;
       padding: 40px 0;
       margin-bottom: 30px;
@@ -43,13 +43,14 @@
       box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
     }
     .card-custom-header {
-      background-color: #007BFF;
+      background-color: #2c3e50; /* Matching navbar color */
       color: white;
       padding: 20px;
       font-weight: 600;
     }
-    .btn-portal {
-      background-color: #007BFF;
+    /* Submit score links styling */
+    .btn-submit-score {
+      background-color: #27ae60; /* Green color for submit links */
       color: white;
       border-radius: 8px;
       padding: 12px 20px;
@@ -59,12 +60,59 @@
       text-align: left;
       transition: all 0.3s;
     }
-    .btn-portal:hover {
-      background-color: #0056b3;
+    .btn-submit-score:hover {
+      background-color: #219653; /* Darker green on hover */
       transform: translateX(5px);
     }
-    .btn-portal i {
+    .btn-submit-score i {
       margin-right: 10px;
+    }
+    /* Download reports styling */
+    .btn-download {
+      background-color: #e67e22; /* Orange color for download links */
+      color: white;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-weight: 500;
+      margin: 5px 0;
+      width: 100%;
+      text-align: left;
+      transition: all 0.3s;
+    }
+    .btn-download:hover {
+      background-color: #d35400; /* Darker orange on hover */
+      transform: translateX(5px);
+    }
+    .btn-download i {
+      margin-right: 10px;
+    }
+    /* Dashboard/quick links styling */
+    .btn-dashboard {
+      background-color: #9b59b6; /* Purple color for dashboard links */
+      color: white;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-weight: 500;
+      margin: 5px 0;
+      width: 100%;
+      text-align: left;
+      transition: all 0.3s;
+    }
+    .btn-dashboard:hover {
+      background-color: #8e44ad; /* Darker purple on hover */
+      transform: translateX(5px);
+    }
+    .btn-dashboard i {
+      margin-right: 10px;
+    }
+    /* Back to home button styling */
+    .btn-home {
+      background-color: #3498db; /* Blue color for home button */
+      color: white;
+    }
+    .btn-home:hover {
+      background-color: #2980b9; /* Darker blue on hover */
+      color: white;
     }
     .nav-buttons {
       margin: 20px 0;
@@ -99,7 +147,7 @@
   <div class="container">
     <!-- Navigation Buttons -->
     <div class="nav-buttons text-center">
-      <a href="index.html" class="btn btn-primary">
+      <a href="index.html" class="btn btn-home">
         <i class="fas fa-home"></i> Back to Home
       </a>
     </div>
@@ -113,25 +161,25 @@
         <div class="row">
           <div class="col-md-6">
             <a href="https://script.google.com/macros/s/AKfycbyZjG6wFOjYgye73jtuHm1fuXwif8QtFashV9-bkYq5KCuxMVJVuLgI_DZLwn4qkJR-/exec" 
-               class="btn btn-portal" target="_blank">
+               class="btn btn-submit-score" target="_blank">
               <i class="fas fa-link"></i> Submit Scores - Link 1
             </a>
           </div>
           <div class="col-md-6">
             <a href="https://script.google.com/macros/s/AKfycbztSwvQz0YekykakdCgjE7Wrsfj3t8Khm8IbDpqq3x0kWXxoDDRLu3hY_VDh6C-ATRR/exec" 
-               class="btn btn-portal" target="_blank">
+               class="btn btn-submit-score" target="_blank">
               <i class="fas fa-link"></i> Submit Scores - Link 2
             </a>
           </div>
           <div class="col-md-6">
             <a href="https://script.google.com/macros/s/AKfycbyzVzpwRiJQGuvlCV2lg8frTiXVZhqJWmHABjbQ20jNskT156iWg7EptPIY65q1o3AG/exec" 
-               class="btn btn-portal" target="_blank">
+               class="btn btn-submit-score" target="_blank">
               <i class="fas fa-link"></i> Submit Scores - Link 3
             </a>
           </div>
           <div class="col-md-6">
             <a href="https://script.google.com/macros/s/AKfycbzK01zhIWzhkJqq29Qb8ch_V_2Nfs8_0aY22uHTTAXv_7v1TVakFGCq4v7Polt2Uhf_cw/exec" 
-               class="btn btn-portal" target="_blank">
+               class="btn btn-submit-score" target="_blank">
               <i class="fas fa-link"></i> Submit Scores - Link 4
             </a>
           </div>
@@ -146,7 +194,7 @@
       </div>
       <div class="card-body">
         <a href="https://script.google.com/macros/s/AKfycbxSdL3OC7QSc2z5Eis47q6Q7dKQzE12eBaqB-i67igJmF26mzm1empfQUmQ03QdwSPkwQ/exec" 
-           class="btn btn-portal" target="_blank">
+           class="btn btn-download" target="_blank">
           <i class="fas fa-file-pdf"></i> Download Results Summary
         </a>
       </div>
@@ -160,12 +208,12 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-6">
-            <a href="index.html" class="btn btn-portal">
+            <a href="index.html" class="btn btn-dashboard">
               <i class="fas fa-home"></i> Main Homepage
             </a>
           </div>
           <div class="col-md-6">
-            <a href="#contact" class="btn btn-portal">
+            <a href="#contact" class="btn btn-dashboard">
               <i class="fas fa-envelope"></i> Contact Support
             </a>
           </div>
