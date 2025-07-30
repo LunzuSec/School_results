@@ -160,27 +160,8 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-6">
-            <a href="https://script.google.com/macros/s/AKfycbyZjG6wFOjYgye73jtuHm1fuXwif8QtFashV9-bkYq5KCuxMVJVuLgI_DZLwn4qkJR-/exec" 
-               class="btn btn-submit-score" target="_blank">
-              <i class="fas fa-link"></i> Submit Scores - Link 1
-            </a>
-          </div>
-          <div class="col-md-6">
-            <a href="https://script.google.com/macros/s/AKfycbztSwvQz0YekykakdCgjE7Wrsfj3t8Khm8IbDpqq3x0kWXxoDDRLu3hY_VDh6C-ATRR/exec" 
-               class="btn btn-submit-score" target="_blank">
-              <i class="fas fa-link"></i> Submit Scores - Link 2
-            </a>
-          </div>
-          <div class="col-md-6">
-            <a href="https://script.google.com/macros/s/AKfycbyzVzpwRiJQGuvlCV2lg8frTiXVZhqJWmHABjbQ20jNskT156iWg7EptPIY65q1o3AG/exec" 
-               class="btn btn-submit-score" target="_blank">
-              <i class="fas fa-link"></i> Submit Scores - Link 3
-            </a>
-          </div>
-          <div class="col-md-6">
-            <a href="https://script.google.com/macros/s/AKfycbzK01zhIWzhkJqq29Qb8ch_V_2Nfs8_0aY22uHTTAXv_7v1TVakFGCq4v7Polt2Uhf_cw/exec" 
-               class="btn btn-submit-score" target="_blank">
-              <i class="fas fa-link"></i> Submit Scores - Link 4
+            <a href="#" onclick="redirectToGoogleSheets()" class="btn btn-submit-score">
+              <i class="fas fa-link"></i> Submit Scores - Google Sheets
             </a>
           </div>
         </div>
@@ -236,6 +217,21 @@
   <script>
     // Set current year in footer
     document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Redirect to Google Sheets with app/browser prompt
+    function redirectToGoogleSheets() {
+      const googleSheetsUrl = "https://docs.google.com/spreadsheets";
+      const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+      
+      if (isMobile && confirm("Do you want to open this in the Google Sheets app?")) {
+        window.location.href = "googlesheets://" + googleSheetsUrl.replace("https://", "");
+        setTimeout(() => {
+          window.location.href = googleSheetsUrl;
+        }, 1000);
+      } else {
+        window.location.href = googleSheetsUrl;
+      }
+    }
   </script>
 </body>
 </html>
