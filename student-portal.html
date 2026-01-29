@@ -109,6 +109,56 @@
       background-color: #8e44ad; /* Darker purple on hover */
       color: white;
     }
+    /* Main Results Link Styling */
+    .main-result-card {
+      background: linear-gradient(135deg, #27ae60 0%, #219653 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 25px rgba(39, 174, 96, 0.3);
+    }
+    .main-result-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+    .main-result-card p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+    .btn-main-result {
+      background-color: white;
+      color: #27ae60;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 30px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .btn-main-result:hover {
+      background-color: #f8f9fa;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .portal-header {
+        padding: 30px 0;
+      }
+      .main-result-card {
+        padding: 20px;
+      }
+      .main-result-card h3 {
+        font-size: 1.5rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -138,45 +188,43 @@
       </a>
     </div>
     
-    <!-- Results Links Card -->
+    <!-- Main Results Card -->
+    <div class="main-result-card">
+      <h3><i class="fas fa-award"></i> View Your Results</h3>
+      <p>Click the button below to access the results portal where you can search for and view your academic results.</p>
+      <a href="https://lunzusec.github.io/school-results/" 
+         class="btn btn-main-result" target="_blank">
+        <i class="fas fa-external-link-alt"></i> Go to Results Portal
+      </a>
+      <div style="margin-top: 15px; font-size: 0.9rem;">
+        <i class="fas fa-info-circle"></i> You will be redirected to the official results portal
+      </div>
+    </div>
+    
+    <!-- Important Information Card -->
     <div class="card card-custom">
       <div class="card-header card-custom-header">
-        <i class="fas fa-poll"></i> View Your Results
+        <i class="fas fa-info-circle"></i> Important Information
       </div>
       <div class="card-body">
-        <div class="result-link-grid">
-          <a href="https://script.google.com/macros/s/AKfycbw4Arkd7ntqZlDcttEhzoKrAesSLubPLt1t84TY6q1PRH6Wb8bxep8CERXqVBRa2QItpg/exec" 
-             class="btn btn-result-link" target="_blank">
-            <i class="fas fa-link"></i> Results Link 1
-          </a>
-          <a href="https://script.google.com/macros/s/AKfycbxLDB5bgyBwF5yU-AVn-1lmNzDmYrJLRa2naDSML0KkGEusx0SlmgS3u2aCHB0DFGTleQ/exec" 
-             class="btn btn-result-link" target="_blank">
-            <i class="fas fa-link"></i> Results Link 2
-          </a>
-          <a href="https://script.google.com/macros/s/AKfycby5PfgSeo7lWfdoQto1ccoIVySRyCra45BwUw4rj0W1DXu6uvEeev-PEFeIHi5ssTr-jQ/exec" 
-             class="btn btn-result-link" target="_blank">
-            <i class="fas fa-link"></i> Results Link 3
-          </a>
-          <a href="https://script.google.com/macros/s/AKfycby3LfveNJltBRyD0R619BtDqtljv1GZu4H6qmb0MZnDTQ0OcF2ed-nEcXUt3JaKs5Xd/exec" 
-             class="btn btn-result-link" target="_blank">
-            <i class="fas fa-link"></i> Results Link 4
-          </a>
-          <a href="https://script.google.com/macros/s/AKfycbwSe_HeUAigVjBiN-rmcq0FPiJRKsLBBtw2VGGhLWlMCrIvT3WeQ0MpjdMdI4HDGnkbZQ/exec" 
-             class="btn btn-result-link" target="_blank">
-            <i class="fas fa-link"></i> Results Link 5
-          </a>
-          <a href="https://script.google.com/macros/s/AKfycbxAk3Tly0MuRPGxlEPaevLFRn4zDrcV4Ua5aDPKqej1Z57hG1zY0g6l0QbtmYr-PrErGA/exec" 
-             class="btn btn-result-link" target="_blank">
-            <i class="fas fa-link"></i> Results Link 6
-          </a>
-          <a href="https://script.google.com/macros/s/AKfycbxqZ0ZguQd2VBsEDG16_PDstM0os9-KuWRByM6b-Jj0DgobiPbX8FZFwiefgocbLda_EA/exec" 
-             class="btn btn-result-link" target="_blank">
-            <i class="fas fa-link"></i> Results Link 7
-          </a>
-          <a href="https://script.google.com/macros/s/AKfycbzMZ52d7CcvcxO069KOM9af9M17-wrI3CvWAkYDdmNVs9XV2HR6VMKsu0QfGCxDrMCm/exec" 
-             class="btn btn-result-link" target="_blank">
-            <i class="fas fa-link"></i> Results Link 8
-          </a>
+        <div class="alert alert-info">
+          <h5><i class="fas fa-lightbulb"></i> Before You Proceed:</h5>
+          <ul>
+            <li><strong>Requirements:</strong> You'll need your student name, class, and date of birth</li>
+            <li><strong>Browser:</strong> Use Chrome, Firefox, Edge, or Safari for best experience</li>
+            <li><strong>Support:</strong> Contact technical support if you encounter any issues</li>
+            <li><strong>Timing:</strong> Results are available 24/7 during the results period</li>
+          </ul>
+        </div>
+        
+        <div class="alert alert-warning">
+          <h5><i class="fas fa-exclamation-triangle"></i> Troubleshooting Tips:</h5>
+          <ul>
+            <li>If the page doesn't load, try refreshing or using a different browser</li>
+            <li>Ensure you have a stable internet connection</li>
+            <li>Check that you're entering your details correctly</li>
+            <li>If issues persist, contact the technical support team</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -194,8 +242,18 @@
             </a>
           </div>
           <div class="col-md-6">
-            <a href="#contact" class="btn btn-dashboard">
+            <a href="#contact" class="btn btn-dashboard" data-bs-toggle="modal" data-bs-target="#contactModal">
               <i class="fas fa-envelope"></i> Contact Support
+            </a>
+          </div>
+          <div class="col-md-6 mt-2">
+            <a href="#instructions" class="btn btn-dashboard" data-bs-toggle="modal" data-bs-target="#instructionsModal">
+              <i class="fas fa-question-circle"></i> How to Use
+            </a>
+          </div>
+          <div class="col-md-6 mt-2">
+            <a href="#faq" class="btn btn-dashboard" data-bs-toggle="modal" data-bs-target="#faqModal">
+              <i class="fas fa-comments"></i> FAQ
             </a>
           </div>
         </div>
@@ -204,12 +262,125 @@
   </div>
 
   <!-- Footer -->
-  <footer class="footer text-center">
+  <footer class="footer text-center" id="contact">
     <div class="container">
       <p>&copy; <span id="current-year"></span> Lunzu Secondary School. All rights reserved.</p>
       <p>For technical support, contact: <a href="https://wa.me/265888866269" style="color: #4fc3f7;" target="_blank">Developer WhatsApp</a></p>
     </div>
   </footer>
+
+  <!-- Contact Modal -->
+  <div class="modal fade" id="contactModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="fas fa-envelope"></i> Contact Support</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <h6>Technical Support Contact:</h6>
+          <p><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/265888866269" target="_blank">+265 888 866 269</a></p>
+          <p><i class="fas fa-clock"></i> Available: Monday - Friday, 8:00 AM - 5:00 PM</p>
+          <hr>
+          <h6>School Administration:</h6>
+          <p><i class="fas fa-phone"></i> School Office: Contact school administration during working hours</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Instructions Modal -->
+  <div class="modal fade" id="instructionsModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="fas fa-question-circle"></i> How to Use the Results Portal</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <ol>
+            <li><strong>Click the "Go to Results Portal" button</strong> above</li>
+            <li><strong>Select your class</strong> from the dropdown menu</li>
+            <li><strong>Wait for student names to load</strong> (this may take a few seconds)</li>
+            <li><strong>Select your name</strong> from the list or search for it</li>
+            <li><strong>Enter your date of birth</strong> in YYYY-MM-DD format</li>
+            <li><strong>Click "View Results"</strong> to see your results in a new tab</li>
+            <li><strong>Optional:</strong> Click "Download PDF" to save a copy of your results</li>
+          </ol>
+          <div class="alert alert-info">
+            <i class="fas fa-info-circle"></i> If you can't find your name, please ensure you've selected the correct class.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ Modal -->
+  <div class="modal fade" id="faqModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="fas fa-comments"></i> Frequently Asked Questions</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                  What do I do if I can't find my name?
+                </button>
+              </h2>
+              <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Make sure you've selected the correct class. If you still can't find your name, contact your class teacher or the school administration.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                  What date format should I use?
+                </button>
+              </h2>
+              <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Use the format YYYY-MM-DD (e.g., 2010-05-15 for May 15, 2010).
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                  The page is not loading, what should I do?
+                </button>
+              </h2>
+              <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  1. Refresh the page<br>
+                  2. Try a different browser (Chrome, Firefox, Edge)<br>
+                  3. Check your internet connection<br>
+                  4. If problems persist, contact technical support
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                  Can I download my results?
+                </button>
+              </h2>
+              <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Yes! After viewing your results, click the "Download PDF" button to save a copy on your device.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Bootstrap JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -217,6 +388,17 @@
   <script>
     // Set current year in footer
     document.getElementById('current-year').textContent = new Date().getFullYear();
+    
+    // Add click tracking for analytics (optional)
+    document.addEventListener('DOMContentLoaded', function() {
+      const resultsLink = document.querySelector('.btn-main-result');
+      if (resultsLink) {
+        resultsLink.addEventListener('click', function() {
+          console.log('Results portal accessed at:', new Date().toISOString());
+          // You can add Google Analytics tracking here
+        });
+      }
+    });
   </script>
 </body>
 </html>
