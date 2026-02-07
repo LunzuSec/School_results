@@ -345,6 +345,29 @@
       box-shadow: 0 12px 30px rgba(46, 204, 113, 0.4);
     }
     
+    /* Footer datetime styles */
+    .footer-datetime {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    
+    .footer-temperature {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+    
+    .footer-time {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .footer-date {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
     /* Responsive Design */
     @media (max-width: 768px) {
       body {
@@ -390,6 +413,11 @@
       .portal-subtitle {
         font-size: 1.1rem;
       }
+      
+      .footer-datetime {
+        align-items: center;
+        margin-top: 20px;
+      }
     }
     
     @media (max-width: 576px) {
@@ -418,6 +446,18 @@
         font-size: 0.95rem;
         padding: 10px 20px;
         text-align: center;
+      }
+      
+      .footer-temperature {
+        font-size: 1.3rem;
+      }
+      
+      .footer-time {
+        font-size: 1.1rem;
+      }
+      
+      .footer-date {
+        font-size: 1rem;
       }
     }
   </style>
@@ -737,23 +777,22 @@
         <div class="col-lg-8 text-center text-lg-start mb-4 mb-lg-0">
           <h3 class="mb-3"><i class="fas fa-school me-2"></i>Lunzu Secondary School</h3>
           <p class="mb-0">Committed to providing quality education and fostering academic excellence since 1985.</p>
+          <p class="mb-0 mt-2">
+            <i class="fas fa-certificate me-2"></i>Registered Government Secondary School
+          </p>
         </div>
         <div class="col-lg-4 text-center text-lg-end">
-          <div class="d-flex justify-content-center justify-content-lg-end align-items-center">
-            <div class="text-end me-3">
-              <div id="temperature" class="fs-5">27°C</div>
-              <div id="time" class="fs-6">3:38 PM</div>
-            </div>
-            <div id="date" class="fs-5">02/07/2026</div>
+          <div class="footer-datetime">
+            <div class="footer-temperature" id="temperature">27°C</div>
+            <div class="footer-time" id="time">3:38 PM</div>
+            <div class="footer-date" id="date">02/07/2026</div>
           </div>
         </div>
       </div>
       <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
       <div class="row">
         <div class="col-md-6 text-center text-md-start">
-          <p class="mb-0">
-            <i class="fas fa-certificate me-2"></i>Registered Government Secondary School
-          </p>
+          <p class="mb-0">&copy; <span id="current-year">2026</span> Lunzu Secondary School. All rights reserved.</p>
         </div>
         <div class="col-md-6 text-center text-md-end footer-links">
           <a href="#" onclick="showSection('contact')" class="me-3">Contact</a>
@@ -769,25 +808,62 @@
   
   <!-- Custom JavaScript -->
   <script>
-    // Set current year in footer
-    document.getElementById('current-year').textContent = new Date().getFullYear();
+    // Initialize all elements on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set current year
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+      
+      // Initialize with home section
+      showSection('home');
+      
+      // Initialize date and time
+      updateDateTime();
+      
+      // Start the update interval
+      setInterval(updateDateTime, 1000); // Update every second
+      
+      // Initialize temperature (simulated - in real app, you'd get this from an API)
+      updateTemperature();
+      setInterval(updateTemperature, 300000); // Update temperature every 5 minutes
+    });
     
-    // Update time, date, and temperature
+    // Function to update temperature (simulated)
+    function updateTemperature() {
+      // For demo, generate a random temperature between 20-35°C
+      // In a real application, you would fetch this from a weather API
+      const baseTemp = 27; // Base temperature
+      const variation = Math.random() * 3 - 1.5; // Random variation ±1.5
+      const temperature = Math.round((baseTemp + variation) * 10) / 10;
+      document.getElementById('temperature').textContent = `${temperature}°C`;
+    }
+    
+    // Function to update date and time
     function updateDateTime() {
       const now = new Date();
       
-      // Format time
-      const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
-      document.getElementById('time').textContent = now.toLocaleTimeString('en-US', timeOptions);
+      // Format time (HH:MM AM/PM)
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
       
-      // Format date
-      const dateOptions = { month: '2-digit', day: '2-digit', year: 'numeric' };
-      document.getElementById('date').textContent = now.toLocaleDateString('en-US', dateOptions);
+      // Convert to 12-hour format
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      
+      // Add leading zeros to minutes
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      
+      // Update time element
+      document.getElementById('time').textContent = `${hours}:${minutes} ${ampm}`;
+      
+      // Format date (MM/DD/YYYY)
+      const month = (now.getMonth() + 1).toString().padStart(2, '0');
+      const day = now.getDate().toString().padStart(2, '0');
+      const year = now.getFullYear();
+      
+      // Update date element
+      document.getElementById('date').textContent = `${month}/${day}/${year}`;
     }
-    
-    // Initial call and update every minute
-    updateDateTime();
-    setInterval(updateDateTime, 60000);
     
     // Section navigation function
     function showSection(sectionId) {
@@ -796,36 +872,42 @@
         section.classList.remove('active-section');
       });
       
-      // Show selected section
+      // Show the selected section
       const targetSection = document.getElementById(sectionId + '-section');
-      targetSection.classList.add('active-section');
-      
-      // Scroll to section
-      setTimeout(() => {
-        targetSection.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
+      if (targetSection) {
+        targetSection.classList.add('active-section');
+        
+        // Scroll to section
+        setTimeout(() => {
+          targetSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }, 50);
+        
+        // Update active nav link
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active');
         });
-      }, 50);
-      
-      // Update active nav link
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-      });
-      event.target.classList.add('active');
+        
+        // Find and activate the clicked nav link
+        const clickedLink = event?.target;
+        if (clickedLink && clickedLink.classList.contains('nav-link')) {
+          clickedLink.classList.add('active');
+        }
+      }
     }
     
-    // Initialize with home section
-    window.addEventListener('DOMContentLoaded', () => {
-      showSection('home');
-    });
+    // Initialize with home section (fallback)
+    function initializeHomeSection() {
+      const homeSection = document.getElementById('home-section');
+      if (homeSection && !homeSection.classList.contains('active-section')) {
+        homeSection.classList.add('active-section');
+      }
+    }
     
-    // Add smooth scrolling to all links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-      });
-    });
+    // Call initialization as fallback
+    initializeHomeSection();
   </script>
 </body>
 </html>
