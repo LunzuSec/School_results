@@ -13,182 +13,315 @@
         integrity="sha512-pj6VsoMV3Pn0aO5/KE1qPBD6gEijSdykOqYlCkgVgJt+5UrHhHgfKgnA9yGo0A37uj5yK69IaMzuq8wRA3+4qA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
   
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  
   <!-- Custom CSS -->
   <style>
-    .navbar-custom {
-      background-color: #007BFF;
+    :root {
+      --primary-color: #007BFF;
+      --primary-dark: #0056b3;
+      --secondary-color: #6c757d;
+      --accent-color: #17a2b8;
+      --light-bg: #f8f9fa;
+      --dark-bg: #343a40;
+      --success-color: #28a745;
+      --warning-color: #ffc107;
     }
+    
+    * {
+      font-family: 'Open Sans', sans-serif;
+    }
+    
+    h1, h2, h3, h4, h5, h6, .navbar-brand {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+    }
+    
+    .navbar-custom {
+      background-color: var(--primary-color);
+      padding: 15px 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
     .navbar-custom .navbar-brand,
     .navbar-custom .nav-link {
       color: white !important;
     }
-    .jumbotron {
-      position: relative;
-      padding: 100px 0;
-      color: white;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    
+    .navbar-custom .nav-link {
+      margin: 0 8px;
+      font-weight: 500;
+      transition: color 0.3s;
     }
-    .card-custom {
-      border: none;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border-radius: 10px;
+    
+    .navbar-custom .nav-link:hover {
+      color: rgba(255, 255, 255, 0.9) !important;
+    }
+    
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+      color: white;
+      padding: 100px 0;
+      position: relative;
       overflow: hidden;
     }
-    .card-custom:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-    .card-custom-header {
-      background-color: #007BFF;
-      color: white;
-      padding: 20px;
-    }
-    .btn-custom {
-      background-color: #007BFF;
-      color: white;
-      border-radius: 8px;
-      padding: 12px 24px;
-      font-weight: 500;
-      transition: all 0.3s;
-    }
-    .btn-custom:hover {
-      background-color: #0056b3;
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-    .btn-portal {
-      font-size: 1.1rem;
-      padding: 15px 30px;
-      margin: 10px;
-      border-radius: 10px;
-      transition: all 0.3s;
-    }
-    .btn-portal:hover {
-      transform: translateY(-5px) scale(1.03);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    }
-    .section-content, .hero-section {
-      display: none;
-    }
-    .active-section {
-      display: block;
-      animation: fadeIn 0.5s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /* Carousel Styling */
-    .carousel-item {
-      background-size: cover;
-      background-position: center;
-      min-height: 500px;
-      position: relative;
-    }
-    .carousel-item.active {
-      background-color: transparent;
-    }
-    .carousel-item video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    
+    .hero-section::before {
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
-      z-index: -1;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
-
-    /* Floating Animation */
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
     }
-    .floating-card {
-      animation: float 3s ease-in-out infinite;
+    
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     }
-
-    /* Contact Section Styling */
-    .contact-info {
-      background-color: #f8f9fa;
-      padding: 20px;
+    
+    .hero-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.95;
+    }
+    
+    .card-custom {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      overflow: hidden;
+      margin-bottom: 30px;
+      height: 100%;
+    }
+    
+    .card-custom:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .card-custom-header {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 25px;
+      border-bottom: none;
+    }
+    
+    .btn-custom {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      color: white;
+      border: none;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 12px 30px;
+      font-weight: 600;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
     }
-    .contact-info a {
-      color: #007BFF;
+    
+    .btn-custom:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+      color: white;
+    }
+    
+    .btn-portal {
+      font-size: 1.2rem;
+      padding: 20px 40px;
+      margin: 15px;
+      border-radius: 12px;
+      transition: all 0.3s;
+      min-width: 250px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .btn-portal:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn-portal.teacher {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%);
+    }
+    
+    .btn-portal.student {
+      background: linear-gradient(135deg, var(--success-color) 0%, #1e7e34 100%);
+    }
+    
+    .section-title {
+      position: relative;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      border-radius: 2px;
+    }
+    
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: white;
+      font-size: 2rem;
+    }
+    
+    .testimonial-card {
+      border-left: 5px solid var(--primary-color);
+      padding: 25px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      margin: 20px;
+    }
+    
+    .testimonial-text {
+      font-style: italic;
+      color: #555;
+      line-height: 1.8;
+    }
+    
+    .portal-section {
+      background: linear-gradient(135deg, var(--light-bg) 0%, #e9ecef 100%);
+      padding: 80px 0;
+      border-radius: 20px;
+      margin: 60px 0;
+    }
+    
+    .contact-info {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      margin-right: 15px;
+    }
+    
+    .announcement-section {
+      background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+      padding: 25px;
+      border-radius: 12px;
+      margin: 30px 0;
+      border-left: 5px solid var(--warning-color);
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(255, 193, 7, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0); }
+    }
+    
+    .footer {
+      background: linear-gradient(135deg, var(--dark-bg) 0%, #212529 100%);
+      color: white;
+      padding: 50px 0 30px;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
       text-decoration: none;
+      transition: color 0.3s;
     }
-    .contact-info a:hover {
+    
+    .footer-links a:hover {
+      color: white;
       text-decoration: underline;
     }
     
-    /* Portal Buttons Section */
-    .portal-section {
-      background-color: #f8f9fa;
-      padding: 50px 0;
-      border-radius: 15px;
-      margin: 40px 0;
-      box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.05);
+    .section-content {
+      display: none;
+      animation: fadeIn 0.5s ease-in-out;
     }
     
-    /* Testimonial Cards */
-    .testimonial-card {
-      border-left: 5px solid #007BFF;
+    .active-section {
+      display: block;
     }
     
-    /* About Section */
-    .about-section {
-      background-color: #f8f9fa;
-      padding: 50px 0;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     
-    /* Footer */
-    .footer {
-      background-color: #343a40;
-      color: white;
-      padding: 30px 0;
-    }
-    
-    /* Announcements Section */
-    .announcement-section {
-      background-color: #fff3cd;
-      padding: 20px;
-      border-radius: 8px;
-      margin: 20px 0;
-      border-left: 5px solid #ffc107;
-    }
-    .announcement-title {
-      color: #856404;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    .announcement-content {
-      color: #856404;
-    }
-
-    /* Responsive Adjustments */
+    /* Responsive Design */
     @media (max-width: 768px) {
-      .carousel-item {
-        min-height: 300px;
-      }
-      .jumbotron {
-        padding: 60px 0;
-      }
-      .display-4 {
+      .hero-title {
         font-size: 2.5rem;
       }
-      .lead {
-        font-size: 1rem;
+      
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .hero-section {
+        padding: 60px 0;
+      }
+      
+      .btn-portal {
+        min-width: 200px;
+        padding: 15px 30px;
+        margin: 10px 5px;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+      
+      .btn-portal {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
       }
     }
   </style>
 </head>
 <body>
   <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
-    <div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    <div class="container">
       <a class="navbar-brand" href="#" onclick="showSection('home')">
         <i class="fas fa-school me-2"></i>Lunzu Secondary School
       </a>
@@ -214,163 +347,93 @@
             <a class="nav-link" href="#" onclick="showSection('testimonials')">Testimonials</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" onclick="showSection('contact')">Contact Us</a>
+            <a class="nav-link" href="#" onclick="showSection('contact')">Contact</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section with Background Slideshow -->
+  <!-- Hero Section -->
   <div id="home-section" class="hero-section active-section">
-    <div class="jumbotron text-center py-5">
-      <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="60000" style="background-image: url('https://i.postimg.cc/6QBZSf2d/IMG-20250214-113155.jpg');">
-            <div class="container">
-              <h1 class="display-4 fw-bold">Welcome to Lunzu Secondary School</h1>
-              <p class="lead fs-4">Manage and track academic performance effortlessly with our digital platform.</p>
-              <button class="btn btn-light btn-lg mt-3 px-4 py-2" onclick="showSection('portals')">
-                <i class="fas fa-arrow-down me-2"></i>Access Portals
-              </button>
-            </div>
-          </div>
-          <div class="carousel-item" data-bs-interval="60000" style="background-image: url('https://i.postimg.cc/DZMbSVCg/IMG-20250214-113155-1.jpg');">
-            <div class="container">
-              <h1 class="display-4 fw-bold">Welcome to Lunzu Secondary School</h1>
-              <p class="lead fs-4">Manage and track academic performance effortlessly with our digital platform.</p>
-              <button class="btn btn-light btn-lg mt-3 px-4 py-2" onclick="showSection('portals')">
-                <i class="fas fa-arrow-down me-2"></i>Access Portals
-              </button>
-            </div>
-          </div>
-          <div class="carousel-item" data-bs-interval="60000" style="background-image: url('https://i.postimg.cc/4dd9441y/IMG-20250214-113158.jpg');">
-            <div class="container">
-              <h1 class="display-4 fw-bold">Welcome to Lunzu Secondary School</h1>
-              <p class="lead fs-4">Manage and track academic performance effortlessly with our digital platform.</p>
-              <button class="btn btn-light btn-lg mt-3 px-4 py-2" onclick="showSection('portals')">
-                <i class="fas fa-arrow-down me-2"></i>Access Portals
-              </button>
-            </div>
-          </div>
-          <div class="carousel-item" data-bs-interval="60000" style="background-image: url('https://i.postimg.cc/xdgmSNMB/IMG-20250214-113201.jpg');">
-            <div class="container">
-              <h1 class="display-4 fw-bold">Welcome to Lunzu Secondary School</h1>
-              <p class="lead fs-4">Manage and track academic performance effortlessly with our digital platform.</p>
-              <button class="btn btn-light btn-lg mt-3 px-4 py-2" onclick="showSection('portals')">
-                <i class="fas fa-arrow-down me-2"></i>Access Portals
-              </button>
-            </div>
-          </div>
-          <div class="carousel-item" data-bs-interval="60000" style="background-image: url('https://i.postimg.cc/MZgdLgWV/IMG-20250401-080036.jpg');">
-            <div class="container">
-              <h1 class="display-4 fw-bold">Welcome to Lunzu Secondary School</h1>
-              <p class="lead fs-4">Manage and track academic performance effortlessly with our digital platform.</p>
-              <button class="btn btn-light btn-lg mt-3 px-4 py-2" onclick="showSection('portals')">
-                <i class="fas fa-arrow-down me-2"></i>Access Portals
-              </button>
-            </div>
-          </div>
-          <div class="carousel-item" data-bs-interval="60000" style="background-image: url('https://i.postimg.cc/kGRR8jzd/IMG-20250401-080056.jpg');">
-            <div class="container">
-              <h1 class="display-4 fw-bold">Welcome to Lunzu Secondary School</h1>
-              <p class="lead fs-4">Manage and track academic performance effortlessly with our digital platform.</p>
-              <button class="btn btn-light btn-lg mt-3 px-4 py-2" onclick="showSection('portals')">
-                <i class="fas fa-arrow-down me-2"></i>Access Portals
-              </button>
-            </div>
-          </div>
-          <div class="carousel-item" data-bs-interval="60000" style="background-image: url('https://i.postimg.cc/23pbxQNL/IMG-20250401-080058.jpg');">
-            <div class="container">
-              <h1 class="display-4 fw-bold">Welcome to Lunzu Secondary School</h1>
-              <p class="lead fs-4">Manage and track academic performance effortlessly with our digital platform.</p>
-              <button class="btn btn-light btn-lg mt-3 px-4 py-2" onclick="showSection('portals')">
-                <i class="fas fa-arrow-down me-2"></i>Access Portals
-              </button>
-            </div>
-          </div>
-          <div class="carousel-item" data-bs-interval="60000" style="background-image: url('https://i.postimg.cc/3rktn3H3/IMG-20250401-080100.jpg');">
-            <div class="container">
-              <h1 class="display-4 fw-bold">Welcome to Lunzu Secondary School</h1>
-              <p class="lead fs-4">Manage and track academic performance effortlessly with our digital platform.</p>
-              <button class="btn btn-light btn-lg mt-3 px-4 py-2" onclick="showSection('portals')">
-                <i class="fas fa-arrow-down me-2"></i>Access Portals
-              </button>
-            </div>
-          </div>
-          <div class="carousel-item" data-bs-interval="60000" style="background-image: url('https://i.postimg.cc/m2M8WVDq/IMG-20250401-080104.jpg');">
-            <div class="container">
-              <h1 class="display-4 fw-bold">Welcome to Lunzu Secondary School</h1>
-              <p class="lead fs-4">Manage and track academic performance effortlessly with our digital platform.</p>
-              <button class="btn btn-light btn-lg mt-3 px-4 py-2" onclick="showSection('portals')">
-                <i class="fas fa-arrow-down me-2"></i>Access Portals
-              </button>
-            </div>
-          </div>
-          <div class="carousel-item" data-bs-interval="60000">
-            <video autoplay loop muted playsinline>
-              <source src="https://ik.imagekit.io/cetyeqvy3t/VID_20250620_113032.mp4?updatedAt=1753627212865" type="video/mp4">
-            </video>
-            <div class="container">
-              <h1 class="display-4 fw-bold">Welcome to Lunzu Secondary School</h1>
-              <p class="lead fs-4">Manage and track academic performance effortlessly with our digital platform.</p>
-              <button class="btn btn-light btn-lg mt-3 px-4 py-2" onclick="showSection('portals')">
-                <i class="fas fa-arrow-down me-2"></i>Access Portals
-              </button>
-            </div>
-          </div>
-          <div class="carousel-item" data-bs-interval="60000">
-            <video autoplay loop muted playsinline>
-              <source src="https://ik.imagekit.io/cetyeqvy3t/lv_0_20250214141649.mp4?updatedAt=1753627683906" type="video/mp4">
-            </video>
-            <div class="container">
-              <h1 class="display-4 fw-bold">Welcome to Lunzu Secondary School</h1>
-              <p class="lead fs-4">Manage and track academic performance effortlessly with our digital platform.</p>
-              <button class="btn btn-light btn-lg mt-3 px-4 py-2" onclick="showSection('portals')">
-                <i class="fas fa-arrow-down me-2"></i>Access Portals
-              </button>
-            </div>
-          </div>
-        </div>
+    <div class="container">
+      <div class="hero-content text-center">
+        <h1 class="hero-title">Lunzu Secondary School</h1>
+        <p class="hero-subtitle">Excellence in Education Since 1985</p>
+        <p class="lead mb-4">Empowering students through quality education and innovative learning solutions</p>
+        <button class="btn btn-light btn-lg px-5 py-3 fw-bold" onclick="showSection('portals')">
+          <i class="fas fa-door-open me-2"></i>Access Portals
+        </button>
       </div>
     </div>
   </div>
 
   <!-- Announcements Section -->
-  <div class="container">
+  <div class="container mt-4">
     <div class="announcement-section">
-      <div class="announcement-title">
-        <i class="fas fa-bullhorn me-2"></i>Important Announcement
-      </div>
-      <div class="announcement-content">
-        School opens for term 2 on 5th January, 2026. All students are expected to report on 4th January, 2026 with a proof of payment of school fees and necessary materials e.g. mosquito nets, pails and tissues.
+      <div class="d-flex align-items-center">
+        <div class="me-3">
+          <i class="fas fa-bullhorn fa-2x" style="color: #856404;"></i>
+        </div>
+        <div>
+          <h4 class="mb-2" style="color: #856404;">
+            <i class="fas fa-exclamation-circle me-2"></i>Important Announcement
+          </h4>
+          <p class="mb-0" style="color: #856404;">
+            School opens for term 2 on 5th January, 2026. All students are expected to report on 4th January, 2026 with proof of payment of school fees and necessary materials including mosquito nets, pails, and tissues.
+          </p>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Main Content Sections -->
-  <div class="container">
-    <!-- About Our School Section -->
-    <div id="about-section" class="section-content">
-      <div class="about-section">
-        <div class="row">
-          <div class="col-lg-8 mx-auto text-center">
-            <h2 class="mb-4">About Our School</h2>
-            <div class="card card-custom">
-              <div class="card-body">
-                <p class="lead">
-                  Lunzu Secondary School is a government-run institution serving both boys and girls since its establishment in 1985. 
-                  Located in Blantyre Rural, our school has built a strong reputation for academic excellence over the years.
-                </p>
-                <p>
-                  We take pride in our consistent outstanding performance, which has enabled us to successfully prepare and send numerous students 
-                  to various colleges and universities. Our commitment to quality education continues to produce graduates who excel in their 
-                  further studies and professional careers.
-                </p>
-                <p>
-                  The school maintains high educational standards while fostering a supportive learning environment for all students, helping them 
-                  achieve their full potential both academically and personally.
-                </p>
+  <div class="container my-5">
+    
+    <!-- About Section -->
+    <div id="about-section" class="section-content pt-5">
+      <h2 class="section-title">About Our School</h2>
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="card card-custom">
+            <div class="card-body p-5">
+              <div class="row align-items-center">
+                <div class="col-md-8">
+                  <h3 class="mb-4">A Legacy of Excellence Since 1985</h3>
+                  <p class="lead mb-4">
+                    Lunzu Secondary School is a distinguished government-run institution serving both boys and girls in Blantyre Rural. Established in 1985, our school has built a strong reputation for academic excellence and holistic development.
+                  </p>
+                  <div class="row mb-4">
+                    <div class="col-6">
+                      <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-graduation-cap text-primary me-3 fa-lg"></i>
+                        <div>
+                          <h5 class="mb-0">Academic Excellence</h5>
+                          <small>Consistent top performance</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-users text-primary me-3 fa-lg"></i>
+                        <div>
+                          <h5 class="mb-0">Inclusive Education</h5>
+                          <small>Co-educational environment</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <p>
+                    We take pride in preparing students for higher education and professional careers, with numerous alumni successfully transitioning to colleges and universities nationwide.
+                  </p>
+                </div>
+                <div class="col-md-4 text-center">
+                  <div class="feature-icon mb-4">
+                    <i class="fas fa-university"></i>
+                  </div>
+                  <h4>Established 1985</h4>
+                  <p class="text-muted">Over 35 years of educational excellence</p>
+                </div>
               </div>
             </div>
           </div>
@@ -378,184 +441,182 @@
       </div>
     </div>
 
-    <!-- Key Features Section -->
-    <div id="features-section" class="section-content">
-      <div class="my-5 py-4">
-        <h2 class="text-center mb-5">Key Features</h2>
-        <div id="featuresCarousel" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="card card-custom text-center mx-auto" style="max-width: 600px;">
-                <div class="card-header card-custom-header">
-                  <i class="fas fa-chart-line fa-2x"></i>
-                  <h5 class="mt-2">Performance Tracking</h5>
-                </div>
-                <div class="card-body">
-                  <p>Monitor and analyze student performance across various subjects with detailed reports and analytics.</p>
-                </div>
+    <!-- Features Section -->
+    <div id="features-section" class="section-content pt-5">
+      <h2 class="section-title">System Features</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card card-custom text-center h-100">
+            <div class="card-custom-header">
+              <div class="feature-icon">
+                <i class="fas fa-chart-line"></i>
               </div>
+              <h4 class="mt-3">Performance Tracking</h4>
             </div>
-            <div class="carousel-item">
-              <div class="card card-custom text-center mx-auto" style="max-width: 600px;">
-                <div class="card-header card-custom-header">
-                  <i class="fas fa-users fa-2x"></i>
-                  <h5 class="mt-2">User Management</h5>
-                </div>
-                <div class="card-body">
-                  <p>Manage different user roles including Teachers, Parents, and Admins with secure access controls.</p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="card card-custom text-center mx-auto" style="max-width: 600px;">
-                <div class="card-header card-custom-header">
-                  <i class="fas fa-file-pdf fa-2x"></i>
-                  <h5 class="mt-2">Report Generation</h5>
-                </div>
-                <div class="card-body">
-                  <p>Generate comprehensive PDF reports to keep track of academic progress and achievements.</p>
-                </div>
-              </div>
+            <div class="card-body">
+              <p class="card-text">Comprehensive monitoring and analysis of student performance across all subjects with detailed progress reports and analytics.</p>
             </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#featuresCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#featuresCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card card-custom text-center h-100">
+            <div class="card-custom-header">
+              <div class="feature-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <h4 class="mt-3">User Management</h4>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Secure role-based access for Teachers, Students, Parents, and Administrators with appropriate permissions and controls.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card card-custom text-center h-100">
+            <div class="card-custom-header">
+              <div class="feature-icon">
+                <i class="fas fa-file-pdf"></i>
+              </div>
+              <h4 class="mt-3">Report Generation</h4>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Generate professional PDF reports for academic progress, attendance, and performance analysis with automated formatting.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Portal Buttons Section -->
+    <!-- Portals Section -->
     <div id="portals-section" class="section-content">
       <div class="portal-section">
         <div class="container text-center">
-          <h2 class="mb-4">Access Your Portal</h2>
-          <p class="lead mb-5">Select your role to access the appropriate portal</p>
-          <div class="mt-4">
-            <a href="teachers-portal.html" class="btn btn-primary btn-portal mx-2" target="_blank">
+          <h2 class="section-title text-white mb-4">Access Your Portal</h2>
+          <p class="lead text-white mb-5">Select your role to access the appropriate portal</p>
+          <div class="d-flex flex-wrap justify-content-center">
+            <a href="teachers-portal.html" class="btn btn-portal teacher mx-3">
               <i class="fas fa-chalkboard-teacher me-2"></i> Teachers Portal
             </a>
-            <a href="student-portal.html" class="btn btn-success btn-portal mx-2" target="_blank">
-              <i class="fas fa-user-graduate me-2"></i> Students Results Portal
+            <a href="student-portal.html" class="btn btn-portal student mx-3">
+              <i class="fas fa-user-graduate me-2"></i> Students Portal
             </a>
           </div>
+          <p class="text-white mt-4">
+            <i class="fas fa-shield-alt me-2"></i>Secure login required for all portal access
+          </p>
         </div>
       </div>
     </div>
 
     <!-- Testimonials Section -->
-    <div id="testimonials-section" class="section-content">
-      <div class="my-5 py-5">
-        <h2 class="text-center mb-5">What Our Community Says</h2>
-        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="card card-custom text-center mx-auto testimonial-card" style="max-width: 600px;">
-                <div class="card-body">
-                  <p class="card-text fs-5">"Lunzu Secondary School's RMS has revolutionized the way we track student performance. It's intuitive and efficient."</p>
-                  <h5 class="card-title mt-3">- Mr. D. Basikolo</h5>
-                  <p class="card-subtitle mb-2 text-muted">Teacher</p>
-                </div>
-              </div>
+    <div id="testimonials-section" class="section-content pt-5">
+      <h2 class="section-title">What Our Community Says</h2>
+      <div class="row">
+        <div class="col-lg-6 mb-4">
+          <div class="testimonial-card">
+            <div class="testimonial-text">
+              "Lunzu Secondary School's RMS has revolutionized the way we track student performance. It's intuitive, efficient, and saves valuable time for teachers."
             </div>
-            <div class="carousel-item">
-              <div class="card card-custom text-center mx-auto testimonial-card" style="max-width: 600px;">
-                <div class="card-body">
-                  <p class="card-text fs-5">"As a parent, I appreciate the transparency and accessibility of my child's academic records at Lunzu."</p>
-                  <h5 class="card-title mt-3">- Mrs. Phiri</h5>
-                  <p class="card-subtitle mb-2 text-muted">Parent</p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="card card-custom text-center mx-auto testimonial-card" style="max-width: 600px;">
-                <div class="card-body">
-                  <p class="card-text fs-5">"I am thrilled to see how this system has simplified the process of accessing results and submitting scores. Teachers can now work from the comfort of their homes, and parents can easily track their children's progress."</p>
-                  <h5 class="card-title mt-3">- Mr. M. Kamndaya</h5>
-                  <p class="card-subtitle mb-2 text-muted">Headteacher</p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="card card-custom text-center mx-auto testimonial-card" style="max-width: 600px;">
-                <div class="card-body">
-                  <p class="card-text fs-5">"The number of parents visiting the school to collect reports has significantly decreased due to the challenges they face. This system has made it easier for parents to access their children's academic records remotely."</p>
-                  <h5 class="card-title mt-3">- Mr. Mbawala</h5>
-                  <p class="card-subtitle mb-2 text-muted">Deputy Headteacher</p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="card card-custom text-center mx-auto testimonial-card" style="max-width: 600px;">
-                <div class="card-body">
-                  <p class="card-text fs-5">"Previously, I had to travel long distances to obtain my child's school report. With Lunzu Secondary School's online system, I can now access academic records from the comfort of my home."</p>
-                  <h5 class="card-title mt-3">- Mrs. A. Banda</h5>
-                  <p class="card-subtitle mb-2 text-muted">Parent</p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="card card-custom text-center mx-auto testimonial-card" style="max-width: 600px;">
-                <div class="card-body">
-                  <p class="card-text fs-5">"The ability to view my child's school and fee balance online has made financial planning much easier. It's a transparent and efficient system that saves time and effort."</p>
-                  <h5 class="card-title mt-3">- Mr. P. Chapola</h5>
-                  <p class="card-subtitle mb-2 text-muted">Parent</p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="card card-custom text-center mx-auto testimonial-card" style="max-width: 600px;">
-                <div class="card-body">
-                  <p class="card-text fs-5">"I am truly grateful for this system. It reflects the modern standards we aspire to, and it's wonderful to see Lunzu Secondary School embracing progress and innovation."</p>
-                  <h5 class="card-title mt-3">- Mr. P. Madziakapita</h5>
-                  <p class="card-subtitle mb-2 text-muted">Parent</p>
-                </div>
+            <div class="d-flex align-items-center mt-4">
+              <div>
+                <h5 class="mb-1">Mr. D. Basikolo</h5>
+                <p class="text-muted mb-0">Senior Teacher</p>
               </div>
             </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <div class="testimonial-card">
+            <div class="testimonial-text">
+              "The ability to view my child's progress and fee balance online has made parental involvement much easier. It's a transparent system that builds trust."
+            </div>
+            <div class="d-flex align-items-center mt-4">
+              <div>
+                <h5 class="mb-1">Mrs. A. Banda</h5>
+                <p class="text-muted mb-0">Parent</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <div class="testimonial-card">
+            <div class="testimonial-text">
+              "This system reflects the modern standards we aspire to. It's wonderful to see Lunzu Secondary School embracing digital innovation in education."
+            </div>
+            <div class="d-flex align-items-center mt-4">
+              <div>
+                <h5 class="mb-1">Mr. P. Madziakapita</h5>
+                <p class="text-muted mb-0">Parent & Education Advocate</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <div class="testimonial-card">
+            <div class="testimonial-text">
+              "The system has significantly reduced administrative workload and improved communication between school and parents. A game-changer for modern education."
+            </div>
+            <div class="d-flex align-items-center mt-4">
+              <div>
+                <h5 class="mb-1">Mr. M. Kamndaya</h5>
+                <p class="text-muted mb-0">Headteacher</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Contact Section -->
-    <div id="contact-section" class="section-content">
-      <div class="my-5 py-5">
-        <h2 class="text-center mb-5">Contact Us</h2>
-        <div class="contact-info">
-          <div class="row">
-            <div class="col-md-6">
-              <h5><i class="fas fa-map-marker-alt me-2"></i>School Address</h5>
-              <p>Lunzu Secondary School</p>
-              <p>Private Bag 130, Lunzu</p>
-              <p>Blantyre, Malawi</p>
-              <div class="mt-4">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.123456789012!2d35.01234567891234!3d-15.67890123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTXCsDQwJzQ0LjAiUyAzNcKwMDAnNDkuNiJF!5e0!3m2!1sen!2smw!4v1234567890123!5m2!1sen!2smw" 
-                        width="100%" height="250" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy"></iframe>
+    <div id="contact-section" class="section-content pt-5">
+      <h2 class="section-title">Contact Us</h2>
+      <div class="contact-info">
+        <div class="row">
+          <div class="col-lg-6 mb-4">
+            <h4 class="mb-4"><i class="fas fa-map-marker-alt text-primary me-2"></i>School Location</h4>
+            <div class="mb-4">
+              <h5>Lunzu Secondary School</h5>
+              <p class="mb-1">Private Bag 130, Lunzu</p>
+              <p class="mb-1">Blantyre, Malawi</p>
+            </div>
+            <div class="bg-light p-4 rounded">
+              <p class="mb-3"><i class="fas fa-info-circle text-primary me-2"></i>For detailed location information:</p>
+              <a href="https://maps.app.goo.gl/hyxMqeQ5Jd4EqPBPA" class="btn btn-custom" target="_blank">
+                <i class="fas fa-map-marked-alt me-2"></i>View on Google Maps
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-6 mb-4">
+            <h4 class="mb-4"><i class="fas fa-address-book text-primary me-2"></i>Contact Information</h4>
+            <div class="mb-4">
+              <div class="d-flex align-items-center mb-3">
+                <i class="fas fa-envelope text-primary me-3 fa-lg"></i>
+                <div>
+                  <h6 class="mb-0">Email Address</h6>
+                  <a href="mailto:mayeso.kamndaya@gmail.com" class="text-decoration-none">mayeso.kamndaya@gmail.com</a>
+                </div>
+              </div>
+              <div class="d-flex align-items-center mb-3">
+                <i class="fas fa-phone text-primary me-3 fa-lg"></i>
+                <div>
+                  <h6 class="mb-0">Phone Number</h6>
+                  <a href="tel:+265884454660" class="text-decoration-none">0884454660</a>
+                </div>
+              </div>
+              <div class="d-flex align-items-center mb-3">
+                <i class="fab fa-whatsapp text-success me-3 fa-lg"></i>
+                <div>
+                  <h6 class="mb-0">WhatsApp</h6>
+                  <a href="https://wa.me/265999746675" class="text-decoration-none" target="_blank">0999746675</a>
+                </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <h5><i class="fas fa-address-book me-2"></i>Contact Information</h5>
-              <p><i class="fas fa-envelope me-2"></i> Email: <a href="mailto:mayeso.kamndaya@gmail.com">mayeso.kamndaya@gmail.com</a></p>
-              <p><i class="fas fa-phone me-2"></i> Phone: <a href="tel:+265884454660">0884454660</a></p>
-              <p><i class="fab fa-whatsapp me-2"></i> WhatsApp: <a href="https://wa.me/265999746675" target="_blank">0999746675</a></p>
-              <p><i class="fas fa-globe me-2"></i> Google Map: <a href="https://maps.app.goo.gl/hyxMqeQ5Jd4EqPBPA" target="_blank">View Location</a></p>
-              <div class="mt-4">
-                <h5><i class="fas fa-life-ring me-2"></i>Technical Support</h5>
-                <p><i class="fab fa-whatsapp me-2"></i> Developer WhatsApp: <a href="https://wa.me/265888866269" target="_blank">0888866269</a></p>
-              </div>
+            <div class="bg-light p-4 rounded">
+              <h5><i class="fas fa-life-ring text-primary me-2"></i>Technical Support</h5>
+              <p class="mb-2">For technical issues with the portal system:</p>
+              <a href="https://wa.me/265888866269" class="btn btn-outline-primary" target="_blank">
+                <i class="fab fa-whatsapp me-2"></i>Contact Developer
+              </a>
             </div>
           </div>
         </div>
@@ -566,13 +627,27 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8 text-center text-lg-start mb-4 mb-lg-0">
+          <h3 class="mb-3"><i class="fas fa-school me-2"></i>Lunzu Secondary School</h3>
+          <p class="mb-0">Committed to providing quality education and fostering academic excellence since 1985.</p>
+        </div>
+        <div class="col-lg-4 text-center text-lg-end">
+          <p class="mb-2">&copy; <span id="current-year"></span> Lunzu Secondary School</p>
+          <p class="mb-0">All rights reserved</p>
+        </div>
+      </div>
+      <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
       <div class="row">
         <div class="col-md-6 text-center text-md-start">
-          <h5><i class="fas fa-school me-2"></i>Lunzu Secondary School</h5>
-          <p>Excellence in Education Since 1985</p>
+          <p class="mb-0">
+            <i class="fas fa-certificate me-2"></i>Registered Government Secondary School
+          </p>
         </div>
-        <div class="col-md-6 text-center text-md-end">
-          <p class="mb-0">&copy; <span id="current-year"></span> Lunzu Secondary School. All rights reserved.</p>
+        <div class="col-md-6 text-center text-md-end footer-links">
+          <a href="#" onclick="showSection('contact')" class="me-3">Contact</a>
+          <a href="#" onclick="showSection('about')" class="me-3">About</a>
+          <a href="#" onclick="showSection('portals')">Portals</a>
         </div>
       </div>
     </div>
@@ -583,29 +658,46 @@
   
   <!-- Custom JavaScript -->
   <script>
-    // Footer Year Logic
+    // Set current year in footer
     document.getElementById('current-year').textContent = new Date().getFullYear();
     
-    // Show specific section and hide others
+    // Section navigation function
     function showSection(sectionId) {
       // Hide all sections
       document.querySelectorAll('.section-content, .hero-section').forEach(section => {
         section.classList.remove('active-section');
       });
       
-      // Show the selected section
-      document.getElementById(sectionId + '-section').classList.add('active-section');
+      // Show selected section
+      const targetSection = document.getElementById(sectionId + '-section');
+      targetSection.classList.add('active-section');
       
-      // Scroll to the section
-      document.getElementById(sectionId + '-section').scrollIntoView({
-        behavior: 'smooth'
+      // Scroll to section
+      setTimeout(() => {
+        targetSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 50);
+      
+      // Update active nav link
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
       });
+      event.target.classList.add('active');
     }
-
-    // Show home section by default
-    window.onload = function() {
+    
+    // Initialize with home section
+    window.addEventListener('DOMContentLoaded', () => {
       showSection('home');
-    };
+    });
+    
+    // Add smooth scrolling to all links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+      });
+    });
   </script>
 </body>
 </html>
