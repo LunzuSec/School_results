@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About - Lunzu Secondary School</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-pj6VsoMV3Pn0aO5/KE1qPBD6gEijSdykOqYlCkgVgJt+5UrHhHgfKgnA9yGo0A37uj5yK69IaMzuq8wRA3+4qA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-color: #007BFF;
+      --primary-dark: #0056b3;
+      --secondary-color: #6c757d;
+      --accent-color: #17a2b8;
+      --light-bg: #f8f9fa;
+      --dark-bg: #343a40;
+      --success-color: #28a745;
+      --warning-color: #ffc107;
+    }
+    
+    * {
+      font-family: 'Open Sans', sans-serif;
+    }
+    
+    h1, h2, h3, h4, h5, h6, .navbar-brand {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+    }
+    
+    body {
+      padding-top: 76px;
+    }
+    
+    .navbar-custom {
+      background-color: var(--primary-color);
+      padding: 15px 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navbar-custom .navbar-brand,
+    .navbar-custom .nav-link {
+      color: white !important;
+    }
+    
+    .navbar-custom .nav-link {
+      margin: 0 8px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .navbar-custom .nav-link:hover {
+      color: rgba(255, 255, 255, 0.9) !important;
+    }
+    
+    .footer {
+      background: linear-gradient(135deg, var(--dark-bg) 0%, #212529 100%);
+      color: white;
+      padding: 50px 0 30px;
+      margin-top: 50px;
+    }
+    
+    .card-custom {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      overflow: hidden;
+      margin-bottom: 30px;
+      height: 100%;
+    }
+    
+    .card-custom:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .section-title {
+      position: relative;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      border-radius: 2px;
+    }
+    
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: white;
+      font-size: 2rem;
+    }
+    
+    .timeline {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background-color: var(--primary-color);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+    }
+    
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+    }
+    
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background-color: white;
+      border: 4px solid var(--primary-color);
+      border-radius: 50%;
+      top: 15px;
+      z-index: 1;
+    }
+    
+    .left {
+      left: 0;
+    }
+    
+    .right {
+      left: 50%;
+    }
+    
+    .left::after {
+      right: -17px;
+    }
+    
+    .right::after {
+      left: -17px;
+    }
+    
+    .timeline-content {
+      padding: 20px 30px;
+      background-color: white;
+      border-radius: 6px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    @media screen and (max-width: 768px) {
+      .timeline::after {
+        left: 31px;
+      }
+      
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+      
+      .timeline-item::after {
+        left: 18px;
+      }
+      
+      .right {
+        left: 0%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-school me-2"></i>Lunzu Secondary School
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="features.html" target="_blank">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="portals.html" target="_blank">Portals</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="testimonials.html" target="_blank">Testimonials</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html" target="_blank">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="important-notice.html" target="_blank">
+              <i class="fas fa-bullhorn me-1"></i>Notice
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container my-5">
+    <h1 class="section-title">About Our School</h1>
+    
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-10">
+        <div class="card card-custom">
+          <div class="card-body p-5">
+            <div class="row align-items-center">
+              <div class="col-md-8">
+                <h3 class="mb-4">A Legacy of Excellence Since 1985</h3>
+                <p class="lead mb-4">
+                  Lunzu Secondary School is a distinguished government-run institution serving both boys and girls in Blantyre Rural. Established in 1985, our school has built a strong reputation for academic excellence and holistic development.
+                </p>
+                <div class="row mb-4">
+                  <div class="col-6">
+                    <div class="d-flex align-items-center mb-3">
+                      <i class="fas fa-graduation-cap text-primary me-3 fa-lg"></i>
+                      <div>
+                        <h5 class="mb-0">Academic Excellence</h5>
+                        <small>Consistent top performance</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="d-flex align-items-center mb-3">
+                      <i class="fas fa-users text-primary me-3 fa-lg"></i>
+                      <div>
+                        <h5 class="mb-0">Inclusive Education</h5>
+                        <small>Co-educational environment</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <p>
+                  We take pride in preparing students for higher education and professional careers, with numerous alumni successfully transitioning to colleges and universities nationwide.
+                </p>
+                <p>
+                  The school maintains high educational standards while fostering a supportive learning environment for all students, helping them achieve their full potential both academically and personally.
+                </p>
+              </div>
+              <div class="col-md-4 text-center">
+                <div class="feature-icon mb-4">
+                  <i class="fas fa-university"></i>
+                </div>
+                <h4>Established 1985</h4>
+                <p class="text-muted">Over 35 years of educational excellence</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mission & Vision -->
+    <div class="row mb-5">
+      <div class="col-md-6">
+        <div class="card card-custom h-100">
+          <div class="card-body p-4">
+            <div class="feature-icon">
+              <i class="fas fa-bullseye"></i>
+            </div>
+            <h3 class="text-center mb-4">Our Mission</h3>
+            <p class="text-center">To provide quality education that empowers students with knowledge, skills, and values to become responsible citizens and leaders in society.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card card-custom h-100">
+          <div class="card-body p-4">
+            <div class="feature-icon">
+              <i class="fas fa-eye"></i>
+            </div>
+            <h3 class="text-center mb-4">Our Vision</h3>
+            <p class="text-center">To be a center of excellence in secondary education, producing well-rounded individuals who contribute positively to national development.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- School History Timeline -->
+    <h2 class="section-title">School History</h2>
+    <div class="timeline mb-5">
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <h4>1985</h4>
+          <p>Lunzu Secondary School was established as a government school serving the Lunzu community.</p>
+        </div>
+      </div>
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <h4>1995</h4>
+          <p>First batch of students sat for Malawi School Certificate of Education (MSCE) examinations.</p>
+        </div>
+      </div>
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <h4>2005</h4>
+          <p>School celebrated 20 years of existence with major infrastructure development.</p>
+        </div>
+      </div>
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <h4>2015</h4>
+          <p>Introduction of computer studies and establishment of computer laboratory.</p>
+        </div>
+      </div>
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <h4>2023</h4>
+          <p>Launch of Digital Results Management System to modernize academic tracking.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Achievements -->
+    <div class="row mb-5">
+      <div class="col-12">
+        <h2 class="section-title">Our Achievements</h2>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card card-custom text-center h-100">
+          <div class="card-body">
+            <div class="feature-icon">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <h4>Academic Excellence</h4>
+            <p>Consistent above-average performance in national examinations for over 20 years.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card card-custom text-center h-100">
+          <div class="card-body">
+            <div class="feature-icon">
+              <i class="fas fa-user-graduate"></i>
+            </div>
+            <h4>University Admissions</h4>
+            <p>Over 500 alumni admitted to various universities and colleges nationwide.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card card-custom text-center h-100">
+          <div class="card-body">
+            <div class="feature-icon">
+              <i class="fas fa-award"></i>
+            </div>
+            <h4>National Recognition</h4>
+            <p>Recipient of Ministry of Education awards for academic performance improvement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8 text-center text-lg-start mb-4 mb-lg-0">
+          <h3 class="mb-3"><i class="fas fa-school me-2"></i>Lunzu Secondary School</h3>
+          <p class="mb-0">Committed to providing quality education and fostering academic excellence since 1985.</p>
+          <p class="mb-0 mt-2">
+            <i class="fas fa-certificate me-2"></i>Registered Government Secondary School
+          </p>
+        </div>
+      </div>
+      <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+      <div class="row">
+        <div class="col-md-6 text-center text-md-start">
+          <p class="mb-0">&copy; <span id="current-year">2026</span> Lunzu Secondary School. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <a href="contact.html" target="_blank" class="text-white me-3">Contact</a>
+          <a href="about.html" class="text-white me-3">About</a>
+          <a href="portals.html" target="_blank" class="text-white">Portals</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Set current year
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

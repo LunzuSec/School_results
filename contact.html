@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Us - Lunzu Secondary School</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-pj6VsoMV3Pn0aO5/KE1qPBD6gEijSdykOqYlCkgVgJt+5UrHhHgfKgnA9yGo0A37uj5yK69IaMzuq8wRA3+4qA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-color: #007BFF;
+      --primary-dark: #0056b3;
+      --secondary-color: #6c757d;
+      --accent-color: #17a2b8;
+      --light-bg: #f8f9fa;
+      --dark-bg: #343a40;
+      --success-color: #28a745;
+      --warning-color: #ffc107;
+    }
+    
+    * {
+      font-family: 'Open Sans', sans-serif;
+    }
+    
+    h1, h2, h3, h4, h5, h6, .navbar-brand {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+    }
+    
+    body {
+      padding-top: 76px;
+    }
+    
+    .navbar-custom {
+      background-color: var(--primary-color);
+      padding: 15px 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navbar-custom .navbar-brand,
+    .navbar-custom .nav-link {
+      color: white !important;
+    }
+    
+    .navbar-custom .nav-link {
+      margin: 0 8px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .navbar-custom .nav-link:hover {
+      color: rgba(255, 255, 255, 0.9) !important;
+    }
+    
+    .footer {
+      background: linear-gradient(135deg, var(--dark-bg) 0%, #212529 100%);
+      color: white;
+      padding: 50px 0 30px;
+      margin-top: 50px;
+    }
+    
+    .card-custom {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      overflow: hidden;
+      margin-bottom: 30px;
+      height: 100%;
+    }
+    
+    .card-custom:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .section-title {
+      position: relative;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      border-radius: 2px;
+    }
+    
+    .contact-info {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 25px;
+    }
+    
+    .contact-form .form-control {
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: 1px solid #dee2e6;
+      margin-bottom: 20px;
+    }
+    
+    .contact-form .form-control:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+    
+    .contact-form textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .btn-submit {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 40px;
+      font-weight: 600;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+    }
+    
+    .btn-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+      color: white;
+    }
+    
+    .map-container {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      height: 300px;
+    }
+    
+    .office-hours {
+      background: #f8f9fa;
+      padding: 25px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-school me-2"></i>Lunzu Secondary School
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html" target="_blank">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="features.html" target="_blank">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="portals.html" target="_blank">Portals</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="testimonials.html" target="_blank">Testimonials</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="important-notice.html" target="_blank">
+              <i class="fas fa-bullhorn me-1"></i>Notice
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container my-5">
+    <h1 class="section-title">Contact Us</h1>
+    
+    <div class="row mb-5">
+      <div class="col-lg-8 mx-auto text-center">
+        <p class="lead">We're here to help! Get in touch with us for any inquiries, support, or feedback about Lunzu Secondary School and our Results Management System.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Contact Information -->
+      <div class="col-lg-6 mb-5">
+        <div class="contact-info">
+          <h4 class="mb-4"><i class="fas fa-map-marker-alt text-primary me-2"></i>School Location</h4>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-school"></i>
+            </div>
+            <div>
+              <h5>Lunzu Secondary School</h5>
+              <p class="mb-1">Private Bag 130, Lunzu</p>
+              <p class="mb-1">Blantyre, Malawi</p>
+              <p class="text-muted">Government Secondary School</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div>
+              <h5>Email Address</h5>
+              <p class="mb-0">
+                <a href="mailto:mayeso.kamndaya@gmail.com" class="text-decoration-none">mayeso.kamndaya@gmail.com</a>
+              </p>
+              <small class="text-muted">For general inquiries</small>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div>
+              <h5>Phone Number</h5>
+              <p class="mb-0">
+                <a href="tel:+265884454660" class="text-decoration-none">0884454660</a>
+              </p>
+              <small class="text-muted">School office line</small>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon" style="background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);">
+              <i class="fab fa-whatsapp"></i>
+            </div>
+            <div>
+              <h5>WhatsApp</h5>
+              <p class="mb-0">
+                <a href="https://wa.me/265999746675" class="text-decoration-none" target="_blank">0999746675</a>
+              </p>
+              <small class="text-muted">For quick inquiries and support</small>
+            </div>
+          </div>
+          
+          <!-- Google Maps Link -->
+          <div class="mt-4">
+            <a href="https://maps.app.goo.gl/hyxMqeQ5Jd4EqPBPA" class="btn btn-outline-primary" target="_blank">
+              <i class="fas fa-map-marked-alt me-2"></i>View on Google Maps
+            </a>
+          </div>
+          
+          <!-- Office Hours -->
+          <div class="office-hours">
+            <h5><i class="fas fa-clock text-primary me-2"></i>Office Hours</h5>
+            <div class="row">
+              <div class="col-6">
+                <p class="mb-1"><strong>Monday - Friday</strong></p>
+                <p class="mb-0">7:30 AM - 4:30 PM</p>
+              </div>
+              <div class="col-6">
+                <p class="mb-1"><strong>Saturday</strong></p>
+                <p class="mb-0">8:00 AM - 12:00 PM</p>
+              </div>
+            </div>
+            <p class="mt-3 mb-0"><small><i class="fas fa-info-circle me-1"></i>Closed on Sundays and Public Holidays</small></p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Technical Support Section -->
+      <div class="col-lg-6 mb-5">
+        <div class="contact-info">
+          <h4 class="mb-4"><i class="fas fa-life-ring text-primary me-2"></i>Technical Support</h4>
+          <div class="contact-item">
+            <div class="contact-icon" style="background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);">
+              <i class="fab fa-whatsapp"></i>
+            </div>
+            <div>
+              <h5>System Support</h5>
+              <p class="mb-0">
+                <a href="https://wa.me/265888866269" class="text-decoration-none" target="_blank">0888866269</a>
+              </p>
+              <small class="text-muted">For portal access issues and technical problems</small>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-question-circle"></i>
+            </div>
+            <div>
+              <h5>Support Hours</h5>
+              <p class="mb-0">Monday - Saturday: 8:00 AM - 8:00 PM</p>
+              <small class="text-muted">Extended support for system-related issues</small>
+            </div>
+          </div>
+          
+          <!-- Contact Form -->
+          <div class="mt-4">
+            <h5 class="mb-3"><i class="fas fa-paper-plane text-primary me-2"></i>Send us a Message</h5>
+            <form class="contact-form">
+              <div class="row">
+                <div class="col-md-6">
+                  <input type="text" class="form-control" placeholder="Your Name" required>
+                </div>
+                <div class="col-md-6">
+                  <input type="email" class="form-control" placeholder="Your Email" required>
+                </div>
+              </div>
+              <input type="text" class="form-control" placeholder="Subject" required>
+              <textarea class="form-control" placeholder="Your Message" required></textarea>
+              <div class="d-grid">
+                <button type="submit" class="btn btn-submit">
+                  <i class="fas fa-paper-plane me-2"></i>Send Message
+                </button>
+              </div>
+              <p class="text-muted mt-3 text-center">
+                <small><i class="fas fa-info-circle me-1"></i>We typically respond within 24 hours</small>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="row mt-5">
+      <div class="col-12">
+        <h2 class="section-title">Quick Links</h2>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card card-custom text-center h-100">
+          <div class="card-body">
+            <div class="contact-icon mx-auto mb-3">
+              <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <h5>Important Notices</h5>
+            <p class="card-text">Stay updated with school announcements and important dates.</p>
+            <a href="important-notice.html" class="btn btn-outline-primary" target="_blank">View Notices</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card card-custom text-center h-100">
+          <div class="card-body">
+            <div class="contact-icon mx-auto mb-3">
+              <i class="fas fa-portal"></i>
+            </div>
+            <h5>Access Portals</h5>
+            <p class="card-text">Login to your portal for results, fees, and academic information.</p>
+            <a href="portals.html" class="btn btn-outline-primary" target="_blank">Go to Portals</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card card-custom text-center h-100">
+          <div class="card-body">
+            <div class="contact-icon mx-auto mb-3">
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <h5>About Our School</h5>
+            <p class="card-text">Learn about our history, mission, and educational philosophy.</p>
+            <a href="about.html" class="btn btn-outline-primary" target="_blank">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Emergency Contact -->
+    <div class="row mt-5">
+      <div class="col-12">
+        <div class="card card-custom">
+          <div class="card-body text-center">
+            <h4><i class="fas fa-exclamation-triangle text-warning me-2"></i>Emergency Contact</h4>
+            <p class="mb-3">For urgent matters outside office hours, please contact:</p>
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="me-4">
+                <h5 class="mb-1">Headteacher</h5>
+                <p class="mb-0"><a href="tel:+265999746675">0999746675</a></p>
+              </div>
+              <div>
+                <h5 class="mb-1">Deputy Headteacher</h5>
+                <p class="mb-0"><a href="tel:+265884454660">0884454660</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8 text-center text-lg-start mb-4 mb-lg-0">
+          <h3 class="mb-3"><i class="fas fa-school me-2"></i>Lunzu Secondary School</h3>
+          <p class="mb-0">Committed to providing quality education and fostering academic excellence since 1985.</p>
+          <p class="mb-0 mt-2">
+            <i class="fas fa-certificate me-2"></i>Registered Government Secondary School
+          </p>
+        </div>
+      </div>
+      <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+      <div class="row">
+        <div class="col-md-6 text-center text-md-start">
+          <p class="mb-0">&copy; <span id="current-year">2026</span> Lunzu Secondary School. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <a href="contact.html" class="text-white me-3">Contact</a>
+          <a href="about.html" target="_blank" class="text-white me-3">About</a>
+          <a href="portals.html" target="_blank" class="text-white">Portals</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Set current year
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+    
+    // Simple form submission handler
+    document.querySelector('.contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your message! We will respond to you within 24 hours.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>
