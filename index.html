@@ -345,29 +345,6 @@
       box-shadow: 0 12px 30px rgba(46, 204, 113, 0.4);
     }
     
-    /* Footer datetime styles */
-    .footer-datetime {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-    }
-    
-    .footer-temperature {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #ffffff;
-    }
-    
-    .footer-time {
-      font-size: 1.2rem;
-      color: rgba(255, 255, 255, 0.9);
-    }
-    
-    .footer-date {
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.8);
-    }
-    
     /* Responsive Design */
     @media (max-width: 768px) {
       body {
@@ -413,11 +390,6 @@
       .portal-subtitle {
         font-size: 1.1rem;
       }
-      
-      .footer-datetime {
-        align-items: center;
-        margin-top: 20px;
-      }
     }
     
     @media (max-width: 576px) {
@@ -446,18 +418,6 @@
         font-size: 0.95rem;
         padding: 10px 20px;
         text-align: center;
-      }
-      
-      .footer-temperature {
-        font-size: 1.3rem;
-      }
-      
-      .footer-time {
-        font-size: 1.1rem;
-      }
-      
-      .footer-date {
-        font-size: 1rem;
       }
     }
   </style>
@@ -782,11 +742,7 @@
           </p>
         </div>
         <div class="col-lg-4 text-center text-lg-end">
-          <div class="footer-datetime">
-            <div class="footer-temperature" id="temperature">27°C</div>
-            <div class="footer-time" id="time">3:38 PM</div>
-            <div class="footer-date" id="date">02/07/2026</div>
-          </div>
+          <!-- Time, temperature and date elements removed -->
         </div>
       </div>
       <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
@@ -815,55 +771,7 @@
       
       // Initialize with home section
       showSection('home');
-      
-      // Initialize date and time
-      updateDateTime();
-      
-      // Start the update interval
-      setInterval(updateDateTime, 1000); // Update every second
-      
-      // Initialize temperature (simulated - in real app, you'd get this from an API)
-      updateTemperature();
-      setInterval(updateTemperature, 300000); // Update temperature every 5 minutes
     });
-    
-    // Function to update temperature (simulated)
-    function updateTemperature() {
-      // For demo, generate a random temperature between 20-35°C
-      // In a real application, you would fetch this from a weather API
-      const baseTemp = 27; // Base temperature
-      const variation = Math.random() * 3 - 1.5; // Random variation ±1.5
-      const temperature = Math.round((baseTemp + variation) * 10) / 10;
-      document.getElementById('temperature').textContent = `${temperature}°C`;
-    }
-    
-    // Function to update date and time
-    function updateDateTime() {
-      const now = new Date();
-      
-      // Format time (HH:MM AM/PM)
-      let hours = now.getHours();
-      let minutes = now.getMinutes();
-      const ampm = hours >= 12 ? 'PM' : 'AM';
-      
-      // Convert to 12-hour format
-      hours = hours % 12;
-      hours = hours ? hours : 12; // the hour '0' should be '12'
-      
-      // Add leading zeros to minutes
-      minutes = minutes < 10 ? '0' + minutes : minutes;
-      
-      // Update time element
-      document.getElementById('time').textContent = `${hours}:${minutes} ${ampm}`;
-      
-      // Format date (MM/DD/YYYY)
-      const month = (now.getMonth() + 1).toString().padStart(2, '0');
-      const day = now.getDate().toString().padStart(2, '0');
-      const year = now.getFullYear();
-      
-      // Update date element
-      document.getElementById('date').textContent = `${month}/${day}/${year}`;
-    }
     
     // Section navigation function
     function showSection(sectionId) {
