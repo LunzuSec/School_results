@@ -426,7 +426,7 @@
   <!-- Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#" onclick="showSection('home')">
+      <a class="navbar-brand" href="#" onclick="showSection('home', event)">
         <i class="fas fa-school me-2"></i>Lunzu Secondary School
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
@@ -436,22 +436,22 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#" onclick="showSection('home')">Home</a>
+            <a class="nav-link" href="#" onclick="showSection('home', event)">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" onclick="showSection('about')">About</a>
+            <a class="nav-link" href="#" onclick="showSection('about', event)">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" onclick="showSection('features')">Features</a>
+            <a class="nav-link" href="#" onclick="showSection('features', event)">Features</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" onclick="showSection('portals')">Portals</a>
+            <a class="nav-link" href="#" onclick="showSection('portals', event)">Portals</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" onclick="showSection('testimonials')">Testimonials</a>
+            <a class="nav-link" href="#" onclick="showSection('testimonials', event)">Testimonials</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" onclick="showSection('contact')">Contact</a>
+            <a class="nav-link" href="#" onclick="showSection('contact', event)">Contact</a>
           </li>
         </ul>
       </div>
@@ -751,9 +751,9 @@
           <p class="mb-0">&copy; <span id="current-year">2026</span> Lunzu Secondary School. All rights reserved.</p>
         </div>
         <div class="col-md-6 text-center text-md-end footer-links">
-          <a href="#" onclick="showSection('contact')" class="me-3">Contact</a>
-          <a href="#" onclick="showSection('about')" class="me-3">About</a>
-          <a href="#" onclick="showSection('portals')">Portals</a>
+          <a href="#" onclick="showSection('contact', event)" class="me-3">Contact</a>
+          <a href="#" onclick="showSection('about', event)" class="me-3">About</a>
+          <a href="#" onclick="showSection('portals', event)">Portals</a>
         </div>
       </div>
     </div>
@@ -774,7 +774,12 @@
     });
     
     // Section navigation function
-    function showSection(sectionId) {
+    function showSection(sectionId, event) {
+      // Prevent default link behavior (page reload/new window)
+      if (event) {
+        event.preventDefault();
+      }
+      
       // Hide all sections
       document.querySelectorAll('.section-content, .hero-section').forEach(section => {
         section.classList.remove('active-section');
@@ -799,9 +804,15 @@
         });
         
         // Find and activate the clicked nav link
-        const clickedLink = event?.target;
-        if (clickedLink && clickedLink.classList.contains('nav-link')) {
-          clickedLink.classList.add('active');
+        if (event && event.target) {
+          let clickedLink = event.target;
+          // If the click was on the icon inside the link, get the parent link
+          if (!clickedLink.classList.contains('nav-link')) {
+            clickedLink = clickedLink.closest('.nav-link');
+          }
+          if (clickedLink) {
+            clickedLink.classList.add('active');
+          }
         }
       }
     }
