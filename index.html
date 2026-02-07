@@ -38,6 +38,10 @@
       font-weight: 600;
     }
     
+    body {
+      padding-top: 76px;
+    }
+    
     .navbar-custom {
       background-color: var(--primary-color);
       padding: 15px 0;
@@ -145,21 +149,23 @@
       min-width: 250px;
       text-transform: uppercase;
       letter-spacing: 1px;
-      font-weight: 600;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      font-weight: 700;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      border: 3px solid rgba(255, 255, 255, 0.3);
     }
     
     .btn-portal:hover {
       transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      border-color: rgba(255, 255, 255, 0.5);
     }
     
     .btn-portal.teacher {
-      background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%);
+      background: linear-gradient(135deg, #ff6b6b 0%, #e74c3c 100%);
     }
     
     .btn-portal.student {
-      background: linear-gradient(135deg, var(--success-color) 0%, #1e7e34 100%);
+      background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
     }
     
     .section-title {
@@ -208,11 +214,53 @@
       line-height: 1.8;
     }
     
+    /* SIMPLE, CLEAR PORTAL SECTION - NO CSS CONFLICTS */
     .portal-section {
-      background: linear-gradient(135deg, var(--light-bg) 0%, #e9ecef 100%);
+      background: #ffffff !important;
       padding: 80px 0;
       border-radius: 20px;
       margin: 60px 0;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid #e0e0e0;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* CLEAR, HIGH-CONTRAST TEXT FOR PORTAL SECTION - DIRECT STYLES */
+    .portal-title {
+      color: #0056b3 !important;
+      position: relative;
+      z-index: 2;
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+    
+    .portal-subtitle {
+      color: #333333 !important;
+      position: relative;
+      z-index: 2;
+      font-size: 1.3rem;
+      font-weight: 500;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+    
+    .portal-security-note {
+      color: #666666 !important;
+      position: relative;
+      z-index: 2;
+      font-size: 1.1rem;
+      font-weight: 500;
+      background: #f8f9fa;
+      padding: 12px 25px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-top: 30px;
+      border: 1px solid #dee2e6;
     }
     
     .contact-info {
@@ -280,8 +328,29 @@
       to { opacity: 1; transform: translateY(0); }
     }
     
+    /* Portal button container */
+    .portal-buttons-container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Enhanced portal button hover effects */
+    .btn-portal.teacher:hover {
+      background: linear-gradient(135deg, #ff8a80 0%, #ff6b6b 100%);
+      box-shadow: 0 12px 30px rgba(231, 76, 60, 0.4);
+    }
+    
+    .btn-portal.student:hover {
+      background: linear-gradient(135deg, #3ae374 0%, #2ecc71 100%);
+      box-shadow: 0 12px 30px rgba(46, 204, 113, 0.4);
+    }
+    
     /* Responsive Design */
     @media (max-width: 768px) {
+      body {
+        padding-top: 66px;
+      }
+      
       .hero-title {
         font-size: 2.5rem;
       }
@@ -296,12 +365,30 @@
       
       .btn-portal {
         min-width: 200px;
-        padding: 15px 30px;
-        margin: 10px 5px;
+        padding: 18px 30px;
+        margin: 12px 5px;
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
       }
       
       .section-title {
         font-size: 2rem;
+      }
+      
+      .portal-section {
+        padding: 50px 0;
+        margin: 40px 0;
+      }
+      
+      .portal-title {
+        font-size: 2.2rem;
+      }
+      
+      .portal-subtitle {
+        font-size: 1.1rem;
       }
     }
     
@@ -314,6 +401,23 @@
         display: block;
         width: 100%;
         margin: 10px 0;
+        padding: 16px 25px;
+        font-size: 1.1rem;
+      }
+      
+      .portal-title {
+        font-size: 1.8rem;
+      }
+      
+      .portal-subtitle {
+        font-size: 1rem;
+        padding: 0 15px;
+      }
+      
+      .portal-security-note {
+        font-size: 0.95rem;
+        padding: 10px 20px;
+        text-align: center;
       }
     }
   </style>
@@ -487,21 +591,23 @@
       </div>
     </div>
 
-    <!-- Portals Section -->
+    <!-- Portals Section - SIMPLE AND CLEAR -->
     <div id="portals-section" class="section-content">
       <div class="portal-section">
         <div class="container text-center">
-          <h2 class="section-title text-white mb-4">Access Your Portal</h2>
-          <p class="lead text-white mb-5">Select your role to access the appropriate portal</p>
-          <div class="d-flex flex-wrap justify-content-center">
-            <a href="teachers-portal.html" class="btn btn-portal teacher mx-3">
-              <i class="fas fa-chalkboard-teacher me-2"></i> Teachers Portal
-            </a>
-            <a href="student-portal.html" class="btn btn-portal student mx-3">
-              <i class="fas fa-user-graduate me-2"></i> Students Portal
-            </a>
+          <h2 class="portal-title">Access Your Portal</h2>
+          <p class="portal-subtitle">Select your role to access the appropriate portal</p>
+          <div class="portal-buttons-container">
+            <div class="d-flex flex-wrap justify-content-center">
+              <a href="teachers-portal.html" class="btn btn-portal teacher mx-3">
+                <i class="fas fa-chalkboard-teacher me-2"></i> Teachers Portal
+              </a>
+              <a href="student-portal.html" class="btn btn-portal student mx-3">
+                <i class="fas fa-user-graduate me-2"></i> Students Portal
+              </a>
+            </div>
           </div>
-          <p class="text-white mt-4">
+          <p class="portal-security-note mt-4">
             <i class="fas fa-shield-alt me-2"></i>Secure login required for all portal access
           </p>
         </div>
@@ -633,8 +739,13 @@
           <p class="mb-0">Committed to providing quality education and fostering academic excellence since 1985.</p>
         </div>
         <div class="col-lg-4 text-center text-lg-end">
-          <p class="mb-2">&copy; <span id="current-year"></span> Lunzu Secondary School</p>
-          <p class="mb-0">All rights reserved</p>
+          <div class="d-flex justify-content-center justify-content-lg-end align-items-center">
+            <div class="text-end me-3">
+              <div id="temperature" class="fs-5">27°C</div>
+              <div id="time" class="fs-6">3:38 PM</div>
+            </div>
+            <div id="date" class="fs-5">02/07/2026</div>
+          </div>
         </div>
       </div>
       <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
@@ -660,6 +771,23 @@
   <script>
     // Set current year in footer
     document.getElementById('current-year').textContent = new Date().getFullYear();
+    
+    // Update time, date, and temperature
+    function updateDateTime() {
+      const now = new Date();
+      
+      // Format time
+      const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
+      document.getElementById('time').textContent = now.toLocaleTimeString('en-US', timeOptions);
+      
+      // Format date
+      const dateOptions = { month: '2-digit', day: '2-digit', year: 'numeric' };
+      document.getElementById('date').textContent = now.toLocaleDateString('en-US', dateOptions);
+    }
+    
+    // Initial call and update every minute
+    updateDateTime();
+    setInterval(updateDateTime, 60000);
     
     // Section navigation function
     function showSection(sectionId) {
