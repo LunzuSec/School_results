@@ -1,531 +1,969 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Important Notice - Lunzu Secondary School</title>
-  
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-  <!-- Font Awesome for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-pj6VsoMV3Pn0aO5/KE1qPBD6gEijSdykOqYlCkgVgJt+5UrHhHgfKgnA9yGo0A37uj5yK69IaMzuq8wRA3+4qA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-  
-  <style>
-    :root {
-      --primary-color: #007BFF;
-      --primary-dark: #0056b3;
-      --secondary-color: #6c757d;
-      --accent-color: #17a2b8;
-      --light-bg: #f8f9fa;
-      --dark-bg: #343a40;
-      --success-color: #28a745;
-      --warning-color: #ffc107;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Lunzu Secondary School - Examination Dashboard</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    * {
-      font-family: 'Open Sans', sans-serif;
-    }
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    h1, h2, h3, h4, h5, h6, .navbar-brand {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-    }
-    
-    body {
-      padding-top: 76px;
-    }
-    
-    .navbar-custom {
-      background-color: var(--primary-color);
-      padding: 15px 0;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    .navbar-custom .navbar-brand,
-    .navbar-custom .nav-link {
-      color: white !important;
-    }
-    
-    .navbar-custom .nav-link {
-      margin: 0 8px;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    
-    .navbar-custom .nav-link:hover {
-      color: rgba(255, 255, 255, 0.9) !important;
-    }
-    
-    .footer {
-      background: linear-gradient(135deg, var(--dark-bg) 0%, #212529 100%);
-      color: white;
-      padding: 50px 0 30px;
-      margin-top: 50px;
-    }
-    
-    .card-custom {
-      border: none;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-      transition: all 0.3s ease;
-      overflow: hidden;
-      margin-bottom: 30px;
-      height: 100%;
-    }
-    
-    .section-title {
-      position: relative;
-      margin-bottom: 50px;
-      text-align: center;
-    }
-    
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-      border-radius: 2px;
-    }
-    
-    .notice-section {
-      background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
-      padding: 30px;
-      border-radius: 15px;
-      margin: 30px 0;
-      border-left: 5px solid var(--warning-color);
-      animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.4); }
-      70% { box-shadow: 0 0 0 10px rgba(255, 193, 7, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0); }
-    }
-    
-    .notice-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-    
-    .notice-icon {
-      width: 60px;
-      height: 60px;
-      background: #856404;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      margin-right: 20px;
-      font-size: 1.5rem;
-    }
-    
-    .notice-date {
-      background: #856404;
-      color: white;
-      padding: 5px 15px;
-      border-radius: 20px;
-      display: inline-block;
-      margin-bottom: 15px;
-    }
-    
-    .notice-item {
-      padding: 20px;
-      border-bottom: 1px solid #dee2e6;
-    }
-    
-    .notice-item:last-child {
-      border-bottom: none;
-    }
-    
-    .notice-priority {
-      display: inline-block;
-      padding: 3px 10px;
-      border-radius: 12px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-left: 10px;
-    }
-    
-    .priority-high {
-      background: #dc3545;
-      color: white;
-    }
-    
-    .priority-medium {
-      background: #ffc107;
-      color: #212529;
-    }
-    
-    .priority-low {
-      background: #28a745;
-      color: white;
-    }
-    
-    .notice-list {
-      list-style-type: none;
-      padding-left: 0;
-    }
-    
-    .notice-list li {
-      padding: 10px 0;
-      border-bottom: 1px dashed #dee2e6;
-      position: relative;
-      padding-left: 30px;
-    }
-    
-    .notice-list li:before {
-      content: "•";
-      color: #856404;
-      font-size: 1.5rem;
-      position: absolute;
-      left: 0;
-      top: 5px;
-    }
-    
-    .notice-list li:last-child {
-      border-bottom: none;
-    }
-    
-    .download-btn {
-      background: #856404;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      margin-top: 20px;
-    }
-    
-    .download-btn:hover {
-      background: #715c04;
-      color: white;
-    }
-  </style>
+    <!-- Chart.js for Charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #1a73e8;
+            --secondary-color: #1557b0;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 15px;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px 20px;
+        }
+        
+        .card-header h2 {
+            margin: 0;
+            font-size: 1.3rem;
+        }
+        
+        .card-header i {
+            margin-right: 8px;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .login-card {
+            max-width: 500px;
+            margin: 50px auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+            display: block;
+        }
+        
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        input[type="password"]:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 12px 25px;
+            font-weight: 600;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, var(--success-color), #218838);
+            border: none;
+            padding: 12px 25px;
+            font-weight: 600;
+            border-radius: 10px;
+            width: 100%;
+        }
+        
+        .btn-success:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .stat-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 8px;
+            font-size: 0.85rem;
+        }
+        
+        .stat-card i {
+            font-size: 1.8rem;
+        }
+        
+        .chart-scroll-container {
+            position: relative;
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            cursor: grab;
+        }
+        
+        .chart-scroll-container:active {
+            cursor: grabbing;
+        }
+        
+        .chart-wrapper {
+            min-width: 600px;
+            height: 300px;
+            position: relative;
+        }
+        
+        .chart-scroll-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .chart-scroll-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .chart-scroll-container::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+        
+        .table-scroll-container {
+            position: relative;
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 15px;
+            border: 1px solid #e0e0e0;
+            background: white;
+            max-height: 70vh;
+        }
+        
+        .table-scroll-container::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        
+        .table-scroll-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .table-scroll-container::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+        
+        .dashboard-table {
+            width: 100%;
+            min-width: 800px;
+            margin-bottom: 0;
+            border-collapse: collapse;
+        }
+        
+        .dashboard-table thead th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 10px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .dashboard-table tbody td {
+            padding: 10px;
+            font-size: 0.85rem;
+            border-bottom: 1px solid #e0e0e0;
+            white-space: nowrap;
+        }
+        
+        .dashboard-table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .badge-paper1 {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            display: inline-block;
+            text-align: center;
+            min-width: 50px;
+        }
+        
+        .badge-paper2 {
+            background-color: var(--success-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            display: inline-block;
+            text-align: center;
+            min-width: 50px;
+        }
+        
+        .badge-paper3 {
+            background-color: var(--warning-color);
+            color: #333;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            display: inline-block;
+            text-align: center;
+            min-width: 50px;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 250px;
+            width: 100%;
+        }
+        
+        canvas {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .action-buttons .btn {
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            flex-direction: column;
+        }
+        
+        .loading-spinner {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            min-width: 250px;
+        }
+        
+        .loading-spinner .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .progress-bar-container {
+            margin-top: 15px;
+            width: 100%;
+        }
+        
+        .progress {
+            height: 8px;
+            border-radius: 4px;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+            transition: width 0.3s ease;
+        }
+        
+        .time-elapsed {
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .alert {
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .card-header { padding: 12px 15px; }
+            .card-header h2 { font-size: 1.1rem; }
+            .card-body { padding: 15px; }
+            .stat-number { font-size: 22px; }
+            .stat-label { font-size: 0.75rem; }
+            .stat-card i { font-size: 1.5rem; }
+            .dashboard-table thead th { padding: 8px 6px; font-size: 0.75rem; }
+            .dashboard-table tbody td { padding: 8px 6px; font-size: 0.75rem; }
+            .chart-wrapper { min-width: 500px; height: 250px; }
+        }
+        
+        @media (max-width: 480px) {
+            .stat-number { font-size: 18px; }
+            .action-buttons { flex-direction: column; }
+            .action-buttons .btn { width: 100%; }
+            .chart-wrapper { min-width: 400px; height: 220px; }
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .checkbox-group {
+            margin: 15px 0;
+        }
+        
+        .row {
+            margin-right: -8px;
+            margin-left: -8px;
+        }
+        
+        .row > [class*="col-"] {
+            padding-right: 8px;
+            padding-left: 8px;
+        }
+        
+        .teacher-column {
+            max-width: 200px;
+            white-space: normal !important;
+            word-break: break-word;
+        }
+        
+        .scroll-hint {
+            text-align: center;
+            font-size: 11px;
+            color: #999;
+            margin-top: 8px;
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .scroll-hint { display: block; }
+        }
+    </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">
-        <i class="fas fa-school me-2"></i>Lunzu Secondary School
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.html" target="_blank">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="features.html" target="_blank">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="portals.html" target="_blank">Portals</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="testimonials.html" target="_blank">Testimonials</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html" target="_blank">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="important-notice.html">
-              <i class="fas fa-bullhorn me-1"></i>Notice
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Main Content -->
-  <div class="container my-5">
-    <h1 class="section-title">Important Notices & Announcements</h1>
-    
-    <!-- Current Notice -->
-    <div class="notice-section">
-      <div class="notice-header">
-        <div class="notice-icon">
-          <i class="fas fa-bullhorn"></i>
-        </div>
-        <div>
-          <h3 class="mb-2" style="color: #856404;">
-            <i class="fas fa-exclamation-circle me-2"></i>Important Announcement
-          </h3>
-          <div class="notice-date">
-            <i class="fas fa-calendar-alt me-2"></i>Published: January 3, 2026
-          </div>
-        </div>
-      </div>
-      
-      <h4 class="mb-3" style="color: #856404;">School Opening for Term 2 - Academic Year 2025/2026</h4>
-      
-      <p class="lead mb-4" style="color: #856404;">
-        School opens for term 3 on <strong>20th April, 2026</strong>. All students are expected to report on <strong>19th April, 2026</strong> with the following requirements:
-      </p>
-      
-      <ul class="notice-list">
-        <li><strong>Proof of Payment:</strong> School fees payment receipt or bank deposit slip</li>
-        <li><strong>Required Materials:</strong>
-          <ul>
-            <li>Mosquito nets (for boarding students)</li>
-            <li>Pails (2 per student)</li>
-            <li>Tissue papers (2 packets)</li>
-            <li>Soap and other personal toiletries</li>
-          </ul>
-        </li>
-        <li><strong>Academic Requirements:</strong>
-          <ul>
-            <li>All textbooks and exercise books</li>
-            <li>Mathematical sets and geometry instruments</li>
-            <li>School uniform in good condition</li>
-            <li>Sports attire</li>
-          </ul>
-        </li>
-        <li><strong>Health Requirements:</strong>
-          <ul>
-            <li>Medical report for students with special conditions</li>
-            <li>Personal medication with doctor's prescription</li>
-          </ul>
-        </li>
-      </ul>
-      
-      <div class="alert alert-warning mt-4">
-        <h5><i class="fas fa-clock me-2"></i>Important Dates</h5>
-        <ul class="mb-0">
-          <li><strong>Reporting Day:</strong> January 4, 2026 (8:00 AM - 4:00 PM)</li>
-          <li><strong>Classes Begin:</strong> January 5, 2026 (7:30 AM)</li>
-          <li><strong>Fee part-payment Deadline:</strong> April 20, 2026</li>
-          <li><strong>First Term Exams:</strong> March 16-April, 1, 2026</li>
-        </ul>
-      </div>
-      
-      <a href="#" class="download-btn">
-        <i class="fas fa-download me-2"></i>Download Official Notice (PDF)
-      </a>
-    </div>
-
-    <!-- Previous Notices -->
-    <div class="row mt-5">
-      <div class="col-12">
-        <h2 class="section-title">Previous Notices</h2>
-      </div>
-      
-      <div class="col-md-6 mb-4">
-        <div class="card card-custom h-100">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-start mb-3">
-              <span class="notice-date">
-                <i class="fas fa-calendar-alt me-1"></i>Dec 20, 2025
-              </span>
-              <span class="notice-priority priority-high">HIGH</span>
-            </div>
-            <h4>Term 1 Results Available</h4>
-            <p>Term 1 examination results are now available on the student portal. Parents and guardians can access results using student admission numbers.</p>
-            <div class="mt-3">
-              <a href="portals.html" class="btn btn-outline-primary btn-sm" target="_blank">
-                <i class="fas fa-external-link-alt me-1"></i>Access Portal
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-md-6 mb-4">
-        <div class="card card-custom h-100">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-start mb-3">
-              <span class="notice-date">
-                <i class="fas fa-calendar-alt me-1"></i>Dec 15, 2025
-              </span>
-              <span class="notice-priority priority-medium">MEDIUM</span>
-            </div>
-            <h4>Parent-Teacher Meeting</h4>
-            <p>Parent-teacher meeting scheduled for February 1, 2026. All parents are encouraged to attend to discuss student progress.</p>
-            <div class="mt-3">
-              <a href="#" class="btn btn-outline-primary btn-sm">
-                <i class="fas fa-calendar-check me-1"></i>View Schedule
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-md-6 mb-4">
-        <div class="card card-custom h-100">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-start mb-3">
-              <span class="notice-date">
-                <i class="fas fa-calendar-alt me-1"></i>Dec 10, 2025
-              </span>
-              <span class="notice-priority priority-high">HIGH</span>
-            </div>
-            <h4>Fee Payment Reminder</h4>
-            <p>Reminder: Term 2 part-payment of fees should be paid by January 5, 2026.</p>
-            <div class="mt-3">
-              <a href="portals.html" class="btn btn-outline-primary btn-sm" target="_blank">
-                <i class="fas fa-file-invoice-dollar me-1"></i>Check Fee Balance
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-md-6 mb-4">
-        <div class="card card-custom h-100">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-start mb-3">
-              <span class="notice-date">
-                <i class="fas fa-calendar-alt me-1"></i>Dec 5, 2025
-              </span>
-              <span class="notice-priority priority-low">LOW</span>
-            </div>
-            <h4>Library Opening Hours</h4>
-            <p>School library will operate from 7:30 AM to 3:00 PM during term time. Students are encouraged to make use of library resources.</p>
-            <div class="mt-3">
-              <a href="#" class="btn btn-outline-primary btn-sm">
-                <i class="fas fa-book me-1"></i>Library Rules
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Notice Archive -->
-    <div class="row mt-5">
-      <div class="col-12">
-        <div class="card card-custom">
-          <div class="card-body">
-            <h3 class="mb-4"><i class="fas fa-archive me-2"></i>Notice Archive</h3>
-            <div class="table-responsive">
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>Notice Title</th>
-                    <th>Category</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Nov 30, 2025</td>
-                    <td>End of Term 1 Announcement</td>
-                    <td>Academic</td>
-                    <td><span class="badge bg-secondary">Archived</span></td>
-                    <td><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
-                  </tr>
-                  <tr>
-                    <td>Nov 20, 2025</td>
-                    <td>Sports Day Results</td>
-                    <td>Sports</td>
-                    <td><span class="badge bg-secondary">Archived</span></td>
-                    <td><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
-                  </tr>
-                  <tr>
-                    <td>Nov 15, 2025</td>
-                    <td>Science Fair Winners</td>
-                    <td>Academic</td>
-                    <td><span class="badge bg-secondary">Archived</span></td>
-                    <td><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
-                  </tr>
-                  <tr>
-                    <td>Nov 10, 2025</td>
-                    <td>Computer Lab Maintenance</td>
-                    <td>Facilities</td>
-                    <td><span class="badge bg-secondary">Archived</span></td>
-                    <td><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
-                  </tr>
-                  <tr>
-                    <td>Nov 5, 2025</td>
-                    <td>Health Check-up Schedule</td>
-                    <td>Health</td>
-                    <td><span class="badge bg-secondary">Archived</span></td>
-                    <td><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Subscribe to Notices -->
-    <div class="row mt-5">
-      <div class="col-md-8 mx-auto">
-        <div class="card card-custom">
-          <div class="card-body text-center">
-            <h3><i class="fas fa-bell me-2"></i>Get Notifications</h3>
-            <p class="mb-4">Subscribe to receive important notices and announcements via email or SMS.</p>
-            <div class="row justify-content-center">
-              <div class="col-md-8">
-                <div class="input-group mb-3">
-                  <input type="email" class="form-control" placeholder="Enter your email address">
-                  <button class="btn btn-primary" type="button">Subscribe</button>
+        <!-- Login Section -->
+        <div id="loginSection" class="login-card">
+            <div class="card">
+                <div class="card-header text-center">
+                    <i class="fas fa-chalkboard-teacher" style="font-size: 48px; margin-bottom: 10px; display: block;"></i>
+                    <h2>Lunzu Secondary School</h2>
+                    <p class="mb-0">Examination Dashboard</p>
                 </div>
-                <p class="text-muted"><small>We respect your privacy. You can unsubscribe at any time.</small></p>
-              </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i> Enter your teacher code to access the dashboard
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="teacherCode"><i class="fas fa-key"></i> Teacher Code:</label>
+                        <input type="password" id="teacherCode" class="form-control" placeholder="Enter your teacher code" autocomplete="off">
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="showPassword">
+                        <label for="showPassword" class="ms-2">Show Teacher Code</label>
+                    </div>
+                    
+                    <button id="loginBtn" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt"></i> Access Dashboard
+                    </button>
+                    
+                    <div id="loginMessage" class="mt-3"></div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+        
+        <!-- Dashboard Section -->
+        <div id="dashboardSection" style="display: none;">
+            <!-- Header Stats Row -->
+            <div class="row mb-3">
+                <div class="col-6 col-md-3 mb-2">
+                    <div class="stat-card">
+                        <i class="fas fa-chalkboard" style="color: var(--primary-color);"></i>
+                        <div class="stat-number" id="totalClasses">0</div>
+                        <div class="stat-label">Total Classes</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-2">
+                    <div class="stat-card">
+                        <i class="fas fa-book" style="color: var(--success-color);"></i>
+                        <div class="stat-number" id="totalSubjects">0</div>
+                        <div class="stat-label">Total Subjects</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-2">
+                    <div class="stat-card">
+                        <i class="fas fa-file-pdf" style="color: var(--danger-color);"></i>
+                        <div class="stat-number" id="totalPaper1">0</div>
+                        <div class="stat-label">Paper 1 Scripts</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-2">
+                    <div class="stat-card">
+                        <i class="fas fa-file-alt" style="color: var(--warning-color);"></i>
+                        <div class="stat-number" id="totalScripts">0</div>
+                        <div class="stat-label">Total Scripts</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="action-buttons">
+                        <button id="refreshBtn" class="btn btn-primary">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                        <button id="downloadPdfBtn" class="btn btn-success">
+                            <i class="fas fa-download"></i> Download PDF
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Charts Row -->
+            <div class="row mb-3">
+                <div class="col-12 col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-chart-bar"></i> Submissions by Subject (All Forms Combined)</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-scroll-container" id="chartScrollContainer">
+                                <div class="chart-wrapper">
+                                    <canvas id="subjectsChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="scroll-hint">
+                                <i class="fas fa-arrows-alt-h"></i> Swipe left/right to see all subjects
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-chart-pie"></i> Paper Distribution</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="papersChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Data Table -->
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-table"></i> Detailed Results (By Class)</h2>
+                </div>
+                <div class="card-body">
+                    <div class="table-scroll-container">
+                        <table class="dashboard-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Class</th>
+                                    <th>Subject</th>
+                                    <th>Teachers</th>
+                                    <th>Paper 1</th>
+                                    <th>Paper 2</th>
+                                    <th>Paper 3</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <tr><td colspan="8" class="text-center">Loading...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; <span id="currentYear"></span> Lunzu Secondary School - Examination Department</p>
+            <p><i class="fas fa-shield-alt"></i> Secure system for authorized teachers only | <i class="fas fa-chart-line"></i> Real-time Dashboard</p>
+        </div>
     </div>
-  </div>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-8 text-center text-lg-start mb-4 mb-lg-0">
-          <h3 class="mb-3"><i class="fas fa-school me-2"></i>Lunzu Secondary School</h3>
-          <p class="mb-0">Committed to providing quality education and fostering academic excellence since 1985.</p>
-          <p class="mb-0 mt-2">
-            <i class="fas fa-certificate me-2"></i>Registered Government Secondary School
-          </p>
+    
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" style="display: none;" class="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <div id="loadingMessage">Loading data...</div>
+            <div class="time-elapsed" id="timeElapsed">Elapsed: 0 seconds</div>
         </div>
-      </div>
-      <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
-      <div class="row">
-        <div class="col-md-6 text-center text-md-start">
-          <p class="mb-0">&copy; <span id="current-year">2026</span> Lunzu Secondary School. All rights reserved.</p>
-        </div>
-        <div class="col-md-6 text-center text-md-end">
-          <a href="contact.html" target="_blank" class="text-white me-3">Contact</a>
-          <a href="about.html" target="_blank" class="text-white me-3">About</a>
-          <a href="portals.html" target="_blank" class="text-white">Portals</a>
-        </div>
-      </div>
     </div>
-  </footer>
 
-  <!-- Bootstrap JS Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <script>
-    // Set current year
-    document.getElementById('current-year').textContent = new Date().getFullYear();
-  </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // ============================================
+        // CONFIGURATION - UPDATE THIS URL
+        // ============================================
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxSdL3OC7QSc2z5Eis47q6Q7dKQzE12eBaqB-i67igJmF26mzm1empfQUmQ03QdwSPkwQ/exec";
+        
+        // Global variables
+        let currentTeacherCode = null;
+        let currentReportData = null;
+        let groupedSubjectsData = null; // Store grouped data for chart
+        let subjectsChart = null;
+        let papersChart = null;
+        let cachedData = null;
+        let cacheTime = null;
+        const CACHE_DURATION = 60000;
+        
+        // DOM Elements
+        const loginSection = document.getElementById('loginSection');
+        const dashboardSection = document.getElementById('dashboardSection');
+        const teacherCodeInput = document.getElementById('teacherCode');
+        const showPasswordCheckbox = document.getElementById('showPassword');
+        const loginBtn = document.getElementById('loginBtn');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const downloadPdfBtn = document.getElementById('downloadPdfBtn');
+        const loginMessage = document.getElementById('loginMessage');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const loadingMessage = document.getElementById('loadingMessage');
+        const timeElapsedSpan = document.getElementById('timeElapsed');
+        const chartScrollContainer = document.getElementById('chartScrollContainer');
+        
+        let startTime = null;
+        let elapsedInterval = null;
+        
+        // Update copyright year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Show/hide password
+        showPasswordCheckbox.addEventListener('change', function() {
+            teacherCodeInput.type = this.checked ? 'text' : 'password';
+        });
+        
+        function showLoading(message) {
+            loadingMessage.textContent = message;
+            startTime = Date.now();
+            if (elapsedInterval) clearInterval(elapsedInterval);
+            elapsedInterval = setInterval(() => {
+                const elapsed = Math.floor((Date.now() - startTime) / 1000);
+                timeElapsedSpan.textContent = `Elapsed: ${elapsed} seconds`;
+            }, 1000);
+            loadingOverlay.style.display = 'flex';
+        }
+        
+        function hideLoading() {
+            if (elapsedInterval) clearInterval(elapsedInterval);
+            loadingOverlay.style.display = 'none';
+            return Math.floor((Date.now() - startTime) / 1000);
+        }
+        
+        function callAppsScript(action, teacherCode, timeout = 60000) {
+            return new Promise((resolve, reject) => {
+                const callbackName = 'jsonp_callback_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                const url = `${APPS_SCRIPT_URL}?action=${action}&teacherCode=${encodeURIComponent(teacherCode)}&callback=${callbackName}&t=${Date.now()}`;
+                
+                const timeoutId = setTimeout(() => {
+                    if (window[callbackName]) delete window[callbackName];
+                    if (script.parentNode) script.parentNode.removeChild(script);
+                    reject(new Error('Request timeout'));
+                }, timeout);
+                
+                window[callbackName] = function(data) {
+                    clearTimeout(timeoutId);
+                    delete window[callbackName];
+                    if (script.parentNode) script.parentNode.removeChild(script);
+                    resolve(data);
+                };
+                
+                const script = document.createElement('script');
+                script.src = url;
+                script.onerror = function() {
+                    clearTimeout(timeoutId);
+                    delete window[callbackName];
+                    if (script.parentNode) script.parentNode.removeChild(script);
+                    reject(new Error('Connection failed'));
+                };
+                document.body.appendChild(script);
+            });
+        }
+        
+        // Group subjects across all classes for the chart
+        function groupSubjectsBySubjectName(items) {
+            const subjectMap = new Map();
+            
+            items.forEach(item => {
+                const subjectName = item.subject;
+                const total = (item.paper1 || 0) + (item.paper2 || 0) + (item.paper3 || 0);
+                
+                if (subjectMap.has(subjectName)) {
+                    subjectMap.set(subjectName, subjectMap.get(subjectName) + total);
+                } else {
+                    subjectMap.set(subjectName, total);
+                }
+            });
+            
+            // Convert to array and sort by total submissions (descending)
+            const grouped = Array.from(subjectMap.entries())
+                .map(([subject, total]) => ({ subject, total }))
+                .sort((a, b) => b.total - a.total);
+            
+            return grouped;
+        }
+        
+        async function loadDashboardData(forceRefresh = false) {
+            if (!forceRefresh && cachedData && cacheTime && (Date.now() - cacheTime) < CACHE_DURATION) {
+                currentReportData = cachedData;
+                groupedSubjectsData = groupSubjectsBySubjectName(currentReportData.items);
+                updateDashboard();
+                return;
+            }
+            
+            showLoading('Loading dashboard data...');
+            
+            try {
+                const result = await callAppsScript('getDashboardData', currentTeacherCode, 90000);
+                if (!result.success) throw new Error(result.error);
+                
+                currentReportData = result.data;
+                groupedSubjectsData = groupSubjectsBySubjectName(currentReportData.items);
+                cachedData = currentReportData;
+                cacheTime = Date.now();
+                
+                updateDashboard();
+                const elapsed = hideLoading();
+                showTemporaryMessage(loginMessage, `Dashboard loaded in ${elapsed} seconds!`, 'success');
+            } catch (error) {
+                hideLoading();
+                showMessage(loginMessage, 'Error: ' + error.message, 'danger');
+            }
+        }
+        
+        function showTemporaryMessage(element, text, type) {
+            if (!element) return;
+            element.innerHTML = `<div class="alert alert-${type} alert-dismissible fade show">${text}<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>`;
+            setTimeout(() => { if (element.innerHTML.includes(text)) element.innerHTML = ''; }, 4000);
+        }
+        
+        function showMessage(element, text, type) {
+            if (!element) return;
+            element.innerHTML = `<div class="alert alert-${type} alert-dismissible fade show">${text}<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>`;
+        }
+        
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function updateDashboard() {
+            if (!currentReportData) return;
+            
+            // Update stats
+            document.getElementById('totalClasses').textContent = currentReportData.stats.totalClasses;
+            document.getElementById('totalSubjects').textContent = groupedSubjectsData.length;
+            document.getElementById('totalPaper1').textContent = currentReportData.stats.totalPaper1;
+            document.getElementById('totalScripts').textContent = currentReportData.stats.totalScripts;
+            
+            // Update table (by class, detailed view)
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = '';
+            
+            currentReportData.items.forEach((item, index) => {
+                const total = (item.paper1 || 0) + (item.paper2 || 0) + (item.paper3 || 0);
+                const row = tableBody.insertRow();
+                row.innerHTML = `
+                    <td style="text-align: center;">${index + 1}</td>
+                    <td><strong>${escapeHtml(item.className)}</strong></td>
+                    <td>${escapeHtml(item.subject)}</td>
+                    <td class="teacher-column">${escapeHtml(item.teachers)}</td>
+                    <td style="text-align: center;"><span class="badge-paper1">${item.paper1 || '-'}</span></td>
+                    <td style="text-align: center;"><span class="badge-paper2">${item.paper2 || '-'}</span></td>
+                    <td style="text-align: center;"><span class="badge-paper3">${item.paper3 || '-'}</span></td>
+                    <td style="text-align: center;"><strong>${total}</strong></td>
+                `;
+            });
+            
+            updateCharts();
+        }
+        
+        function updateCharts() {
+            if (!groupedSubjectsData) return;
+            
+            // Prepare data for grouped subjects chart (each subject once)
+            const subjectLabels = groupedSubjectsData.map(item => 
+                item.subject.length > 25 ? item.subject.substring(0, 22) + '...' : item.subject
+            );
+            const subjectTotals = groupedSubjectsData.map(item => item.total);
+            
+            // Calculate dynamic width
+            const chartWrapper = document.querySelector('.chart-wrapper');
+            const barWidth = 55;
+            const minWidth = Math.max(500, subjectLabels.length * barWidth);
+            chartWrapper.style.minWidth = minWidth + 'px';
+            
+            // Destroy existing chart
+            if (subjectsChart) subjectsChart.destroy();
+            if (papersChart) papersChart.destroy();
+            
+            // Create grouped subjects chart
+            const subjectsCtx = document.getElementById('subjectsChart').getContext('2d');
+            subjectsChart = new Chart(subjectsCtx, {
+                type: 'bar',
+                data: {
+                    labels: subjectLabels,
+                    datasets: [{
+                        label: 'Total Submissions (All Forms Combined)',
+                        data: subjectTotals,
+                        backgroundColor: 'rgba(26, 115, 232, 0.8)',
+                        borderColor: '#1a73e8',
+                        borderWidth: 1,
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { position: 'top', labels: { font: { size: 10 } } },
+                        tooltip: { 
+                            callbacks: {
+                                label: function(context) {
+                                    return `Total Submissions: ${context.raw}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: { 
+                            beginAtZero: true, 
+                            ticks: { font: { size: 10 } },
+                            title: { display: true, text: 'Number of Submissions', font: { size: 10 } }
+                        },
+                        x: { 
+                            ticks: { font: { size: 9 }, rotation: 45, maxRotation: 45, autoSkip: false },
+                            title: { display: true, text: 'Subjects', font: { size: 10 } }
+                        }
+                    }
+                }
+            });
+            
+            // Create papers distribution chart
+            const papersCtx = document.getElementById('papersChart').getContext('2d');
+            papersChart = new Chart(papersCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Paper 1', 'Paper 2', 'Paper 3'],
+                    datasets: [{
+                        data: [
+                            currentReportData.stats.totalPaper1,
+                            currentReportData.stats.totalPaper2,
+                            currentReportData.stats.totalPaper3
+                        ],
+                        backgroundColor: ['#1a73e8', '#28a745', '#ffc107'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { font: { size: 10 } } },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const total = currentReportData.stats.totalPaper1 + currentReportData.stats.totalPaper2 + currentReportData.stats.totalPaper3;
+                                    const percent = ((context.raw / total) * 100).toFixed(1);
+                                    return `${context.label}: ${context.raw} (${percent}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        async function downloadPDF() {
+            downloadPdfBtn.disabled = true;
+            downloadPdfBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Generating...';
+            showLoading('Generating PDF...');
+            try {
+                const result = await callAppsScript('generatePDF', currentTeacherCode, 120000);
+                if (!result.success) throw new Error(result.error);
+                const link = document.createElement('a');
+                const now = new Date();
+                link.href = 'data:application/pdf;base64,' + result.pdfData;
+                link.download = `Examination_Report_${now.toISOString().slice(0,10)}.pdf`;
+                link.click();
+                const elapsed = hideLoading();
+                showTemporaryMessage(loginMessage, `PDF downloaded in ${elapsed} seconds!`, 'success');
+            } catch (error) {
+                hideLoading();
+                showMessage(loginMessage, 'PDF Error: ' + error.message, 'danger');
+            } finally {
+                downloadPdfBtn.disabled = false;
+                downloadPdfBtn.innerHTML = '<i class="fas fa-download"></i> Download PDF';
+            }
+        }
+        
+        async function login() {
+            const teacherCode = teacherCodeInput.value.trim();
+            if (!teacherCode) {
+                showMessage(loginMessage, 'Please enter your teacher code.', 'danger');
+                return;
+            }
+            
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Verifying...';
+            showLoading('Verifying teacher code...');
+            
+            try {
+                const result = await callAppsScript('verify', teacherCode, 30000);
+                hideLoading();
+                if (result.success) {
+                    currentTeacherCode = teacherCode;
+                    loginSection.style.display = 'none';
+                    dashboardSection.style.display = 'block';
+                    await loadDashboardData(false);
+                } else {
+                    showMessage(loginMessage, 'Invalid teacher code.', 'danger');
+                }
+            } catch (error) {
+                hideLoading();
+                showMessage(loginMessage, 'Connection error: ' + error.message, 'danger');
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Access Dashboard';
+            }
+        }
+        
+        // Drag to scroll for chart
+        if (chartScrollContainer) {
+            let isDragging = false, startX, scrollLeft;
+            chartScrollContainer.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.pageX - chartScrollContainer.offsetLeft;
+                scrollLeft = chartScrollContainer.scrollLeft;
+                chartScrollContainer.style.cursor = 'grabbing';
+            });
+            chartScrollContainer.addEventListener('mouseleave', () => {
+                isDragging = false;
+                chartScrollContainer.style.cursor = 'grab';
+            });
+            chartScrollContainer.addEventListener('mouseup', () => {
+                isDragging = false;
+                chartScrollContainer.style.cursor = 'grab';
+            });
+            chartScrollContainer.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const x = e.pageX - chartScrollContainer.offsetLeft;
+                const walk = (x - startX) * 2;
+                chartScrollContainer.scrollLeft = scrollLeft - walk;
+            });
+            chartScrollContainer.style.cursor = 'grab';
+        }
+        
+        loginBtn.addEventListener('click', login);
+        refreshBtn.addEventListener('click', () => loadDashboardData(true));
+        downloadPdfBtn.addEventListener('click', downloadPDF);
+        teacherCodeInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') login(); });
+    </script>
 </body>
 </html>
