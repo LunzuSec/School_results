@@ -5,504 +5,454 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Portals - Lunzu Secondary School</title>
   
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-  <!-- Font Awesome for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-pj6VsoMV3Pn0aO5/KE1qPBD6gEijSdykOqYlCkgVgJt+5UrHhHgfKgnA9yGo0A37uj5yK69IaMzuq8wRA3+4qA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
-    :root {
-      --primary-color: #007BFF;
-      --primary-dark: #0056b3;
-      --secondary-color: #6c757d;
-      --accent-color: #17a2b8;
-      --light-bg: #f8f9fa;
-      --dark-bg: #343a40;
-      --success-color: #28a745;
-      --warning-color: #ffc107;
-    }
-    
     * {
-      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    
-    h1, h2, h3, h4, h5, h6, .navbar-brand {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-    }
-    
+
     body {
-      padding-top: 76px;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      min-height: 100vh;
+      background: #0a1628;
+      position: relative;
+      overflow-x: hidden;
     }
-    
-    .navbar-custom {
-      background-color: var(--primary-color);
-      padding: 15px 0;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    #bg-canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
     }
-    
-    .navbar-custom .navbar-brand,
-    .navbar-custom .nav-link {
-      color: white !important;
+    #bg-canvas-container canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-    
-    .navbar-custom .nav-link {
-      margin: 0 8px;
-      font-weight: 500;
-      transition: color 0.3s;
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    
-    .navbar-custom .nav-link:hover {
-      color: rgba(255, 255, 255, 0.9) !important;
-    }
-    
-    .footer {
-      background: linear-gradient(135deg, var(--dark-bg) 0%, #212529 100%);
-      color: white;
-      padding: 50px 0 30px;
-      margin-top: 50px;
-    }
-    
-    .card-custom {
-      border: none;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-      transition: all 0.3s ease;
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border-radius: 28px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 215, 0, 0.2);
       overflow: hidden;
-      margin-bottom: 30px;
+      transition: all 0.3s ease;
       height: 100%;
     }
-    
-    .card-custom:hover {
+
+    .glass-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      border-color: rgba(255, 215, 0, 0.4);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
     }
-    
-    .section-title {
-      position: relative;
-      margin-bottom: 50px;
+
+    .glass-card .card-body {
+      padding: 30px;
       text-align: center;
     }
-    
-    .section-title::after {
+
+    .glass-card h4 {
+      color: #fff;
+      margin-bottom: 15px;
+    }
+
+    .glass-card p {
+      color: #d1e0f0;
+      line-height: 1.6;
+    }
+
+    .navbar-custom {
+      background: rgba(10, 22, 40, 0.85);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+      padding: 15px 0;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .navbar-custom .navbar-brand,
+    .navbar-custom .nav-link {
+      color: #fff !important;
+    }
+
+    .navbar-custom .nav-link {
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .navbar-custom .nav-link::after {
       content: '';
       position: absolute;
-      bottom: -15px;
+      bottom: 0;
       left: 50%;
       transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: #fbbf24;
+      transition: width 0.3s ease;
+    }
+
+    .navbar-custom .nav-link:hover::after {
+      width: 80%;
+    }
+
+    .navbar-custom .nav-link:hover {
+      color: #fbbf24 !important;
+    }
+
+    .section-title {
+      color: #fff;
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
       width: 80px;
       height: 4px;
-      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      background: linear-gradient(90deg, #fbbf24, #f59e0b);
+      margin: 15px auto 0;
       border-radius: 2px;
     }
-    
-    /* Portal section styles */
-    .portal-section {
-      background: #ffffff !important;
-      padding: 80px 0;
-      border-radius: 20px;
-      margin: 60px 0;
-      position: relative;
-      overflow: hidden;
-      border: 2px solid #e0e0e0;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    }
-    
-    .portal-title {
-      color: #0056b3 !important;
-      position: relative;
-      z-index: 2;
-      font-size: 2.8rem;
-      font-weight: 700;
-      margin-bottom: 30px;
-    }
-    
-    .portal-subtitle {
-      color: #333333 !important;
-      position: relative;
-      z-index: 2;
-      font-size: 1.3rem;
-      font-weight: 500;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
-      margin-bottom: 40px;
-    }
-    
-    .portal-security-note {
-      color: #666666 !important;
-      position: relative;
-      z-index: 2;
-      font-size: 1.1rem;
-      font-weight: 500;
-      background: #f8f9fa;
-      padding: 12px 25px;
-      border-radius: 10px;
-      display: inline-block;
-      margin-top: 30px;
-      border: 1px solid #dee2e6;
-    }
-    
+
     .btn-portal {
       font-size: 1.2rem;
       padding: 20px 40px;
-      margin: 15px;
-      border-radius: 12px;
+      border-radius: 14px;
       transition: all 0.3s;
       min-width: 250px;
       text-transform: uppercase;
       letter-spacing: 1px;
       font-weight: 700;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-      border: 3px solid rgba(255, 255, 255, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.1);
     }
-    
+
     .btn-portal:hover {
       transform: translateY(-5px) scale(1.05);
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-      border-color: rgba(255, 255, 255, 0.5);
     }
-    
+
     .btn-portal.teacher {
-      background: linear-gradient(135deg, #ff6b6b 0%, #e74c3c 100%);
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: #0a1628;
     }
-    
+
     .btn-portal.student {
-      background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+      background: linear-gradient(135deg, #34d399, #10b981);
+      color: #0a1628;
     }
-    
-    .portal-feature {
-      text-align: center;
-      padding: 20px;
-    }
-    
-    .portal-feature-icon {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.1));
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 20px;
-      color: white;
-      font-size: 1.5rem;
+      color: #fbbf24;
+      font-size: 1.8rem;
+      border: 2px solid rgba(251, 191, 36, 0.3);
     }
-    
-    .login-instructions {
-      background: #f8f9fa;
-      padding: 30px;
-      border-radius: 15px;
-      margin: 40px 0;
+
+    .portal-security-note {
+      color: #d1e0f0;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 15px 25px;
+      border-radius: 12px;
+      display: inline-block;
+      border: 1px solid rgba(255, 215, 0, 0.15);
     }
-    
-    /* Responsive Design */
+
+    .footer {
+      background: rgba(10, 22, 40, 0.85);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      color: #d1e0f0;
+      padding: 50px 0 30px;
+      margin-top: 50px;
+      border-top: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .footer a {
+      color: #fbbf24;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: #f59e0b;
+      text-decoration: underline;
+    }
+
     @media (max-width: 768px) {
-      body {
-        padding-top: 66px;
+      .section-title {
+        font-size: 1.8rem;
       }
-      
       .btn-portal {
         min-width: 200px;
         padding: 18px 30px;
-        margin: 12px 5px;
-        display: block;
-        width: 100%;
-        max-width: 300px;
-        margin-left: auto;
-        margin-right: auto;
+        font-size: 1rem;
       }
-      
-      .section-title {
-        font-size: 2rem;
-      }
-      
-      .portal-section {
-        padding: 50px 0;
-        margin: 40px 0;
-      }
-      
-      .portal-title {
-        font-size: 2.2rem;
-      }
-      
-      .portal-subtitle {
-        font-size: 1.1rem;
+      .glass-card {
+        margin-bottom: 20px;
       }
     }
-    
+
     @media (max-width: 576px) {
       .btn-portal {
         display: block;
         width: 100%;
         margin: 10px 0;
-        padding: 16px 25px;
-        font-size: 1.1rem;
-      }
-      
-      .portal-title {
-        font-size: 1.8rem;
-      }
-      
-      .portal-subtitle {
-        font-size: 1rem;
-        padding: 0 15px;
-      }
-      
-      .portal-security-note {
-        font-size: 0.95rem;
-        padding: 10px 20px;
-        text-align: center;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+  <div id="bg-canvas-container">
+    <canvas id="bgCanvas"></canvas>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <i class="fas fa-school me-2"></i>Lunzu Secondary School
+        <i class="fas fa-school me-2" style="color: #fbbf24;"></i>Lunzu Secondary School
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.html" target="_blank">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="features.html" target="_blank">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="portals.html">Portals</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="testimonials.html" target="_blank">Testimonials</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html" target="_blank">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="important-notice.html" target="_blank">
-              <i class="fas fa-bullhorn me-1"></i>Notice
-            </a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="portals.html">Portals</a></li>
+          <li class="nav-item"><a class="nav-link" href="testimonials.html">Testimonials</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="important-notice.html"><i class="fas fa-bullhorn me-1"></i>Notice</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Main Content -->
-  <div class="container my-5">
-    <!-- Portals Section -->
-    <div class="portal-section">
-      <div class="container text-center">
-        <h2 class="portal-title">Access Your Portal</h2>
-        <p class="portal-subtitle">Select your role to access the appropriate portal for managing and viewing academic information.</p>
-        <div class="portal-buttons-container">
-          <div class="d-flex flex-wrap justify-content-center">
-            <a href="teachers-portal.html" class="btn btn-portal teacher mx-3">
-              <i class="fas fa-chalkboard-teacher me-2"></i> Teachers Portal
-            </a>
-            <a href="student-portal.html" class="btn btn-portal student mx-3">
-              <i class="fas fa-user-graduate me-2"></i> Student Results Portal
-            </a>
-          </div>
-        </div>
-        <p class="portal-security-note mt-4">
-          <i class="fas fa-shield-alt me-2"></i>Secure login required for all portal access
-        </p>
+  <div class="container my-5" style="padding-top: 80px;">
+    <h1 class="section-title">Access Your Portal</h1>
+    
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8 text-center">
+        <p style="color: #d1e0f0; font-size: 1.2rem;">Select your role to access the appropriate portal for managing and viewing academic information.</p>
       </div>
     </div>
 
-    <!-- Portal Features -->
-    <h2 class="section-title">Portal Features</h2>
-    <div class="row mb-5">
-      <div class="col-md-4 mb-4">
-        <div class="portal-feature">
-          <div class="portal-feature-icon">
-            <i class="fas fa-tasks"></i>
-          </div>
-          <h4>Grade Management</h4>
-          <p>Teachers can enter, edit, and manage student grades securely online.</p>
-        </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="portal-feature">
-          <div class="portal-feature-icon">
-            <i class="fas fa-chart-bar"></i>
-          </div>
-          <h4>Performance Analytics</h4>
-          <p>View detailed analytics and progress reports for individual students.</p>
-        </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="portal-feature">
-          <div class="portal-feature-icon">
-            <i class="fas fa-file-invoice-dollar"></i>
-          </div>
-          <h4>Fee Tracking</h4>
-          <p>Parents and students can view fee balances and payment history.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Results Access Instructions -->
-    <div class="login-instructions">
-      <h3 class="text-center mb-4"><i class="fas fa-key me-2"></i>How to View Your Results</h3>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card card-custom mb-4">
-            <div class="card-body">
-              <h5><i class="fas fa-exclamation-triangle text-warning me-2"></i>Before You Proceed:</h5>
-              <div class="alert alert-info mt-3">
-                <ul class="mb-0">
-                  <li><strong>Requirements:</strong> You'll need your student name, class, and date of birth</li>
-                  <li><strong>Browser:</strong> Use Chrome, Firefox, Edge, or Safari for best experience</li>
-                  <li><strong>Support:</strong> Contact technical support if you encounter any issues</li>
-                  <li><strong>Timing:</strong> Results are available 24/7 during the results period</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card card-custom mb-4">
-            <div class="card-body">
-              <h5><i class="fas fa-lightbulb text-primary me-2"></i>Step-by-Step Guide:</h5>
-              <ol class="mt-3">
-                <li><strong>Click the "Go to Results Portal" button</strong> in the student portal</li>
-                <li><strong>Select your class</strong> from the dropdown menu</li>
-                <li><strong>Wait for student names to load</strong> (this may take a few seconds)</li>
-                <li><strong>Select your name</strong> from the list or search for it</li>
-                <li><strong>Enter your date of birth</strong> in YYYY-MM-DD format</li>
-                <li><strong>Click "View Results"</strong> to see your results in a new tab</li>
-                <li><strong>Optional:</strong> Click "Download PDF" to save a copy of your results</li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Troubleshooting Tips -->
-      <div class="card card-custom mt-4">
-        <div class="card-body">
-          <h5 class="text-center"><i class="fas fa-exclamation-triangle me-2 text-warning"></i>Troubleshooting Tips</h5>
-          <div class="alert alert-warning mt-3">
-            <ul class="mb-0">
-              <li>If the page doesn't load, try refreshing or using a different browser</li>
-              <li>Ensure you have a stable internet connection</li>
-              <li>Check that you're entering your details correctly</li>
-              <li>If issues persist, contact the technical support team</li>
-              <li>If you can't find your name, please ensure you've selected the correct class</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Security Information -->
-    <div class="row mt-5">
-      <div class="col-12">
-        <h2 class="section-title">Security & Privacy</h2>
-      </div>
-      <div class="col-md-8 mx-auto">
-        <div class="card card-custom">
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-5 mb-4">
+        <div class="glass-card text-center">
           <div class="card-body">
-            <h4 class="mb-4"><i class="fas fa-shield-alt text-primary me-2"></i>Your Data is Secure</h4>
-            <div class="row">
-              <div class="col-md-6">
-                <ul>
-                  <li class="mb-2"><i class="fas fa-lock text-success me-2"></i>End-to-end encryption</li>
-                  <li class="mb-2"><i class="fas fa-user-lock text-success me-2"></i>Secure login authentication</li>
-                  <li class="mb-2"><i class="fas fa-history text-success me-2"></i>Activity logging</li>
-                </ul>
-              </div>
-              <div class="col-md-6">
-                <ul>
-                  <li class="mb-2"><i class="fas fa-server text-success me-2"></i>Regular security updates</li>
-                  <li class="mb-2"><i class="fas fa-database text-success me-2"></i>Secure data backup</li>
-                  <li class="mb-2"><i class="fas fa-eye-slash text-success me-2"></i>Privacy protection</li>
-                </ul>
-              </div>
-            </div>
+            <div class="feature-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+            <h4>Teachers Portal</h4>
+            <p>Submit scores, manage classes, and track student performance.</p>
+            <a href="teachers-portal.html" class="btn btn-portal teacher">Access Portal</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 mb-4">
+        <div class="glass-card text-center">
+          <div class="card-body">
+            <div class="feature-icon"><i class="fas fa-user-graduate"></i></div>
+            <h4>Student Results Portal</h4>
+            <p>View your academic results and download reports.</p>
+            <a href="student-portal.html" class="btn btn-portal student">Access Portal</a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Troubleshooting -->
-    <div class="row mt-5">
-      <div class="col-12">
-        <h2 class="section-title">Need Help?</h2>
-      </div>
-      <div class="col-md-8 mx-auto">
-        <div class="card card-custom">
+    <div class="text-center">
+      <p class="portal-security-note">
+        <i class="fas fa-shield-alt me-2"></i>Secure login required for all portal access
+      </p>
+    </div>
+
+    <h2 class="section-title mt-5">Portal Features</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="glass-card">
           <div class="card-body">
-            <h4 class="mb-4"><i class="fas fa-life-ring text-primary me-2"></i>Technical Support</h4>
-            <p>If you're experiencing issues accessing your portal:</p>
-            <ul>
-              <li class="mb-2">Ensure you're using the correct login credentials</li>
-              <li class="mb-2">Clear your browser cache and cookies</li>
-              <li class="mb-2">Try using a different web browser</li>
-              <li class="mb-2">Check your internet connection</li>
-              <li>Contact technical support if problems persist</li>
-            </ul>
-            <div class="mt-4">
-              <a href="contact.html" class="btn btn-primary" target="_blank">
-                <i class="fas fa-phone-alt me-2"></i>Contact Technical Support
-              </a>
-            </div>
+            <div class="feature-icon"><i class="fas fa-tasks"></i></div>
+            <h4>Grade Management</h4>
+            <p>Teachers can enter, edit, and manage student grades securely online.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="glass-card">
+          <div class="card-body">
+            <div class="feature-icon"><i class="fas fa-chart-bar"></i></div>
+            <h4>Performance Analytics</h4>
+            <p>View detailed analytics and progress reports for individual students.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="glass-card">
+          <div class="card-body">
+            <div class="feature-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+            <h4>Fee Tracking</h4>
+            <p>Parents and students can view fee balances and payment history.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="row align-items-center">
+      <div class="row">
         <div class="col-lg-8 text-center text-lg-start mb-4 mb-lg-0">
-          <h3 class="mb-3"><i class="fas fa-school me-2"></i>Lunzu Secondary School</h3>
+          <h3 style="color: #fff;"><i class="fas fa-school me-2" style="color: #fbbf24;"></i>Lunzu Secondary School</h3>
           <p class="mb-0">Committed to providing quality education and fostering academic excellence since 1985.</p>
-          <p class="mb-0 mt-2">
-            <i class="fas fa-certificate me-2"></i>Registered Government Secondary School
-          </p>
         </div>
       </div>
-      <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+      <hr style="border-color: rgba(255,215,0,0.1);">
       <div class="row">
         <div class="col-md-6 text-center text-md-start">
           <p class="mb-0">&copy; <span id="current-year">2026</span> Lunzu Secondary School. All rights reserved.</p>
         </div>
         <div class="col-md-6 text-center text-md-end">
-          <a href="contact.html" target="_blank" class="text-white me-3">Contact</a>
-          <a href="about.html" target="_blank" class="text-white me-3">About</a>
-          <a href="portals.html" class="text-white">Portals</a>
+          <a href="contact.html" class="me-3">Contact</a>
+          <a href="about.html" class="me-3">About</a>
+          <a href="portals.html">Portals</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Bootstrap JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
   <script>
-    // Set current year
+    (function initBackground() {
+      const canvas = document.getElementById('bgCanvas');
+      const container = document.getElementById('bg-canvas-container');
+      const ctx = canvas.getContext('2d');
+      let w, h;
+      let items = [];
+      const ITEM_COUNT = 30;
+      const symbols = ['🎓', '📜', '📘', '📚', '🏆', '⭐', '📖', '✏️', '📝', '🏅', '🔬', '🧪', '📐', '🧮', '🌍', '⚛️'];
+
+      function resizeCanvas() {
+        const rect = container.getBoundingClientRect();
+        canvas.width = rect.width || window.innerWidth;
+        canvas.height = rect.height || window.innerHeight;
+        w = canvas.width;
+        h = canvas.height;
+      }
+
+      function randomItem() {
+        return {
+          x: Math.random() * w,
+          y: Math.random() * h - 20,
+          size: 34 + Math.random() * 42,
+          speedX: (Math.random() - 0.5) * 0.6,
+          speedY: 0.12 + Math.random() * 0.5,
+          rotation: Math.random() * 360,
+          rotSpeed: (Math.random() - 0.5) * 0.02,
+          opacity: 0.18 + Math.random() * 0.30,
+          symbol: symbols[Math.floor(Math.random() * symbols.length)],
+          phase: Math.random() * 100,
+        };
+      }
+
+      function initItems() {
+        items = [];
+        for (let i = 0; i < ITEM_COUNT; i++) {
+          items.push(randomItem());
+        }
+      }
+
+      function drawItems() {
+        ctx.clearRect(0, 0, w, h);
+        const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) * 0.7);
+        grad.addColorStop(0, 'rgba(10, 22, 40, 0.05)');
+        grad.addColorStop(1, 'rgba(10, 22, 40, 0.40)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, w, h);
+
+        items.forEach(item => {
+          ctx.save();
+          ctx.translate(item.x, item.y);
+          ctx.rotate(item.rotation * Math.PI / 180);
+          ctx.globalAlpha = item.opacity;
+          ctx.font = `${item.size}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.shadowColor = 'rgba(0,0,0,0.3)';
+          ctx.shadowBlur = 20;
+          ctx.fillStyle = '#fbbf24';
+          ctx.shadowColor = 'rgba(0,0,0,0.4)';
+          ctx.shadowBlur = 22;
+          ctx.fillText(item.symbol, 0, 0);
+          ctx.shadowBlur = 0;
+          ctx.font = `${item.size * 0.3}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif`;
+          ctx.fillStyle = 'rgba(255,215,0,0.10)';
+          ctx.fillText('✦', item.size * 0.25, -item.size * 0.2);
+          ctx.restore();
+
+          item.x += item.speedX + Math.sin(item.phase + performance.now() * 0.0002) * 0.15;
+          item.y += item.speedY * 0.3 + Math.sin(item.phase + performance.now() * 0.00035) * 0.12;
+          item.rotation += item.rotSpeed;
+
+          if (item.x > w + 60) item.x = -60;
+          if (item.x < -60) item.x = w + 60;
+          if (item.y > h + 60) item.y = -60;
+          if (item.y < -60) item.y = h + 60;
+        });
+
+        requestAnimationFrame(drawItems);
+      }
+
+      function startBackground() {
+        resizeCanvas();
+        initItems();
+        drawItems();
+      }
+
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        items.forEach(item => {
+          item.x = Math.min(Math.max(item.x, 0), w);
+          item.y = Math.min(Math.max(item.y, 0), h);
+        });
+      });
+
+      startBackground();
+    })();
+
     document.getElementById('current-year').textContent = new Date().getFullYear();
   </script>
 </body>
