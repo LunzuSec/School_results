@@ -3,467 +3,398 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lunzu Secondary School - School Results Management System</title>
+  <title>Lunzu Secondary School - Home</title>
   
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   
-  <!-- Font Awesome for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-pj6VsoMV3Pn0aO5/KE1qPBD6gEijSdykOqYlCkgVgJt+5UrHhHgfKgnA9yGo0A37uj5yK69IaMzuq8wRA3+4qA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-  
-  <!-- Custom CSS -->
   <style>
-    :root {
-      --primary-color: #007BFF;
-      --primary-dark: #0056b3;
-      --secondary-color: #6c757d;
-      --accent-color: #17a2b8;
-      --light-bg: #f8f9fa;
-      --dark-bg: #343a40;
-      --success-color: #28a745;
-      --warning-color: #ffc107;
-    }
-    
     * {
-      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    
-    h1, h2, h3, h4, h5, h6, .navbar-brand {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-    }
-    
+
     body {
-      padding-top: 76px;
-    }
-    
-    .navbar-custom {
-      background-color: var(--primary-color);
-      padding: 15px 0;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    .navbar-custom .navbar-brand,
-    .navbar-custom .nav-link {
-      color: white !important;
-    }
-    
-    .navbar-custom .nav-link {
-      margin: 0 8px;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    
-    .navbar-custom .nav-link:hover {
-      color: rgba(255, 255, 255, 0.9) !important;
-    }
-    
-    .hero-section {
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
-      color: white;
-      padding: 100px 0;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      min-height: 100vh;
+      background: #0a1628;
       position: relative;
-      overflow: hidden;
+      overflow-x: hidden;
     }
-    
-    .hero-section::before {
-      content: '';
-      position: absolute;
+
+    #bg-canvas-container {
+      position: fixed;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
     }
-    
-    .hero-content {
+    #bg-canvas-container canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .container {
       position: relative;
       z-index: 1;
-      max-width: 800px;
+      max-width: 1200px;
       margin: 0 auto;
     }
-    
+
+    /* Glass-morphism cards */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border-radius: 28px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 215, 0, 0.4);
+    }
+
+    .navbar-custom {
+      background: rgba(10, 22, 40, 0.85);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+      padding: 15px 0;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .navbar-custom .navbar-brand,
+    .navbar-custom .nav-link {
+      color: #fff !important;
+    }
+
+    .navbar-custom .nav-link {
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .navbar-custom .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: #fbbf24;
+      transition: width 0.3s ease;
+    }
+
+    .navbar-custom .nav-link:hover::after {
+      width: 80%;
+    }
+
+    .navbar-custom .nav-link:hover {
+      color: #fbbf24 !important;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 140px 0 80px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-content {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border-radius: 28px;
+      padding: 60px 40px;
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    }
+
     .hero-title {
       font-size: 3.5rem;
       font-weight: 700;
-      margin-bottom: 1.5rem;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      margin-bottom: 20px;
     }
-    
+
+    .hero-title span {
+      color: #fbbf24;
+    }
+
     .hero-subtitle {
-      font-size: 1.5rem;
-      margin-bottom: 2.5rem;
-      opacity: 0.95;
-    }
-    
-    .footer {
-      background: linear-gradient(135deg, var(--dark-bg) 0%, #212529 100%);
-      color: white;
-      padding: 50px 0 30px;
-      margin-top: 50px;
-    }
-    
-    .footer-links a {
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    
-    .footer-links a:hover {
-      color: white;
-      text-decoration: underline;
-    }
-    
-    .announcement-section {
-      background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
-      padding: 25px;
-      border-radius: 12px;
-      margin: 30px 0;
-      border-left: 5px solid var(--warning-color);
-      animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.4); }
-      70% { box-shadow: 0 0 0 10px rgba(255, 193, 7, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0); }
-    }
-    
-    .card-custom {
-      border: none;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-      transition: all 0.3s ease;
-      overflow: hidden;
+      font-size: 1.3rem;
+      color: #d1e0f0;
       margin-bottom: 30px;
-      height: 100%;
     }
-    
-    .card-custom:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-    }
-    
-    .btn-custom {
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-      color: white;
+
+    .btn-gold {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: #0a1628;
       border: none;
-      border-radius: 8px;
-      padding: 12px 30px;
+      padding: 15px 40px;
+      border-radius: 14px;
       font-weight: 600;
-      transition: all 0.3s;
-      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(251, 191, 36, 0.3);
     }
-    
-    .btn-custom:hover {
+
+    .btn-gold:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
-      color: white;
+      box-shadow: 0 8px 30px rgba(251, 191, 36, 0.5);
+      color: #0a1628;
     }
-    
+
+    .btn-outline-gold {
+      background: transparent;
+      color: #fbbf24;
+      border: 2px solid #fbbf24;
+      padding: 13px 35px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline-gold:hover {
+      background: #fbbf24;
+      color: #0a1628;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(251, 191, 36, 0.3);
+    }
+
+    /* Section Titles */
     .section-title {
-      position: relative;
-      margin-bottom: 50px;
+      color: #fff;
       text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
-    
+
     .section-title::after {
       content: '';
-      position: absolute;
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
+      display: block;
       width: 80px;
       height: 4px;
-      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      background: linear-gradient(90deg, #fbbf24, #f59e0b);
+      margin: 15px auto 0;
       border-radius: 2px;
     }
-    
+
+    /* Feature Cards */
     .feature-icon {
       width: 80px;
       height: 80px;
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.1));
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 20px;
-      color: white;
+      color: #fbbf24;
       font-size: 2rem;
+      border: 2px solid rgba(251, 191, 36, 0.3);
     }
-    
-    /* Portal section styles */
-    .portal-section {
-      background: #ffffff !important;
-      padding: 80px 0;
-      border-radius: 20px;
-      margin: 60px 0;
-      position: relative;
-      overflow: hidden;
-      border: 2px solid #e0e0e0;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+
+    .glass-card .card-body {
+      padding: 30px;
+      text-align: center;
     }
-    
-    .portal-title {
-      color: #0056b3 !important;
-      position: relative;
-      z-index: 2;
-      font-size: 2.8rem;
-      font-weight: 700;
-      margin-bottom: 30px;
+
+    .glass-card h4 {
+      color: #fff;
+      margin-bottom: 15px;
     }
-    
-    .portal-subtitle {
-      color: #333333 !important;
-      position: relative;
-      z-index: 2;
-      font-size: 1.3rem;
-      font-weight: 500;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+
+    .glass-card p {
+      color: #d1e0f0;
       line-height: 1.6;
-      margin-bottom: 40px;
     }
-    
-    .portal-security-note {
-      color: #666666 !important;
-      position: relative;
-      z-index: 2;
-      font-size: 1.1rem;
-      font-weight: 500;
-      background: #f8f9fa;
-      padding: 12px 25px;
-      border-radius: 10px;
-      display: inline-block;
-      margin-top: 30px;
-      border: 1px solid #dee2e6;
+
+    /* Announcement */
+    .announcement-section {
+      background: rgba(251, 191, 36, 0.12);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border-radius: 20px;
+      padding: 25px 30px;
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      margin: 30px 0;
+      border-left: 5px solid #fbbf24;
     }
-    
-    .btn-portal {
-      font-size: 1.2rem;
-      padding: 20px 40px;
-      margin: 15px;
-      border-radius: 12px;
-      transition: all 0.3s;
-      min-width: 250px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: 700;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-      border: 3px solid rgba(255, 255, 255, 0.3);
+
+    .announcement-section h4 {
+      color: #fbbf24;
     }
-    
-    .btn-portal:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-      border-color: rgba(255, 255, 255, 0.5);
+
+    .announcement-section p {
+      color: #d1e0f0;
     }
-    
-    .btn-portal.teacher {
-      background: linear-gradient(135deg, #ff6b6b 0%, #e74c3c 100%);
+
+    /* Footer */
+    .footer {
+      background: rgba(10, 22, 40, 0.85);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      color: #d1e0f0;
+      padding: 50px 0 30px;
+      margin-top: 50px;
+      border-top: 1px solid rgba(255, 215, 0, 0.1);
     }
-    
-    .btn-portal.student {
-      background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+
+    .footer a {
+      color: #fbbf24;
+      text-decoration: none;
+      transition: color 0.3s;
     }
-    
-    /* Responsive Design */
+
+    .footer a:hover {
+      color: #f59e0b;
+      text-decoration: underline;
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
-      body {
-        padding-top: 66px;
-      }
-      
       .hero-title {
-        font-size: 2.5rem;
-      }
-      
-      .hero-subtitle {
-        font-size: 1.2rem;
-      }
-      
-      .hero-section {
-        padding: 60px 0;
-      }
-      
-      .btn-portal {
-        min-width: 200px;
-        padding: 18px 30px;
-        margin: 12px 5px;
-        display: block;
-        width: 100%;
-        max-width: 300px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      
-      .section-title {
-        font-size: 2rem;
-      }
-      
-      .portal-section {
-        padding: 50px 0;
-        margin: 40px 0;
-      }
-      
-      .portal-title {
         font-size: 2.2rem;
       }
-      
-      .portal-subtitle {
-        font-size: 1.1rem;
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+      .hero-content {
+        padding: 30px 20px;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .glass-card {
+        margin-bottom: 20px;
       }
     }
-    
+
     @media (max-width: 576px) {
       .hero-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
       }
-      
-      .btn-portal {
+      .btn-gold, .btn-outline-gold {
         display: block;
         width: 100%;
         margin: 10px 0;
-        padding: 16px 25px;
-        font-size: 1.1rem;
-      }
-      
-      .portal-title {
-        font-size: 1.8rem;
-      }
-      
-      .portal-subtitle {
-        font-size: 1rem;
-        padding: 0 15px;
-      }
-      
-      .portal-security-note {
-        font-size: 0.95rem;
-        padding: 10px 20px;
-        text-align: center;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+  <!-- Background Canvas -->
+  <div id="bg-canvas-container">
+    <canvas id="bgCanvas"></canvas>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <i class="fas fa-school me-2"></i>Lunzu Secondary School
+        <i class="fas fa-school me-2" style="color: #fbbf24;"></i>Lunzu Secondary School
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.html" target="_blank">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="features.html" target="_blank">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="portals.html" target="_blank">Portals</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="testimonials.html" target="_blank">Testimonials</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html" target="_blank">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="important-notice.html" target="_blank">
-              <i class="fas fa-bullhorn me-1"></i>Notice
-            </a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="portals.html">Portals</a></li>
+          <li class="nav-item"><a class="nav-link" href="testimonials.html">Testimonials</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="important-notice.html"><i class="fas fa-bullhorn me-1"></i>Notice</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <div class="hero-section">
+  <section class="hero-section">
     <div class="container">
-      <div class="hero-content text-center">
-        <h1 class="hero-title">Lunzu Secondary School</h1>
+      <div class="hero-content">
+        <h1 class="hero-title">Lunzu <span>Secondary</span> School</h1>
         <p class="hero-subtitle">Excellence in Education Since 1985</p>
-        <p class="lead mb-4">Empowering students through quality education and innovative learning solutions</p>
-        <a href="portals.html" class="btn btn-light btn-lg px-5 py-3 fw-bold" target="_blank">
-          <i class="fas fa-door-open me-2"></i>Access Portals
-        </a>
+        <p style="color: #bcc9db; font-size: 1.1rem; margin-bottom: 30px;">Empowering students through quality education and innovative learning solutions</p>
+        <div>
+          <a href="portals.html" class="btn btn-gold me-3"><i class="fas fa-door-open me-2"></i>Access Portals</a>
+          <a href="about.html" class="btn btn-outline-gold"><i class="fas fa-info-circle me-2"></i>Learn More</a>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Announcements Section -->
-  <div class="container mt-4">
+  <!-- Announcement -->
+  <div class="container">
     <div class="announcement-section">
       <div class="d-flex align-items-center">
         <div class="me-3">
-          <i class="fas fa-bullhorn fa-2x" style="color: #856404;"></i>
+          <i class="fas fa-bullhorn fa-2x" style="color: #fbbf24;"></i>
         </div>
         <div>
-          <h4 class="mb-2" style="color: #856404;">
-            <i class="fas fa-exclamation-circle me-2"></i>Important Announcement
-          </h4>
-          <p class="mb-0" style="color: #856404;">
-            School opens for term 3 on 20th April, 2026. All students are expected to report on 19th April, 2026 with proof of payment of school fees and necessary materials including mosquito nets, pails, and tissues.
-          </p>
-          <a href="important-notice.html" class="btn btn-warning mt-3" target="_blank">
-            <i class="fas fa-external-link-alt me-2"></i>View Full Notice
-          </a>
+          <h4><i class="fas fa-exclamation-circle me-2"></i>Important Announcement</h4>
+          <p class="mb-0">School opens for term 3 on 20th April, 2026. All students are expected to report on 19th April, 2026 with proof of payment of school fees and necessary materials.</p>
+          <a href="important-notice.html" class="btn btn-gold btn-sm mt-2">View Full Notice</a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Quick Links Section -->
+  <!-- Features Section -->
   <div class="container my-5">
     <h2 class="section-title">Quick Links</h2>
     <div class="row">
       <div class="col-md-4 mb-4">
-        <div class="card card-custom text-center h-100">
-          <div class="card-body p-4">
-            <div class="feature-icon">
-              <i class="fas fa-info-circle"></i>
-            </div>
-            <h4 class="mb-3">About School</h4>
-            <p class="card-text">Learn about our school's history, mission, and achievements since 1985.</p>
-            <a href="about.html" class="btn btn-custom" target="_blank">Learn More</a>
+        <div class="glass-card h-100">
+          <div class="card-body">
+            <div class="feature-icon"><i class="fas fa-info-circle"></i></div>
+            <h4>About School</h4>
+            <p>Learn about our school's history, mission, and achievements since 1985.</p>
+            <a href="about.html" class="btn btn-gold btn-sm">Learn More</a>
           </div>
         </div>
       </div>
       <div class="col-md-4 mb-4">
-        <div class="card card-custom text-center h-100">
-          <div class="card-body p-4">
-            <div class="feature-icon">
-              <i class="fas fa-cogs"></i>
-            </div>
-            <h4 class="mb-3">System Features</h4>
-            <p class="card-text">Explore the features of our Results Management System.</p>
-            <a href="features.html" class="btn btn-custom" target="_blank">View Features</a>
+        <div class="glass-card h-100">
+          <div class="card-body">
+            <div class="feature-icon"><i class="fas fa-cogs"></i></div>
+            <h4>System Features</h4>
+            <p>Explore the features of our Results Management System.</p>
+            <a href="features.html" class="btn btn-gold btn-sm">View Features</a>
           </div>
         </div>
       </div>
       <div class="col-md-4 mb-4">
-        <div class="card card-custom text-center h-100">
-          <div class="card-body p-4">
-            <div class="feature-icon">
-              <i class="fas fa-comments"></i>
-            </div>
-            <h4 class="mb-3">Testimonials</h4>
-            <p class="card-text">See what parents, teachers, and students say about our system.</p>
-            <a href="testimonials.html" class="btn btn-custom" target="_blank">Read Reviews</a>
+        <div class="glass-card h-100">
+          <div class="card-body">
+            <div class="feature-icon"><i class="fas fa-comments"></i></div>
+            <h4>Testimonials</h4>
+            <p>See what parents, teachers, and students say about our system.</p>
+            <a href="testimonials.html" class="btn btn-gold btn-sm">Read Reviews</a>
           </div>
         </div>
       </div>
@@ -473,37 +404,132 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="row align-items-center">
+      <div class="row">
         <div class="col-lg-8 text-center text-lg-start mb-4 mb-lg-0">
-          <h3 class="mb-3"><i class="fas fa-school me-2"></i>Lunzu Secondary School</h3>
+          <h3 style="color: #fff;"><i class="fas fa-school me-2" style="color: #fbbf24;"></i>Lunzu Secondary School</h3>
           <p class="mb-0">Committed to providing quality education and fostering academic excellence since 1985.</p>
-          <p class="mb-0 mt-2">
-            <i class="fas fa-certificate me-2"></i>Registered Government Secondary School
-          </p>
-        </div>
-        <div class="col-lg-4 text-center text-lg-end">
-          <!-- Space for future content -->
+          <p class="mb-0 mt-2"><i class="fas fa-certificate me-2" style="color: #fbbf24;"></i>Registered Government Secondary School</p>
         </div>
       </div>
-      <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+      <hr style="border-color: rgba(255,215,0,0.1);">
       <div class="row">
         <div class="col-md-6 text-center text-md-start">
           <p class="mb-0">&copy; <span id="current-year">2026</span> Lunzu Secondary School. All rights reserved.</p>
         </div>
-        <div class="col-md-6 text-center text-md-end footer-links">
-          <a href="contact.html" target="_blank" class="me-3">Contact</a>
-          <a href="about.html" target="_blank" class="me-3">About</a>
-          <a href="portals.html" target="_blank">Portals</a>
+        <div class="col-md-6 text-center text-md-end">
+          <a href="contact.html" class="me-3">Contact</a>
+          <a href="about.html" class="me-3">About</a>
+          <a href="portals.html">Portals</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Bootstrap JS Bundle -->
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
+
+  <!-- Background Animation Script -->
   <script>
-    // Set current year
+    (function initBackground() {
+      const canvas = document.getElementById('bgCanvas');
+      const container = document.getElementById('bg-canvas-container');
+      const ctx = canvas.getContext('2d');
+      let w, h;
+      let items = [];
+      const ITEM_COUNT = 30;
+
+      const symbols = ['🎓', '📜', '📘', '📚', '🏆', '⭐', '📖', '✏️', '📝', '🏅', '🔬', '🧪', '📐', '🧮', '🌍', '⚛️'];
+
+      function resizeCanvas() {
+        const rect = container.getBoundingClientRect();
+        canvas.width = rect.width || window.innerWidth;
+        canvas.height = rect.height || window.innerHeight;
+        w = canvas.width;
+        h = canvas.height;
+      }
+
+      function randomItem() {
+        return {
+          x: Math.random() * w,
+          y: Math.random() * h - 20,
+          size: 34 + Math.random() * 42,
+          speedX: (Math.random() - 0.5) * 0.6,
+          speedY: 0.12 + Math.random() * 0.5,
+          rotation: Math.random() * 360,
+          rotSpeed: (Math.random() - 0.5) * 0.02,
+          opacity: 0.18 + Math.random() * 0.30,
+          symbol: symbols[Math.floor(Math.random() * symbols.length)],
+          phase: Math.random() * 100,
+        };
+      }
+
+      function initItems() {
+        items = [];
+        for (let i = 0; i < ITEM_COUNT; i++) {
+          items.push(randomItem());
+        }
+      }
+
+      function drawItems() {
+        ctx.clearRect(0, 0, w, h);
+
+        const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) * 0.7);
+        grad.addColorStop(0, 'rgba(10, 22, 40, 0.05)');
+        grad.addColorStop(1, 'rgba(10, 22, 40, 0.40)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, w, h);
+
+        items.forEach(item => {
+          ctx.save();
+          ctx.translate(item.x, item.y);
+          ctx.rotate(item.rotation * Math.PI / 180);
+          ctx.globalAlpha = item.opacity;
+          ctx.font = `${item.size}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.shadowColor = 'rgba(0,0,0,0.3)';
+          ctx.shadowBlur = 20;
+          ctx.fillStyle = '#fbbf24';
+          ctx.shadowColor = 'rgba(0,0,0,0.4)';
+          ctx.shadowBlur = 22;
+          ctx.fillText(item.symbol, 0, 0);
+
+          ctx.shadowBlur = 0;
+          ctx.font = `${item.size * 0.3}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif`;
+          ctx.fillStyle = 'rgba(255,215,0,0.10)';
+          ctx.fillText('✦', item.size * 0.25, -item.size * 0.2);
+          ctx.restore();
+
+          item.x += item.speedX + Math.sin(item.phase + performance.now() * 0.0002) * 0.15;
+          item.y += item.speedY * 0.3 + Math.sin(item.phase + performance.now() * 0.00035) * 0.12;
+          item.rotation += item.rotSpeed;
+
+          if (item.x > w + 60) item.x = -60;
+          if (item.x < -60) item.x = w + 60;
+          if (item.y > h + 60) item.y = -60;
+          if (item.y < -60) item.y = h + 60;
+        });
+
+        requestAnimationFrame(drawItems);
+      }
+
+      function startBackground() {
+        resizeCanvas();
+        initItems();
+        drawItems();
+      }
+
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        items.forEach(item => {
+          item.x = Math.min(Math.max(item.x, 0), w);
+          item.y = Math.min(Math.max(item.y, 0), h);
+        });
+      });
+
+      startBackground();
+    })();
+
     document.getElementById('current-year').textContent = new Date().getFullYear();
   </script>
 </body>
