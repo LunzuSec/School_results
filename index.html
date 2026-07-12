@@ -3,20 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lunzu Secondary School - Home</title>
+  <title>Lunzu Secondary School - CMS Powered</title>
   
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Segoe UI', Roboto, Arial, sans-serif;
@@ -49,7 +42,6 @@
       margin: 0 auto;
     }
 
-    /* Glass-morphism cards */
     .glass-card {
       background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(14px) saturate(180%);
@@ -59,12 +51,28 @@
       border: 1px solid rgba(255, 215, 0, 0.2);
       overflow: hidden;
       transition: all 0.3s ease;
+      height: 100%;
     }
 
     .glass-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.2);
       border-color: rgba(255, 215, 0, 0.4);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+    }
+
+    .glass-card .card-body {
+      padding: 30px;
+      text-align: center;
+    }
+
+    .glass-card h4 {
+      color: #fff;
+      margin-bottom: 15px;
+    }
+
+    .glass-card p {
+      color: #d1e0f0;
+      line-height: 1.6;
     }
 
     .navbar-custom {
@@ -109,78 +117,6 @@
       color: #fbbf24 !important;
     }
 
-    /* Hero Section */
-    .hero-section {
-      padding: 140px 0 80px;
-      text-align: center;
-      position: relative;
-    }
-
-    .hero-content {
-      background: rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(14px) saturate(180%);
-      -webkit-backdrop-filter: blur(14px) saturate(180%);
-      border-radius: 28px;
-      padding: 60px 40px;
-      border: 1px solid rgba(255, 215, 0, 0.15);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-    }
-
-    .hero-title {
-      font-size: 3.5rem;
-      font-weight: 700;
-      color: #fff;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-      margin-bottom: 20px;
-    }
-
-    .hero-title span {
-      color: #fbbf24;
-    }
-
-    .hero-subtitle {
-      font-size: 1.3rem;
-      color: #d1e0f0;
-      margin-bottom: 30px;
-    }
-
-    .btn-gold {
-      background: linear-gradient(135deg, #fbbf24, #f59e0b);
-      color: #0a1628;
-      border: none;
-      padding: 15px 40px;
-      border-radius: 14px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 20px rgba(251, 191, 36, 0.3);
-    }
-
-    .btn-gold:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(251, 191, 36, 0.5);
-      color: #0a1628;
-    }
-
-    .btn-outline-gold {
-      background: transparent;
-      color: #fbbf24;
-      border: 2px solid #fbbf24;
-      padding: 13px 35px;
-      border-radius: 14px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-    }
-
-    .btn-outline-gold:hover {
-      background: #fbbf24;
-      color: #0a1628;
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(251, 191, 36, 0.3);
-    }
-
-    /* Section Titles */
     .section-title {
       color: #fff;
       text-align: center;
@@ -201,10 +137,25 @@
       border-radius: 2px;
     }
 
-    /* Feature Cards */
+    .btn-gold {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: #0a1628;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 14px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(251, 191, 36, 0.3);
+      color: #0a1628;
+    }
+
     .feature-icon {
-      width: 80px;
-      height: 80px;
+      width: 70px;
+      height: 70px;
       background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.1));
       border-radius: 50%;
       display: flex;
@@ -212,46 +163,164 @@
       justify-content: center;
       margin: 0 auto 20px;
       color: #fbbf24;
-      font-size: 2rem;
+      font-size: 1.8rem;
       border: 2px solid rgba(251, 191, 36, 0.3);
     }
 
-    .glass-card .card-body {
-      padding: 30px;
-      text-align: center;
+    /* Announcement styles */
+    .announcement-item {
+      background: rgba(251, 191, 36, 0.08);
+      border-left: 4px solid #fbbf24;
+      padding: 20px 25px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      transition: all 0.3s;
     }
 
-    .glass-card h4 {
+    .announcement-item:hover {
+      background: rgba(251, 191, 36, 0.12);
+      transform: translateX(5px);
+    }
+
+    .announcement-item h5 {
+      color: #fbbf24;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .announcement-item p {
+      color: #d1e0f0;
+      margin-bottom: 10px;
+      line-height: 1.8;
+    }
+
+    .announcement-item .meta {
+      color: #8a9bb5;
+      font-size: 0.85rem;
+    }
+
+    .announcement-item .priority-high { border-left-color: #dc3545; }
+    .announcement-item .priority-medium { border-left-color: #f59e0b; }
+    .announcement-item .priority-low { border-left-color: #10b981; }
+
+    /* Contact styles */
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.1));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fbbf24;
+      margin-right: 15px;
+      flex-shrink: 0;
+      border: 1px solid rgba(251, 191, 36, 0.2);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .contact-item h5 {
       color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .contact-item p {
+      color: #d1e0f0;
+      margin: 0;
+    }
+
+    /* Testimonial styles */
+    .testimonial-card {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 25px;
+      border-left: 5px solid #fbbf24;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .testimonial-card .rating {
+      color: #fbbf24;
+      margin-bottom: 10px;
+    }
+
+    .testimonial-card .testimonial-text {
+      color: #d1e0f0;
+      font-style: italic;
+      line-height: 1.8;
       margin-bottom: 15px;
     }
 
-    .glass-card p {
-      color: #d1e0f0;
-      line-height: 1.6;
-    }
-
-    /* Announcement */
-    .announcement-section {
-      background: rgba(251, 191, 36, 0.12);
-      backdrop-filter: blur(14px) saturate(180%);
-      -webkit-backdrop-filter: blur(14px) saturate(180%);
-      border-radius: 20px;
-      padding: 25px 30px;
-      border: 1px solid rgba(251, 191, 36, 0.25);
-      margin: 30px 0;
-      border-left: 5px solid #fbbf24;
-    }
-
-    .announcement-section h4 {
+    .testimonial-card .testimonial-category {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(251, 191, 36, 0.15);
       color: #fbbf24;
+      padding: 4px 15px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 1px solid rgba(251, 191, 36, 0.2);
     }
 
-    .announcement-section p {
+    .testimonial-card .author-avatar {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0a1628;
+      font-weight: 700;
+      margin-right: 15px;
+    }
+
+    .testimonial-card .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+
+    .testimonial-card .testimonial-author h5 {
+      color: #fff;
+      margin-bottom: 0;
+    }
+
+    .testimonial-card .testimonial-author p {
+      color: #bcc9db;
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    /* Loading spinner */
+    .cms-loader {
+      text-align: center;
+      padding: 40px;
       color: #d1e0f0;
     }
 
-    /* Footer */
+    .cms-loader .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(251, 191, 36, 0.1);
+      border-top: 4px solid #fbbf24;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     .footer {
       background: rgba(10, 22, 40, 0.85);
       backdrop-filter: blur(14px) saturate(180%);
@@ -265,7 +334,6 @@
     .footer a {
       color: #fbbf24;
       text-decoration: none;
-      transition: color 0.3s;
     }
 
     .footer a:hover {
@@ -273,33 +341,17 @@
       text-decoration: underline;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
-      .hero-title {
-        font-size: 2.2rem;
-      }
-      .hero-subtitle {
-        font-size: 1rem;
-      }
-      .hero-content {
-        padding: 30px 20px;
-      }
       .section-title {
         font-size: 1.8rem;
       }
       .glass-card {
         margin-bottom: 20px;
       }
-    }
-
-    @media (max-width: 576px) {
-      .hero-title {
-        font-size: 1.8rem;
-      }
-      .btn-gold, .btn-outline-gold {
-        display: block;
-        width: 100%;
-        margin: 10px 0;
+      .testimonial-card .testimonial-category {
+        position: static;
+        display: inline-block;
+        margin-bottom: 10px;
       }
     }
   </style>
@@ -313,14 +365,14 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="index.html" id="schoolName">
         <i class="fas fa-school me-2" style="color: #fbbf24;"></i>Lunzu Secondary School
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto" id="navLinks">
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
@@ -333,69 +385,70 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="container">
-      <div class="hero-content">
-        <h1 class="hero-title">Lunzu <span>Secondary</span> School</h1>
-        <p class="hero-subtitle">Excellence in Education Since 1985</p>
-        <p style="color: #bcc9db; font-size: 1.1rem; margin-bottom: 30px;">Empowering students through quality education and innovative learning solutions</p>
-        <div>
-          <a href="portals.html" class="btn btn-gold me-3"><i class="fas fa-door-open me-2"></i>Access Portals</a>
-          <a href="about.html" class="btn btn-outline-gold"><i class="fas fa-info-circle me-2"></i>Learn More</a>
+  <!-- Main Content -->
+  <div class="container my-5" style="padding-top: 80px;">
+    
+    <!-- Hero Section -->
+    <div class="glass-card text-center mb-5">
+      <div class="card-body py-5">
+        <h1 style="color: #fff; font-size: 3rem; font-weight: 700;" id="heroTitle">
+          Welcome to <span style="color: #fbbf24;">Lunzu Secondary School</span>
+        </h1>
+        <p style="color: #d1e0f0; font-size: 1.2rem; max-width: 700px; margin: 20px auto;" id="heroSubtitle">
+          Excellence in Education Since 1985
+        </p>
+        <a href="portals.html" class="btn btn-gold">
+          <i class="fas fa-door-open me-2"></i>Access Portals
+        </a>
+      </div>
+    </div>
+
+    <!-- Announcements Section -->
+    <div id="announcementsSection">
+      <h2 class="section-title">📢 Announcements</h2>
+      <div id="announcementsContainer">
+        <div class="cms-loader">
+          <div class="spinner"></div>
+          <p>Loading announcements...</p>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- Announcement -->
-  <div class="container">
-    <div class="announcement-section">
-      <div class="d-flex align-items-center">
-        <div class="me-3">
-          <i class="fas fa-bullhorn fa-2x" style="color: #fbbf24;"></i>
-        </div>
-        <div>
-          <h4><i class="fas fa-exclamation-circle me-2"></i>Important Announcement</h4>
-          <p class="mb-0">School opens for term 3 on 20th April, 2026. All students are expected to report on 19th April, 2026 with proof of payment of school fees and necessary materials.</p>
-          <a href="important-notice.html" class="btn btn-gold btn-sm mt-2">View Full Notice</a>
+    <!-- Quick Links Section -->
+    <div id="quickLinksSection" class="mt-5">
+      <h2 class="section-title">Quick Links</h2>
+      <div class="row" id="quickLinksContainer">
+        <div class="cms-loader">
+          <div class="spinner"></div>
+          <p>Loading links...</p>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Features Section -->
-  <div class="container my-5">
-    <h2 class="section-title">Quick Links</h2>
-    <div class="row">
-      <div class="col-md-4 mb-4">
-        <div class="glass-card h-100">
-          <div class="card-body">
-            <div class="feature-icon"><i class="fas fa-info-circle"></i></div>
-            <h4>About School</h4>
-            <p>Learn about our school's history, mission, and achievements since 1985.</p>
-            <a href="about.html" class="btn btn-gold btn-sm">Learn More</a>
+    <!-- Contact Section (for contact.html) -->
+    <div id="contactSection" style="display: none;">
+      <h2 class="section-title">Contact Us</h2>
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="glass-card">
+            <div class="card-body" id="contactsContainer">
+              <div class="cms-loader">
+                <div class="spinner"></div>
+                <p>Loading contact information...</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-md-4 mb-4">
-        <div class="glass-card h-100">
-          <div class="card-body">
-            <div class="feature-icon"><i class="fas fa-cogs"></i></div>
-            <h4>System Features</h4>
-            <p>Explore the features of our Results Management System.</p>
-            <a href="features.html" class="btn btn-gold btn-sm">View Features</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="glass-card h-100">
-          <div class="card-body">
-            <div class="feature-icon"><i class="fas fa-comments"></i></div>
-            <h4>Testimonials</h4>
-            <p>See what parents, teachers, and students say about our system.</p>
-            <a href="testimonials.html" class="btn btn-gold btn-sm">Read Reviews</a>
-          </div>
+    </div>
+
+    <!-- Testimonials Section (for testimonials.html) -->
+    <div id="testimonialsSection" style="display: none;">
+      <h2 class="section-title">What Our Community Says</h2>
+      <div id="testimonialsContainer">
+        <div class="cms-loader">
+          <div class="spinner"></div>
+          <p>Loading testimonials...</p>
         </div>
       </div>
     </div>
@@ -406,131 +459,394 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 text-center text-lg-start mb-4 mb-lg-0">
-          <h3 style="color: #fff;"><i class="fas fa-school me-2" style="color: #fbbf24;"></i>Lunzu Secondary School</h3>
-          <p class="mb-0">Committed to providing quality education and fostering academic excellence since 1985.</p>
-          <p class="mb-0 mt-2"><i class="fas fa-certificate me-2" style="color: #fbbf24;"></i>Registered Government Secondary School</p>
+          <h3 style="color: #fff;" id="footerSchoolName">
+            <i class="fas fa-school me-2" style="color: #fbbf24;"></i>Lunzu Secondary School
+          </h3>
+          <p class="mb-0" id="footerText">Committed to providing quality education and fostering academic excellence since 1985.</p>
+          <p class="mb-0 mt-2">
+            <i class="fas fa-certificate me-2" style="color: #fbbf24;"></i>Registered Government Secondary School
+          </p>
         </div>
       </div>
       <hr style="border-color: rgba(255,215,0,0.1);">
       <div class="row">
         <div class="col-md-6 text-center text-md-start">
-          <p class="mb-0">&copy; <span id="current-year">2026</span> Lunzu Secondary School. All rights reserved.</p>
+          <p class="mb-0">&copy; <span id="current-year">2026</span> <span id="footerSchoolNameSmall">Lunzu Secondary School</span>. All rights reserved.</p>
         </div>
         <div class="col-md-6 text-center text-md-end">
-          <a href="contact.html" class="me-3">Contact</a>
-          <a href="about.html" class="me-3">About</a>
+          <a href="contact.html">Contact</a>
+          <span class="mx-2">|</span>
+          <a href="about.html">About</a>
+          <span class="mx-2">|</span>
           <a href="portals.html">Portals</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Background Animation Script -->
   <script>
-    (function initBackground() {
-      const canvas = document.getElementById('bgCanvas');
-      const container = document.getElementById('bg-canvas-container');
-      const ctx = canvas.getContext('2d');
-      let w, h;
-      let items = [];
-      const ITEM_COUNT = 30;
+  // ============================================================
+  // LUNZU SECONDARY SCHOOL - CMS INTEGRATION
+  // Automatically loads content from Google Sheets
+  // ============================================================
 
-      const symbols = ['🎓', '📜', '📘', '📚', '🏆', '⭐', '📖', '✏️', '📝', '🏅', '🔬', '🧪', '📐', '🧮', '🌍', '⚛️'];
+  const CMS_API = 'https://script.google.com/macros/s/AKfycbz5WygXi8dd4i994XzLoDMGzguyEfjWmQuO3thX64A-x1_9FlF09G3GhsLp6jry6gUI/exec';
 
-      function resizeCanvas() {
-        const rect = container.getBoundingClientRect();
-        canvas.width = rect.width || window.innerWidth;
-        canvas.height = rect.height || window.innerHeight;
-        w = canvas.width;
-        h = canvas.height;
-      }
+  // ---------- UTILITY FUNCTIONS ----------
+  function getPriorityClass(priority) {
+    const map = {
+      'HIGH': 'priority-high',
+      'MEDIUM': 'priority-medium', 
+      'LOW': 'priority-low'
+    };
+    return map[priority?.toUpperCase()] || '';
+  }
 
-      function randomItem() {
-        return {
-          x: Math.random() * w,
-          y: Math.random() * h - 20,
-          size: 34 + Math.random() * 42,
-          speedX: (Math.random() - 0.5) * 0.6,
-          speedY: 0.12 + Math.random() * 0.5,
-          rotation: Math.random() * 360,
-          rotSpeed: (Math.random() - 0.5) * 0.02,
-          opacity: 0.18 + Math.random() * 0.30,
-          symbol: symbols[Math.floor(Math.random() * symbols.length)],
-          phase: Math.random() * 100,
-        };
-      }
+  function formatDate(dateStr) {
+    if (!dateStr) return '';
+    try {
+      return new Date(dateStr).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      });
+    } catch {
+      return dateStr;
+    }
+  }
 
-      function initItems() {
-        items = [];
-        for (let i = 0; i < ITEM_COUNT; i++) {
-          items.push(randomItem());
+  function getStarRating(rating) {
+    const numRating = parseFloat(rating) || 5;
+    const fullStars = Math.floor(numRating);
+    const halfStar = numRating % 1 >= 0.5;
+    let stars = '';
+    for (let i = 0; i < fullStars; i++) stars += '<i class="fas fa-star"></i>';
+    if (halfStar) stars += '<i class="fas fa-star-half-alt"></i>';
+    const emptyStars = 5 - Math.ceil(numRating);
+    for (let i = 0; i < emptyStars; i++) stars += '<i class="far fa-star"></i>';
+    return stars;
+  }
+
+  function getInitials(name) {
+    if (!name) return '?';
+    return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+  }
+
+  // ---------- LOAD ANNOUNCEMENTS ----------
+  function loadAnnouncements() {
+    const container = document.getElementById('announcementsContainer');
+    if (!container) return;
+
+    fetch(`${CMS_API}?action=announcements`)
+      .then(res => res.json())
+      .then(response => {
+        if (!response.success) throw new Error(response.error);
+        
+        const announcements = response.data.filter(a => a.isActive !== false);
+        
+        if (announcements.length === 0) {
+          container.innerHTML = `
+            <div style="text-align:center; color: #8a9bb5; padding: 30px;">
+              <i class="fas fa-info-circle" style="font-size: 2rem; color: #fbbf24;"></i>
+              <p style="margin-top: 10px;">No active announcements at this time.</p>
+            </div>
+          `;
+          return;
         }
+
+        container.innerHTML = announcements.map(a => `
+          <div class="announcement-item ${getPriorityClass(a.priority)}">
+            <h5>${a.title || 'Announcement'}</h5>
+            <p>${a.content || ''}</p>
+            ${a.details ? `<div style="color: #bcc9db; font-size: 0.9rem; margin-bottom: 10px;">${a.details}</div>` : ''}
+            <div class="meta">
+              <span><i class="far fa-calendar-alt me-1"></i>${formatDate(a.published_date)}</span>
+              ${a.category ? `<span class="ms-3"><i class="far fa-tag me-1"></i>${a.category}</span>` : ''}
+              ${a.action_text ? `<span class="ms-3"><a href="${a.action_url || '#'}" style="color: #fbbf24;">${a.action_text}</a></span>` : ''}
+            </div>
+          </div>
+        `).join('');
+      })
+      .catch(error => {
+        console.error('Error loading announcements:', error);
+        container.innerHTML = `
+          <div style="text-align:center; color: #f87171; padding: 30px;">
+            <i class="fas fa-exclamation-triangle" style="font-size: 2rem;"></i>
+            <p style="margin-top: 10px;">Failed to load announcements. Please try again later.</p>
+          </div>
+        `;
+      });
+  }
+
+  // ---------- LOAD QUICK LINKS ----------
+  function loadQuickLinks() {
+    const container = document.getElementById('quickLinksContainer');
+    if (!container) return;
+
+    fetch(`${CMS_API}?action=quicklinks`)
+      .then(res => res.json())
+      .then(response => {
+        if (!response.success) throw new Error(response.error);
+        
+        const links = response.data;
+        if (links.length === 0) {
+          container.innerHTML = `<p style="color: #8a9bb5; text-align:center; width:100%;">No quick links available.</p>`;
+          return;
+        }
+
+        container.innerHTML = links.map(link => `
+          <div class="col-md-4 mb-4">
+            <div class="glass-card h-100">
+              <div class="card-body">
+                <div class="feature-icon"><i class="fas ${link.icon || 'fa-link'}"></i></div>
+                <h4>${link.title || 'Link'}</h4>
+                <p>${link.description || ''}</p>
+                <a href="${link.url || '#'}" class="btn-gold" style="display:inline-block; padding:10px 30px; font-size:0.9rem; text-decoration:none;">
+                  Learn More
+                </a>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      })
+      .catch(error => {
+        console.error('Error loading quick links:', error);
+        container.innerHTML = `<p style="color: #f87171; text-align:center; width:100%;">Failed to load links.</p>`;
+      });
+  }
+
+  // ---------- LOAD CONTACTS ----------
+  function loadContacts() {
+    const container = document.getElementById('contactsContainer');
+    if (!container) return;
+
+    fetch(`${CMS_API}?action=contacts`)
+      .then(res => res.json())
+      .then(response => {
+        if (!response.success) throw new Error(response.error);
+        
+        const contacts = response.data;
+        if (contacts.length === 0) {
+          container.innerHTML = `<p style="color: #8a9bb5;">No contact information available.</p>`;
+          return;
+        }
+
+        container.innerHTML = contacts.map(c => `
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas ${c.icon || 'fa-circle'}"></i></div>
+            <div>
+              <h5>${c.name || 'Contact'}</h5>
+              <p>${c.value || ''}</p>
+              <p style="color: #bcc9db; font-size: 0.9rem;">${c.description || ''}</p>
+            </div>
+          </div>
+        `).join('');
+      })
+      .catch(error => {
+        console.error('Error loading contacts:', error);
+        container.innerHTML = `<p style="color: #f87171;">Failed to load contact information.</p>`;
+      });
+  }
+
+  // ---------- LOAD TESTIMONIALS ----------
+  function loadTestimonials() {
+    const container = document.getElementById('testimonialsContainer');
+    if (!container) return;
+
+    fetch(`${CMS_API}?action=testimonials`)
+      .then(res => res.json())
+      .then(response => {
+        if (!response.success) throw new Error(response.error);
+        
+        const testimonials = response.data;
+        if (testimonials.length === 0) {
+          container.innerHTML = `<p style="color: #8a9bb5; text-align:center;">No testimonials available.</p>`;
+          return;
+        }
+
+        container.innerHTML = testimonials.map(t => `
+          <div class="testimonial-card">
+            <span class="testimonial-category">${t.category || ''}</span>
+            <div class="rating">${getStarRating(t.rating || 5)}</div>
+            <div class="testimonial-text">"${t.content || ''}"</div>
+            <div class="testimonial-author">
+              <div class="author-avatar">${getInitials(t.name)}</div>
+              <div>
+                <h5>${t.name || 'Anonymous'}</h5>
+                <p>${t.role || ''}</p>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      })
+      .catch(error => {
+        console.error('Error loading testimonials:', error);
+        container.innerHTML = `<p style="color: #f87171; text-align:center;">Failed to load testimonials.</p>`;
+      });
+  }
+
+  // ---------- LOAD SITE SETTINGS ----------
+  function loadSettings() {
+    fetch(`${CMS_API}?action=settings`)
+      .then(res => res.json())
+      .then(response => {
+        if (!response.success) throw new Error(response.error);
+        
+        const settings = response.data;
+        
+        // Update school name
+        if (settings.school_name) {
+          document.querySelectorAll('#schoolName, #footerSchoolName, #footerSchoolNameSmall')
+            .forEach(el => el.textContent = settings.school_name);
+          
+          // Update hero title
+          const heroTitle = document.getElementById('heroTitle');
+          if (heroTitle) {
+            heroTitle.innerHTML = `Welcome to <span style="color: #fbbf24;">${settings.school_name}</span>`;
+          }
+        }
+        
+        // Update footer text
+        if (settings.footer_text) {
+          document.getElementById('footerText').textContent = settings.footer_text;
+        }
+        
+        // Update year
+        if (settings.current_year) {
+          document.getElementById('current-year').textContent = settings.current_year;
+        }
+        
+        // Update motto/subtitle
+        if (settings.motto) {
+          const subtitle = document.getElementById('heroSubtitle');
+          if (subtitle) subtitle.textContent = settings.motto;
+        }
+      })
+      .catch(error => {
+        console.error('Error loading settings:', error);
+      });
+  }
+
+  // ---------- DETERMINE PAGE AND LOAD ----------
+  document.addEventListener('DOMContentLoaded', function() {
+    const path = window.location.pathname.split('/').pop() || 'index.html';
+    
+    // Always load these
+    loadAnnouncements();
+    loadQuickLinks();
+    loadSettings();
+    
+    // Page-specific content
+    if (path.includes('contact') || path === 'contact.html') {
+      document.getElementById('contactSection').style.display = 'block';
+      loadContacts();
+    }
+    
+    if (path.includes('testimonials') || path === 'testimonials.html') {
+      document.getElementById('testimonialsSection').style.display = 'block';
+      loadTestimonials();
+    }
+  });
+
+  // ---------- BACKGROUND ANIMATION ----------
+  (function initBackground() {
+    const canvas = document.getElementById('bgCanvas');
+    const container = document.getElementById('bg-canvas-container');
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    let items = [];
+    const ITEM_COUNT = 30;
+    const symbols = ['🎓', '📜', '📘', '📚', '🏆', '⭐', '📖', '✏️', '📝', '🏅', '🔬', '🧪', '📐', '🧮', '🌍', '⚛️'];
+
+    function resizeCanvas() {
+      const rect = container.getBoundingClientRect();
+      canvas.width = rect.width || window.innerWidth;
+      canvas.height = rect.height || window.innerHeight;
+      w = canvas.width;
+      h = canvas.height;
+    }
+
+    function randomItem() {
+      return {
+        x: Math.random() * w,
+        y: Math.random() * h - 20,
+        size: 34 + Math.random() * 42,
+        speedX: (Math.random() - 0.5) * 0.6,
+        speedY: 0.12 + Math.random() * 0.5,
+        rotation: Math.random() * 360,
+        rotSpeed: (Math.random() - 0.5) * 0.02,
+        opacity: 0.18 + Math.random() * 0.30,
+        symbol: symbols[Math.floor(Math.random() * symbols.length)],
+        phase: Math.random() * 100,
+      };
+    }
+
+    function initItems() {
+      items = [];
+      for (let i = 0; i < ITEM_COUNT; i++) {
+        items.push(randomItem());
       }
+    }
 
-      function drawItems() {
-        ctx.clearRect(0, 0, w, h);
+    function drawItems() {
+      ctx.clearRect(0, 0, w, h);
+      const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) * 0.7);
+      grad.addColorStop(0, 'rgba(10, 22, 40, 0.05)');
+      grad.addColorStop(1, 'rgba(10, 22, 40, 0.40)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
 
-        const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) * 0.7);
-        grad.addColorStop(0, 'rgba(10, 22, 40, 0.05)');
-        grad.addColorStop(1, 'rgba(10, 22, 40, 0.40)');
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, w, h);
+      items.forEach(item => {
+        ctx.save();
+        ctx.translate(item.x, item.y);
+        ctx.rotate(item.rotation * Math.PI / 180);
+        ctx.globalAlpha = item.opacity;
+        ctx.font = `${item.size}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.shadowColor = 'rgba(0,0,0,0.3)';
+        ctx.shadowBlur = 20;
+        ctx.fillStyle = '#fbbf24';
+        ctx.shadowColor = 'rgba(0,0,0,0.4)';
+        ctx.shadowBlur = 22;
+        ctx.fillText(item.symbol, 0, 0);
+        ctx.shadowBlur = 0;
+        ctx.font = `${item.size * 0.3}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif`;
+        ctx.fillStyle = 'rgba(255,215,0,0.10)';
+        ctx.fillText('✦', item.size * 0.25, -item.size * 0.2);
+        ctx.restore();
 
-        items.forEach(item => {
-          ctx.save();
-          ctx.translate(item.x, item.y);
-          ctx.rotate(item.rotation * Math.PI / 180);
-          ctx.globalAlpha = item.opacity;
-          ctx.font = `${item.size}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif`;
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.shadowColor = 'rgba(0,0,0,0.3)';
-          ctx.shadowBlur = 20;
-          ctx.fillStyle = '#fbbf24';
-          ctx.shadowColor = 'rgba(0,0,0,0.4)';
-          ctx.shadowBlur = 22;
-          ctx.fillText(item.symbol, 0, 0);
+        item.x += item.speedX + Math.sin(item.phase + performance.now() * 0.0002) * 0.15;
+        item.y += item.speedY * 0.3 + Math.sin(item.phase + performance.now() * 0.00035) * 0.12;
+        item.rotation += item.rotSpeed;
 
-          ctx.shadowBlur = 0;
-          ctx.font = `${item.size * 0.3}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif`;
-          ctx.fillStyle = 'rgba(255,215,0,0.10)';
-          ctx.fillText('✦', item.size * 0.25, -item.size * 0.2);
-          ctx.restore();
-
-          item.x += item.speedX + Math.sin(item.phase + performance.now() * 0.0002) * 0.15;
-          item.y += item.speedY * 0.3 + Math.sin(item.phase + performance.now() * 0.00035) * 0.12;
-          item.rotation += item.rotSpeed;
-
-          if (item.x > w + 60) item.x = -60;
-          if (item.x < -60) item.x = w + 60;
-          if (item.y > h + 60) item.y = -60;
-          if (item.y < -60) item.y = h + 60;
-        });
-
-        requestAnimationFrame(drawItems);
-      }
-
-      function startBackground() {
-        resizeCanvas();
-        initItems();
-        drawItems();
-      }
-
-      window.addEventListener('resize', () => {
-        resizeCanvas();
-        items.forEach(item => {
-          item.x = Math.min(Math.max(item.x, 0), w);
-          item.y = Math.min(Math.max(item.y, 0), h);
-        });
+        if (item.x > w + 60) item.x = -60;
+        if (item.x < -60) item.x = w + 60;
+        if (item.y > h + 60) item.y = -60;
+        if (item.y < -60) item.y = h + 60;
       });
 
-      startBackground();
-    })();
+      requestAnimationFrame(drawItems);
+    }
 
-    document.getElementById('current-year').textContent = new Date().getFullYear();
+    function startBackground() {
+      resizeCanvas();
+      initItems();
+      drawItems();
+    }
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      items.forEach(item => {
+        item.x = Math.min(Math.max(item.x, 0), w);
+        item.y = Math.min(Math.max(item.y, 0), h);
+      });
+    });
+
+    startBackground();
+  })();
   </script>
 </body>
 </html>
