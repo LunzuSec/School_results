@@ -5,283 +5,293 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About - Lunzu Secondary School</title>
   
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-  <!-- Font Awesome for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-pj6VsoMV3Pn0aO5/KE1qPBD6gEijSdykOqYlCkgVgJt+5UrHhHgfKgnA9yGo0A37uj5yK69IaMzuq8wRA3+4qA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
-    :root {
-      --primary-color: #007BFF;
-      --primary-dark: #0056b3;
-      --secondary-color: #6c757d;
-      --accent-color: #17a2b8;
-      --light-bg: #f8f9fa;
-      --dark-bg: #343a40;
-      --success-color: #28a745;
-      --warning-color: #ffc107;
-    }
-    
-    * {
-      font-family: 'Open Sans', sans-serif;
-    }
-    
-    h1, h2, h3, h4, h5, h6, .navbar-brand {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-    }
-    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      padding-top: 76px;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      min-height: 100vh;
+      background: #0a1628;
+      position: relative;
+      overflow-x: hidden;
     }
-    
-    .navbar-custom {
-      background-color: var(--primary-color);
-      padding: 15px 0;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    #bg-canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
     }
-    
-    .navbar-custom .navbar-brand,
-    .navbar-custom .nav-link {
-      color: white !important;
+    #bg-canvas-container canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-    
-    .navbar-custom .nav-link {
-      margin: 0 8px;
-      font-weight: 500;
-      transition: color 0.3s;
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    
-    .navbar-custom .nav-link:hover {
-      color: rgba(255, 255, 255, 0.9) !important;
-    }
-    
-    .footer {
-      background: linear-gradient(135deg, var(--dark-bg) 0%, #212529 100%);
-      color: white;
-      padding: 50px 0 30px;
-      margin-top: 50px;
-    }
-    
-    .card-custom {
-      border: none;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-      transition: all 0.3s ease;
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border-radius: 28px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 215, 0, 0.2);
       overflow: hidden;
-      margin-bottom: 30px;
+      transition: all 0.3s ease;
       height: 100%;
     }
-    
-    .card-custom:hover {
+
+    .glass-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      border-color: rgba(255, 215, 0, 0.4);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
     }
-    
-    .section-title {
+
+    .glass-card .card-body {
+      padding: 30px;
+    }
+
+    .glass-card h3, .glass-card h4 {
+      color: #fff;
+    }
+
+    .glass-card p {
+      color: #d1e0f0;
+      line-height: 1.8;
+    }
+
+    .navbar-custom {
+      background: rgba(10, 22, 40, 0.85);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+      padding: 15px 0;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .navbar-custom .navbar-brand,
+    .navbar-custom .nav-link {
+      color: #fff !important;
+    }
+
+    .navbar-custom .nav-link {
+      font-weight: 500;
+      transition: color 0.3s;
       position: relative;
-      margin-bottom: 50px;
-      text-align: center;
     }
-    
-    .section-title::after {
+
+    .navbar-custom .nav-link::after {
       content: '';
       position: absolute;
-      bottom: -15px;
+      bottom: 0;
       left: 50%;
       transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: #fbbf24;
+      transition: width 0.3s ease;
+    }
+
+    .navbar-custom .nav-link:hover::after {
+      width: 80%;
+    }
+
+    .navbar-custom .nav-link:hover {
+      color: #fbbf24 !important;
+    }
+
+    .section-title {
+      color: #fff;
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
       width: 80px;
       height: 4px;
-      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      background: linear-gradient(90deg, #fbbf24, #f59e0b);
+      margin: 15px auto 0;
       border-radius: 2px;
     }
-    
+
     .feature-icon {
       width: 80px;
       height: 80px;
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.1));
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 20px;
-      color: white;
+      color: #fbbf24;
       font-size: 2rem;
+      border: 2px solid rgba(251, 191, 36, 0.3);
     }
-    
+
     .timeline {
       position: relative;
       max-width: 1200px;
       margin: 0 auto;
     }
-    
+
     .timeline::after {
       content: '';
       position: absolute;
-      width: 6px;
-      background-color: var(--primary-color);
+      width: 4px;
+      background: linear-gradient(180deg, #fbbf24, #f59e0b);
       top: 0;
       bottom: 0;
       left: 50%;
-      margin-left: -3px;
+      margin-left: -2px;
     }
-    
+
     .timeline-item {
       padding: 10px 40px;
       position: relative;
       width: 50%;
     }
-    
+
     .timeline-item::after {
       content: '';
       position: absolute;
-      width: 25px;
-      height: 25px;
-      background-color: white;
-      border: 4px solid var(--primary-color);
+      width: 20px;
+      height: 20px;
+      background: #fbbf24;
       border-radius: 50%;
       top: 15px;
       z-index: 1;
+      border: 3px solid #0a1628;
     }
-    
-    .left {
-      left: 0;
-    }
-    
-    .right {
-      left: 50%;
-    }
-    
-    .left::after {
-      right: -17px;
-    }
-    
-    .right::after {
-      left: -17px;
-    }
-    
+
+    .left { left: 0; }
+    .right { left: 50%; }
+    .left::after { right: -12px; }
+    .right::after { left: -12px; }
+
     .timeline-content {
-      padding: 20px 30px;
-      background-color: white;
-      border-radius: 6px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      padding: 20px 25px;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 215, 0, 0.15);
     }
-    
-    @media screen and (max-width: 768px) {
-      .timeline::after {
-        left: 31px;
+
+    .timeline-content h4 {
+      color: #fbbf24;
+    }
+
+    .timeline-content p {
+      color: #d1e0f0;
+      margin: 0;
+    }
+
+    .footer {
+      background: rgba(10, 22, 40, 0.85);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      color: #d1e0f0;
+      padding: 50px 0 30px;
+      margin-top: 50px;
+      border-top: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .footer a {
+      color: #fbbf24;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: #f59e0b;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.8rem;
       }
-      
+      .glass-card {
+        margin-bottom: 20px;
+      }
+      .timeline::after { left: 31px; }
       .timeline-item {
         width: 100%;
         padding-left: 70px;
         padding-right: 25px;
       }
-      
-      .timeline-item::after {
-        left: 18px;
-      }
-      
-      .right {
-        left: 0%;
-      }
+      .timeline-item::after { left: 18px; }
+      .right { left: 0%; }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+  <div id="bg-canvas-container">
+    <canvas id="bgCanvas"></canvas>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <i class="fas fa-school me-2"></i>Lunzu Secondary School
+        <i class="fas fa-school me-2" style="color: #fbbf24;"></i>Lunzu Secondary School
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="features.html" target="_blank">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="portals.html" target="_blank">Portals</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="testimonials.html" target="_blank">Testimonials</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html" target="_blank">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="important-notice.html" target="_blank">
-              <i class="fas fa-bullhorn me-1"></i>Notice
-            </a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="portals.html">Portals</a></li>
+          <li class="nav-item"><a class="nav-link" href="testimonials.html">Testimonials</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="important-notice.html"><i class="fas fa-bullhorn me-1"></i>Notice</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Main Content -->
-  <div class="container my-5">
+  <div class="container my-5" style="padding-top: 80px;">
     <h1 class="section-title">About Our School</h1>
     
     <div class="row justify-content-center mb-5">
       <div class="col-lg-10">
-        <div class="card card-custom">
-          <div class="card-body p-5">
+        <div class="glass-card">
+          <div class="card-body">
             <div class="row align-items-center">
               <div class="col-md-8">
-                <h3 class="mb-4">A Legacy of Excellence Since 1985</h3>
-                <p class="lead mb-4">
+                <h3 style="color: #fbbf24; margin-bottom: 20px;">A Legacy of Excellence Since 1985</h3>
+                <p style="color: #d1e0f0; font-size: 1.1rem; line-height: 1.8;">
                   Lunzu Secondary School is a distinguished government-run institution serving both boys and girls in Blantyre Rural. Established in 1985, our school has built a strong reputation for academic excellence and holistic development.
                 </p>
-                <div class="row mb-4">
-                  <div class="col-6">
-                    <div class="d-flex align-items-center mb-3">
-                      <i class="fas fa-graduation-cap text-primary me-3 fa-lg"></i>
-                      <div>
-                        <h5 class="mb-0">Academic Excellence</h5>
-                        <small>Consistent top performance</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="d-flex align-items-center mb-3">
-                      <i class="fas fa-users text-primary me-3 fa-lg"></i>
-                      <div>
-                        <h5 class="mb-0">Inclusive Education</h5>
-                        <small>Co-educational environment</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <p>
+                <p style="color: #d1e0f0; line-height: 1.8;">
                   We take pride in preparing students for higher education and professional careers, with numerous alumni successfully transitioning to colleges and universities nationwide.
-                </p>
-                <p>
-                  The school maintains high educational standards while fostering a supportive learning environment for all students, helping them achieve their full potential both academically and personally.
                 </p>
               </div>
               <div class="col-md-4 text-center">
-                <div class="feature-icon mb-4">
-                  <i class="fas fa-university"></i>
-                </div>
-                <h4>Established 1985</h4>
-                <p class="text-muted">Over 35 years of educational excellence</p>
+                <div class="feature-icon"><i class="fas fa-university"></i></div>
+                <h4 style="color: #fbbf24;">Established 1985</h4>
+                <p style="color: #bcc9db;">Over 35 years of educational excellence</p>
               </div>
             </div>
           </div>
@@ -289,33 +299,27 @@
       </div>
     </div>
 
-    <!-- Mission & Vision -->
     <div class="row mb-5">
-      <div class="col-md-6">
-        <div class="card card-custom h-100">
-          <div class="card-body p-4">
-            <div class="feature-icon">
-              <i class="fas fa-bullseye"></i>
-            </div>
-            <h3 class="text-center mb-4">Our Mission</h3>
-            <p class="text-center">To provide quality education that empowers students with knowledge, skills, and values to become responsible citizens and leaders in society.</p>
+      <div class="col-md-6 mb-4">
+        <div class="glass-card">
+          <div class="card-body text-center">
+            <div class="feature-icon"><i class="fas fa-bullseye"></i></div>
+            <h3 style="color: #fbbf24;">Our Mission</h3>
+            <p>To provide quality education that empowers students with knowledge, skills, and values to become responsible citizens and leaders in society.</p>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="card card-custom h-100">
-          <div class="card-body p-4">
-            <div class="feature-icon">
-              <i class="fas fa-eye"></i>
-            </div>
-            <h3 class="text-center mb-4">Our Vision</h3>
-            <p class="text-center">To be a center of excellence in secondary education, producing well-rounded individuals who contribute positively to national development.</p>
+      <div class="col-md-6 mb-4">
+        <div class="glass-card">
+          <div class="card-body text-center">
+            <div class="feature-icon"><i class="fas fa-eye"></i></div>
+            <h3 style="color: #fbbf24;">Our Vision</h3>
+            <p>To be a center of excellence in secondary education, producing well-rounded individuals who contribute positively to national development.</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- School History Timeline -->
     <h2 class="section-title">School History</h2>
     <div class="timeline mb-5">
       <div class="timeline-item left">
@@ -339,7 +343,7 @@
       <div class="timeline-item right">
         <div class="timeline-content">
           <h4>2024</h4>
-          <p>A student from Lunzu Secondary, Martin Master, achieved position 1 in the National Mathematics Olympiad organized by Old Mutual, and the school celebrated this success.</p>
+          <p>A student from Lunzu Secondary, Martin Master, achieved position 1 in the National Mathematics Olympiad.</p>
         </div>
       </div>
       <div class="timeline-item left">
@@ -350,40 +354,31 @@
       </div>
     </div>
 
-    <!-- Achievements -->
-    <div class="row mb-5">
-      <div class="col-12">
-        <h2 class="section-title">Our Achievements</h2>
-      </div>
+    <h2 class="section-title">Our Achievements</h2>
+    <div class="row">
       <div class="col-md-4 mb-4">
-        <div class="card card-custom text-center h-100">
+        <div class="glass-card text-center">
           <div class="card-body">
-            <div class="feature-icon">
-              <i class="fas fa-trophy"></i>
-            </div>
-            <h4>Academic Excellence</h4>
+            <div class="feature-icon"><i class="fas fa-trophy"></i></div>
+            <h4 style="color: #fbbf24;">Academic Excellence</h4>
             <p>Consistent above-average performance in national examinations for over 20 years.</p>
           </div>
         </div>
       </div>
       <div class="col-md-4 mb-4">
-        <div class="card card-custom text-center h-100">
+        <div class="glass-card text-center">
           <div class="card-body">
-            <div class="feature-icon">
-              <i class="fas fa-user-graduate"></i>
-            </div>
-            <h4>University Admissions</h4>
+            <div class="feature-icon"><i class="fas fa-user-graduate"></i></div>
+            <h4 style="color: #fbbf24;">University Admissions</h4>
             <p>Over 1000 alumni admitted to various universities and colleges nationwide.</p>
           </div>
         </div>
       </div>
       <div class="col-md-4 mb-4">
-        <div class="card card-custom text-center h-100">
+        <div class="glass-card text-center">
           <div class="card-body">
-            <div class="feature-icon">
-              <i class="fas fa-award"></i>
-            </div>
-            <h4>National Recognition</h4>
+            <div class="feature-icon"><i class="fas fa-award"></i></div>
+            <h4 style="color: #fbbf24;">National Recognition</h4>
             <p>Recipient of Educational Division awards for academic performance improvement.</p>
           </div>
         </div>
@@ -391,37 +386,127 @@
     </div>
   </div>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="row align-items-center">
+      <div class="row">
         <div class="col-lg-8 text-center text-lg-start mb-4 mb-lg-0">
-          <h3 class="mb-3"><i class="fas fa-school me-2"></i>Lunzu Secondary School</h3>
+          <h3 style="color: #fff;"><i class="fas fa-school me-2" style="color: #fbbf24;"></i>Lunzu Secondary School</h3>
           <p class="mb-0">Committed to providing quality education and fostering academic excellence since 1985.</p>
-          <p class="mb-0 mt-2">
-            <i class="fas fa-certificate me-2"></i>Registered Government Secondary School
-          </p>
         </div>
       </div>
-      <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+      <hr style="border-color: rgba(255,215,0,0.1);">
       <div class="row">
         <div class="col-md-6 text-center text-md-start">
           <p class="mb-0">&copy; <span id="current-year">2026</span> Lunzu Secondary School. All rights reserved.</p>
         </div>
         <div class="col-md-6 text-center text-md-end">
-          <a href="contact.html" target="_blank" class="text-white me-3">Contact</a>
-          <a href="about.html" class="text-white me-3">About</a>
-          <a href="portals.html" target="_blank" class="text-white">Portals</a>
+          <a href="contact.html" class="me-3">Contact</a>
+          <a href="about.html" class="me-3">About</a>
+          <a href="portals.html">Portals</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Bootstrap JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
   <script>
-    // Set current year
+    (function initBackground() {
+      const canvas = document.getElementById('bgCanvas');
+      const container = document.getElementById('bg-canvas-container');
+      const ctx = canvas.getContext('2d');
+      let w, h;
+      let items = [];
+      const ITEM_COUNT = 30;
+      const symbols = ['🎓', '📜', '📘', '📚', '🏆', '⭐', '📖', '✏️', '📝', '🏅', '🔬', '🧪', '📐', '🧮', '🌍', '⚛️'];
+
+      function resizeCanvas() {
+        const rect = container.getBoundingClientRect();
+        canvas.width = rect.width || window.innerWidth;
+        canvas.height = rect.height || window.innerHeight;
+        w = canvas.width;
+        h = canvas.height;
+      }
+
+      function randomItem() {
+        return {
+          x: Math.random() * w,
+          y: Math.random() * h - 20,
+          size: 34 + Math.random() * 42,
+          speedX: (Math.random() - 0.5) * 0.6,
+          speedY: 0.12 + Math.random() * 0.5,
+          rotation: Math.random() * 360,
+          rotSpeed: (Math.random() - 0.5) * 0.02,
+          opacity: 0.18 + Math.random() * 0.30,
+          symbol: symbols[Math.floor(Math.random() * symbols.length)],
+          phase: Math.random() * 100,
+        };
+      }
+
+      function initItems() {
+        items = [];
+        for (let i = 0; i < ITEM_COUNT; i++) {
+          items.push(randomItem());
+        }
+      }
+
+      function drawItems() {
+        ctx.clearRect(0, 0, w, h);
+        const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) * 0.7);
+        grad.addColorStop(0, 'rgba(10, 22, 40, 0.05)');
+        grad.addColorStop(1, 'rgba(10, 22, 40, 0.40)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, w, h);
+
+        items.forEach(item => {
+          ctx.save();
+          ctx.translate(item.x, item.y);
+          ctx.rotate(item.rotation * Math.PI / 180);
+          ctx.globalAlpha = item.opacity;
+          ctx.font = `${item.size}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.shadowColor = 'rgba(0,0,0,0.3)';
+          ctx.shadowBlur = 20;
+          ctx.fillStyle = '#fbbf24';
+          ctx.shadowColor = 'rgba(0,0,0,0.4)';
+          ctx.shadowBlur = 22;
+          ctx.fillText(item.symbol, 0, 0);
+          ctx.shadowBlur = 0;
+          ctx.font = `${item.size * 0.3}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif`;
+          ctx.fillStyle = 'rgba(255,215,0,0.10)';
+          ctx.fillText('✦', item.size * 0.25, -item.size * 0.2);
+          ctx.restore();
+
+          item.x += item.speedX + Math.sin(item.phase + performance.now() * 0.0002) * 0.15;
+          item.y += item.speedY * 0.3 + Math.sin(item.phase + performance.now() * 0.00035) * 0.12;
+          item.rotation += item.rotSpeed;
+
+          if (item.x > w + 60) item.x = -60;
+          if (item.x < -60) item.x = w + 60;
+          if (item.y > h + 60) item.y = -60;
+          if (item.y < -60) item.y = h + 60;
+        });
+
+        requestAnimationFrame(drawItems);
+      }
+
+      function startBackground() {
+        resizeCanvas();
+        initItems();
+        drawItems();
+      }
+
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        items.forEach(item => {
+          item.x = Math.min(Math.max(item.x, 0), w);
+          item.y = Math.min(Math.max(item.y, 0), h);
+        });
+      });
+
+      startBackground();
+    })();
+
     document.getElementById('current-year').textContent = new Date().getFullYear();
   </script>
 </body>
