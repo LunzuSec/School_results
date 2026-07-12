@@ -216,6 +216,12 @@
       color: #0a1628;
     }
 
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     .office-hours {
       background: rgba(255, 255, 255, 0.04);
       padding: 20px;
@@ -230,6 +236,66 @@
 
     .office-hours p {
       color: #d1e0f0;
+    }
+
+    /* Toast notification */
+    .toast-container {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      z-index: 9999;
+    }
+
+    .toast-custom {
+      background: rgba(20, 35, 55, 0.95);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      border-radius: 16px;
+      color: #fff;
+      padding: 20px 25px;
+      min-width: 300px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      display: none;
+      animation: slideIn 0.4s ease;
+    }
+
+    .toast-custom.show {
+      display: block;
+    }
+
+    .toast-custom.success {
+      border-left: 5px solid #34d399;
+    }
+
+    .toast-custom.error {
+      border-left: 5px solid #f87171;
+    }
+
+    .toast-custom.loading {
+      border-left: 5px solid #fbbf24;
+    }
+
+    .toast-custom .toast-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+    }
+
+    .toast-custom .toast-message {
+      color: #d1e0f0;
+      font-size: 0.95rem;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
     }
 
     .footer {
@@ -259,12 +325,29 @@
       .glass-card {
         margin-bottom: 20px;
       }
+      .toast-container {
+        left: 20px;
+        right: 20px;
+        top: 80px;
+      }
+      .toast-custom {
+        min-width: auto;
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
   <div id="bg-canvas-container">
     <canvas id="bgCanvas"></canvas>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer">
+    <div class="toast-custom" id="toast">
+      <div class="toast-title" id="toastTitle">Success</div>
+      <div class="toast-message" id="toastMessage">Your message has been sent!</div>
+    </div>
   </div>
 
   <nav class="navbar navbar-expand-lg navbar-custom">
@@ -394,18 +477,18 @@
 
             <div class="mt-4">
               <h5 style="color: #fbbf24; margin-bottom: 15px;"><i class="fas fa-paper-plane me-2"></i>Send us a Message</h5>
-              <form>
+              <form id="contactForm">
                 <div class="row">
                   <div class="col-md-6">
-                    <input type="text" class="form-control" placeholder="Your Name" required>
+                    <input type="text" class="form-control" id="name" placeholder="Your Name" required>
                   </div>
                   <div class="col-md-6">
-                    <input type="email" class="form-control" placeholder="Your Email" required>
+                    <input type="email" class="form-control" id="email" placeholder="Your Email" required>
                   </div>
                 </div>
-                <input type="text" class="form-control" placeholder="Subject" required>
-                <textarea class="form-control" rows="4" placeholder="Your Message" required></textarea>
-                <button type="submit" class="btn-submit">
+                <input type="text" class="form-control" id="subject" placeholder="Subject" required>
+                <textarea class="form-control" id="message" rows="4" placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn-submit" id="submitBtn">
                   <i class="fas fa-paper-plane me-2"></i>Send Message
                 </button>
                 <p style="color: #bcc9db; font-size: 0.85rem; margin-top: 10px; text-align: center;">
@@ -563,10 +646,80 @@
 
     document.getElementById('current-year').textContent = new Date().getFullYear();
 
-    document.querySelector('form').addEventListener('submit', function(e) {
+    // Toast notification function
+    function showToast(title, message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const toastTitle = document.getElementById('toastTitle');
+      const toastMessage = document.getElementById('toastMessage');
+      
+      toast.className = 'toast-custom ' + type;
+      toastTitle.textContent = title;
+      toastMessage.textContent = message;
+      toast.classList.add('show');
+      
+      // Auto-hide after 5 seconds
+      clearTimeout(window.toastTimeout);
+      window.toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 5000);
+    }
+
+    // Contact form handler
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
       e.preventDefault();
-      alert('Thank you for your message! We will respond to you within 24 hours.');
-      this.reset();
+      
+      const submitBtn = document.getElementById('submitBtn');
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      // Validate
+      if (!name || !email || !subject || !message) {
+        showToast('⚠️ Incomplete Form', 'Please fill in all fields.', 'error');
+        return;
+      }
+
+      // Validate email
+      if (!email.includes('@') || !email.includes('.')) {
+        showToast('⚠️ Invalid Email', 'Please enter a valid email address.', 'error');
+        return;
+      }
+
+      // Disable button and show loading
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+      showToast('📤 Sending...', 'Please wait while your message is being sent.', 'loading');
+
+      try {
+        // Send message using Formspree (free email service)
+        const response = await fetch('https://formspree.io/f/xbdnreln', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            subject: subject,
+            message: message,
+          }),
+        });
+
+        if (response.ok) {
+          showToast('✅ Message Sent!', 'Thank you for your message! We will respond within 24 hours.', 'success');
+          this.reset();
+        } else {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Failed to send message.');
+        }
+      } catch (error) {
+        console.error('Error sending message:', error);
+        showToast('❌ Failed to Send', 'There was an error sending your message. Please try again or contact us directly.', 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Send Message';
+      }
     });
   </script>
 </body>
