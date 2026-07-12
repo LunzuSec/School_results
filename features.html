@@ -3,293 +3,334 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>System Features - Lunzu Secondary School</title>
+  <title>Features - Lunzu Secondary School</title>
   
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-  <!-- Font Awesome for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-pj6VsoMV3Pn0aO5/KE1qPBD6gEijSdykOqYlCkgVgJt+5UrHhHgfKgnA9yGo0A37uj5yK69IaMzuq8wRA3+4qA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
-    :root {
-      --primary-color: #007BFF;
-      --primary-dark: #0056b3;
-      --secondary-color: #6c757d;
-      --accent-color: #17a2b8;
-      --light-bg: #f8f9fa;
-      --dark-bg: #343a40;
-      --success-color: #28a745;
-      --warning-color: #ffc107;
-    }
-    
-    * {
-      font-family: 'Open Sans', sans-serif;
-    }
-    
-    h1, h2, h3, h4, h5, h6, .navbar-brand {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-    }
-    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      padding-top: 76px;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      min-height: 100vh;
+      background: #0a1628;
+      position: relative;
+      overflow-x: hidden;
     }
-    
-    .navbar-custom {
-      background-color: var(--primary-color);
-      padding: 15px 0;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    #bg-canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
     }
-    
-    .navbar-custom .navbar-brand,
-    .navbar-custom .nav-link {
-      color: white !important;
+    #bg-canvas-container canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-    
-    .navbar-custom .nav-link {
-      margin: 0 8px;
-      font-weight: 500;
-      transition: color 0.3s;
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    
-    .navbar-custom .nav-link:hover {
-      color: rgba(255, 255, 255, 0.9) !important;
-    }
-    
-    .footer {
-      background: linear-gradient(135deg, var(--dark-bg) 0%, #212529 100%);
-      color: white;
-      padding: 50px 0 30px;
-      margin-top: 50px;
-    }
-    
-    .card-custom {
-      border: none;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-      transition: all 0.3s ease;
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border-radius: 28px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 215, 0, 0.2);
       overflow: hidden;
-      margin-bottom: 30px;
+      transition: all 0.3s ease;
       height: 100%;
     }
-    
-    .card-custom:hover {
+
+    .glass-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      border-color: rgba(255, 215, 0, 0.4);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
     }
-    
-    .card-custom-header {
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-      color: white;
-      padding: 25px;
+
+    .glass-card .card-body {
+      padding: 30px;
+    }
+
+    .glass-card h4, .glass-card h5, .glass-card h6 {
+      color: #fff;
+    }
+
+    .glass-card p, .glass-card li {
+      color: #d1e0f0;
+      line-height: 1.8;
+    }
+
+    .glass-card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .glass-card ul li {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .glass-card ul li:last-child {
       border-bottom: none;
     }
-    
-    .section-title {
-      position: relative;
-      margin-bottom: 50px;
-      text-align: center;
+
+    .glass-card ul li i {
+      color: #fbbf24;
+      margin-right: 10px;
     }
-    
-    .section-title::after {
+
+    .navbar-custom {
+      background: rgba(10, 22, 40, 0.85);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+      padding: 15px 0;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .navbar-custom .navbar-brand,
+    .navbar-custom .nav-link {
+      color: #fff !important;
+    }
+
+    .navbar-custom .nav-link {
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .navbar-custom .nav-link::after {
       content: '';
       position: absolute;
-      bottom: -15px;
+      bottom: 0;
       left: 50%;
       transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: #fbbf24;
+      transition: width 0.3s ease;
+    }
+
+    .navbar-custom .nav-link:hover::after {
+      width: 80%;
+    }
+
+    .navbar-custom .nav-link:hover {
+      color: #fbbf24 !important;
+    }
+
+    .section-title {
+      color: #fff;
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
       width: 80px;
       height: 4px;
-      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      background: linear-gradient(90deg, #fbbf24, #f59e0b);
+      margin: 15px auto 0;
       border-radius: 2px;
     }
-    
+
     .feature-icon {
       width: 80px;
       height: 80px;
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.1));
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 20px;
-      color: white;
+      color: #fbbf24;
       font-size: 2rem;
+      border: 2px solid rgba(251, 191, 36, 0.3);
     }
-    
+
     .benefit-item {
       display: flex;
       align-items: flex-start;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
-    
+
     .benefit-icon {
       width: 40px;
       height: 40px;
-      background: var(--primary-color);
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.1));
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
+      color: #fbbf24;
       margin-right: 15px;
       flex-shrink: 0;
+      border: 1px solid rgba(251, 191, 36, 0.2);
     }
-    
+
     .feature-highlight {
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border-radius: 28px;
       padding: 40px;
-      border-radius: 15px;
-      margin: 30px 0;
+      border: 1px solid rgba(255, 215, 0, 0.15);
+    }
+
+    .footer {
+      background: rgba(10, 22, 40, 0.85);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      color: #d1e0f0;
+      padding: 50px 0 30px;
+      margin-top: 50px;
+      border-top: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .footer a {
+      color: #fbbf24;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: #f59e0b;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .glass-card {
+        margin-bottom: 20px;
+      }
+      .feature-highlight {
+        padding: 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+  <div id="bg-canvas-container">
+    <canvas id="bgCanvas"></canvas>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <i class="fas fa-school me-2"></i>Lunzu Secondary School
+        <i class="fas fa-school me-2" style="color: #fbbf24;"></i>Lunzu Secondary School
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.html" target="_blank">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="features.html">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="portals.html" target="_blank">Portals</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="testimonials.html" target="_blank">Testimonials</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html" target="_blank">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="important-notice.html" target="_blank">
-              <i class="fas fa-bullhorn me-1"></i>Notice
-            </a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="portals.html">Portals</a></li>
+          <li class="nav-item"><a class="nav-link" href="testimonials.html">Testimonials</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="important-notice.html"><i class="fas fa-bullhorn me-1"></i>Notice</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Main Content -->
-  <div class="container my-5">
+  <div class="container my-5" style="padding-top: 80px;">
     <h1 class="section-title">System Features</h1>
     
-    <div class="row mb-5">
-      <div class="col-lg-8 mx-auto text-center">
-        <p class="lead">Our Results Management System is designed to streamline academic tracking and improve communication between school, students, and parents.</p>
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8 text-center">
+        <p style="color: #d1e0f0; font-size: 1.2rem;">Our Results Management System is designed to streamline academic tracking and improve communication between school, students, and parents.</p>
       </div>
     </div>
 
-    <!-- Main Features -->
     <div class="row mb-5">
       <div class="col-md-4 mb-4">
-        <div class="card card-custom text-center h-100">
-          <div class="card-custom-header">
-            <div class="feature-icon">
-              <i class="fas fa-chart-line"></i>
-            </div>
-            <h4 class="mt-3">Performance Tracking</h4>
-          </div>
+        <div class="glass-card text-center">
           <div class="card-body">
-            <p class="card-text">Monitor and analyze student performance across various subjects with detailed reports and analytics.</p>
+            <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+            <h4 style="color: #fbbf24;">Performance Tracking</h4>
+            <p style="color: #d1e0f0;">Monitor and analyze student performance across various subjects with detailed reports and analytics.</p>
             <div class="benefit-item">
-              <div class="benefit-icon">
-                <i class="fas fa-check"></i>
-              </div>
+              <div class="benefit-icon"><i class="fas fa-check"></i></div>
               <div>
-                <h6>Real-time Progress Monitoring</h6>
-                <small>Track student progress throughout the term</small>
+                <h6 style="color: #fff;">Real-time Progress</h6>
+                <small style="color: #bcc9db;">Track student progress throughout the term</small>
               </div>
             </div>
             <div class="benefit-item">
-              <div class="benefit-icon">
-                <i class="fas fa-check"></i>
-              </div>
+              <div class="benefit-icon"><i class="fas fa-check"></i></div>
               <div>
-                <h6>Subject-wise Analysis</h6>
-                <small>Detailed breakdown of performance by subject</small>
+                <h6 style="color: #fff;">Subject-wise Analysis</h6>
+                <small style="color: #bcc9db;">Detailed breakdown of performance by subject</small>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="col-md-4 mb-4">
-        <div class="card card-custom text-center h-100">
-          <div class="card-custom-header">
-            <div class="feature-icon">
-              <i class="fas fa-users"></i>
-            </div>
-            <h4 class="mt-3">User Management</h4>
-          </div>
+        <div class="glass-card text-center">
           <div class="card-body">
-            <p class="card-text">Manage different user roles including Teachers, Parents, and Admins with secure access controls.</p>
+            <div class="feature-icon"><i class="fas fa-users"></i></div>
+            <h4 style="color: #fbbf24;">User Management</h4>
+            <p style="color: #d1e0f0;">Manage different user roles including Teachers, Parents, and Admins with secure access controls.</p>
             <div class="benefit-item">
-              <div class="benefit-icon">
-                <i class="fas fa-check"></i>
-              </div>
+              <div class="benefit-icon"><i class="fas fa-check"></i></div>
               <div>
-                <h6>Role-based Access</h6>
-                <small>Different permissions for teachers, students, parents</small>
+                <h6 style="color: #fff;">Role-based Access</h6>
+                <small style="color: #bcc9db;">Different permissions for teachers, students, parents</small>
               </div>
             </div>
             <div class="benefit-item">
-              <div class="benefit-icon">
-                <i class="fas fa-check"></i>
-              </div>
+              <div class="benefit-icon"><i class="fas fa-check"></i></div>
               <div>
-                <h6>Secure Login</h6>
-                <small>Protected access with individual credentials</small>
+                <h6 style="color: #fff;">Secure Login</h6>
+                <small style="color: #bcc9db;">Protected access with individual credentials</small>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="col-md-4 mb-4">
-        <div class="card card-custom text-center h-100">
-          <div class="card-custom-header">
-            <div class="feature-icon">
-              <i class="fas fa-file-pdf"></i>
-            </div>
-            <h4 class="mt-3">Report Generation</h4>
-          </div>
+        <div class="glass-card text-center">
           <div class="card-body">
-            <p class="card-text">Generate comprehensive PDF reports to keep track of academic progress and achievements.</p>
+            <div class="feature-icon"><i class="fas fa-file-pdf"></i></div>
+            <h4 style="color: #fbbf24;">Report Generation</h4>
+            <p style="color: #d1e0f0;">Generate comprehensive PDF reports to keep track of academic progress and achievements.</p>
             <div class="benefit-item">
-              <div class="benefit-icon">
-                <i class="fas fa-check"></i>
-              </div>
+              <div class="benefit-icon"><i class="fas fa-check"></i></div>
               <div>
-                <h6>Customizable Reports</h6>
-                <small>Generate reports for specific time periods</small>
+                <h6 style="color: #fff;">Customizable Reports</h6>
+                <small style="color: #bcc9db;">Generate reports for specific time periods</small>
               </div>
             </div>
             <div class="benefit-item">
-              <div class="benefit-icon">
-                <i class="fas fa-check"></i>
-              </div>
+              <div class="benefit-icon"><i class="fas fa-check"></i></div>
               <div>
-                <h6>Export Options</h6>
-                <small>Download reports in PDF or print format</small>
+                <h6 style="color: #fff;">Export Options</h6>
+                <small style="color: #bcc9db;">Download reports in PDF or print format</small>
               </div>
             </div>
           </div>
@@ -297,131 +338,186 @@
       </div>
     </div>
 
-    <!-- Additional Features -->
     <div class="row mb-5">
       <div class="col-md-6 mb-4">
-        <div class="card card-custom h-100">
+        <div class="glass-card">
           <div class="card-body">
-            <h4 class="mb-4"><i class="fas fa-shield-alt text-primary me-2"></i>Security Features</h4>
-            <ul class="list-unstyled">
-              <li class="mb-3"><i class="fas fa-lock text-success me-2"></i>End-to-end encryption for all data transmission</li>
-              <li class="mb-3"><i class="fas fa-user-shield text-success me-2"></i>Multi-factor authentication for admin accounts</li>
-              <li class="mb-3"><i class="fas fa-history text-success me-2"></i>Activity logging and audit trails</li>
-              <li class="mb-3"><i class="fas fa-database text-success me-2"></i>Regular automated backups</li>
-              <li><i class="fas fa-key text-success me-2"></i>Password policy enforcement</li>
+            <h4 style="color: #fbbf24; margin-bottom: 20px;"><i class="fas fa-shield-alt me-2"></i>Security Features</h4>
+            <ul>
+              <li><i class="fas fa-lock"></i>End-to-end encryption for all data transmission</li>
+              <li><i class="fas fa-user-shield"></i>Multi-factor authentication for admin accounts</li>
+              <li><i class="fas fa-history"></i>Activity logging and audit trails</li>
+              <li><i class="fas fa-database"></i>Regular automated backups</li>
+              <li><i class="fas fa-key"></i>Password policy enforcement</li>
             </ul>
           </div>
         </div>
       </div>
       <div class="col-md-6 mb-4">
-        <div class="card card-custom h-100">
+        <div class="glass-card">
           <div class="card-body">
-            <h4 class="mb-4"><i class="fas fa-mobile-alt text-primary me-2"></i>Accessibility Features</h4>
-            <ul class="list-unstyled">
-              <li class="mb-3"><i class="fas fa-desktop text-success me-2"></i>Responsive design for all devices</li>
-              <li class="mb-3"><i class="fas fa-wifi text-success me-2"></i>Offline capability for data entry</li>
-              <li class="mb-3"><i class="fas fa-bell text-success me-2"></i>Automatic notifications for updates</li>
-              <li class="mb-3"><i class="fas fa-language text-success me-2"></i>Multi-language support</li>
-              <li><i class="fas fa-search text-success me-2"></i>Advanced search and filtering options</li>
+            <h4 style="color: #fbbf24; margin-bottom: 20px;"><i class="fas fa-mobile-alt me-2"></i>Accessibility Features</h4>
+            <ul>
+              <li><i class="fas fa-desktop"></i>Responsive design for all devices</li>
+              <li><i class="fas fa-wifi"></i>Offline capability for data entry</li>
+              <li><i class="fas fa-bell"></i>Automatic notifications for updates</li>
+              <li><i class="fas fa-language"></i>Multi-language support</li>
+              <li><i class="fas fa-search"></i>Advanced search and filtering options</li>
             </ul>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- System Benefits -->
     <div class="feature-highlight">
-      <h2 class="text-center mb-4">System Benefits</h2>
+      <h2 style="color: #fbbf24; text-align: center; margin-bottom: 30px;">System Benefits</h2>
       <div class="row">
         <div class="col-md-4 text-center mb-4">
-          <div class="feature-icon" style="width: 60px; height: 60px;">
+          <div class="feature-icon" style="width: 60px; height: 60px; margin: 0 auto 15px;">
             <i class="fas fa-clock"></i>
           </div>
-          <h5>Time Saving</h5>
-          <p>Reduces administrative workload by automating report generation and data entry.</p>
+          <h5 style="color: #fff;">Time Saving</h5>
+          <p style="color: #d1e0f0;">Reduces administrative workload by automating report generation and data entry.</p>
         </div>
         <div class="col-md-4 text-center mb-4">
-          <div class="feature-icon" style="width: 60px; height: 60px;">
+          <div class="feature-icon" style="width: 60px; height: 60px; margin: 0 auto 15px;">
             <i class="fas fa-chart-pie"></i>
           </div>
-          <h5>Data Accuracy</h5>
-          <p>Minimizes human errors with automated calculations and data validation.</p>
+          <h5 style="color: #fff;">Data Accuracy</h5>
+          <p style="color: #d1e0f0;">Minimizes human errors with automated calculations and data validation.</p>
         </div>
         <div class="col-md-4 text-center mb-4">
-          <div class="feature-icon" style="width: 60px; height: 60px;">
+          <div class="feature-icon" style="width: 60px; height: 60px; margin: 0 auto 15px;">
             <i class="fas fa-comments"></i>
           </div>
-          <h5>Improved Communication</h5>
-          <p>Enhances parent-teacher communication through instant access to student data.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Technical Specifications -->
-    <div class="row mt-5">
-      <div class="col-12">
-        <h2 class="section-title">Technical Specifications</h2>
-      </div>
-      <div class="col-md-8 mx-auto">
-        <div class="card card-custom">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-6">
-                <h5><i class="fas fa-server text-primary me-2"></i>System Requirements</h5>
-                <ul>
-                  <li>Modern web browser (Chrome, Firefox, Safari, Edge)</li>
-                  <li>Internet connection (for online features)</li>
-                  <li>JavaScript enabled</li>
-                  <li>PDF reader for reports</li>
-                </ul>
-              </div>
-              <div class="col-md-6">
-                <h5><i class="fas fa-database text-primary me-2"></i>Data Management</h5>
-                <ul>
-                  <li>Cloud-based storage</li>
-                  <li>Regular automated backups</li>
-                  <li>GDPR compliant data handling</li>
-                  <li>Secure data encryption</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <h5 style="color: #fff;">Improved Communication</h5>
+          <p style="color: #d1e0f0;">Enhances parent-teacher communication through instant access to student data.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="row align-items-center">
+      <div class="row">
         <div class="col-lg-8 text-center text-lg-start mb-4 mb-lg-0">
-          <h3 class="mb-3"><i class="fas fa-school me-2"></i>Lunzu Secondary School</h3>
+          <h3 style="color: #fff;"><i class="fas fa-school me-2" style="color: #fbbf24;"></i>Lunzu Secondary School</h3>
           <p class="mb-0">Committed to providing quality education and fostering academic excellence since 1985.</p>
-          <p class="mb-0 mt-2">
-            <i class="fas fa-certificate me-2"></i>Registered Government Secondary School
-          </p>
         </div>
       </div>
-      <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+      <hr style="border-color: rgba(255,215,0,0.1);">
       <div class="row">
         <div class="col-md-6 text-center text-md-start">
           <p class="mb-0">&copy; <span id="current-year">2026</span> Lunzu Secondary School. All rights reserved.</p>
         </div>
         <div class="col-md-6 text-center text-md-end">
-          <a href="contact.html" target="_blank" class="text-white me-3">Contact</a>
-          <a href="about.html" target="_blank" class="text-white me-3">About</a>
-          <a href="portals.html" target="_blank" class="text-white">Portals</a>
+          <a href="contact.html" class="me-3">Contact</a>
+          <a href="about.html" class="me-3">About</a>
+          <a href="portals.html">Portals</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Bootstrap JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
   <script>
-    // Set current year
+    (function initBackground() {
+      const canvas = document.getElementById('bgCanvas');
+      const container = document.getElementById('bg-canvas-container');
+      const ctx = canvas.getContext('2d');
+      let w, h;
+      let items = [];
+      const ITEM_COUNT = 30;
+      const symbols = ['🎓', '📜', '📘', '📚', '🏆', '⭐', '📖', '✏️', '📝', '🏅', '🔬', '🧪', '📐', '🧮', '🌍', '⚛️'];
+
+      function resizeCanvas() {
+        const rect = container.getBoundingClientRect();
+        canvas.width = rect.width || window.innerWidth;
+        canvas.height = rect.height || window.innerHeight;
+        w = canvas.width;
+        h = canvas.height;
+      }
+
+      function randomItem() {
+        return {
+          x: Math.random() * w,
+          y: Math.random() * h - 20,
+          size: 34 + Math.random() * 42,
+          speedX: (Math.random() - 0.5) * 0.6,
+          speedY: 0.12 + Math.random() * 0.5,
+          rotation: Math.random() * 360,
+          rotSpeed: (Math.random() - 0.5) * 0.02,
+          opacity: 0.18 + Math.random() * 0.30,
+          symbol: symbols[Math.floor(Math.random() * symbols.length)],
+          phase: Math.random() * 100,
+        };
+      }
+
+      function initItems() {
+        items = [];
+        for (let i = 0; i < ITEM_COUNT; i++) {
+          items.push(randomItem());
+        }
+      }
+
+      function drawItems() {
+        ctx.clearRect(0, 0, w, h);
+        const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) * 0.7);
+        grad.addColorStop(0, 'rgba(10, 22, 40, 0.05)');
+        grad.addColorStop(1, 'rgba(10, 22, 40, 0.40)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, w, h);
+
+        items.forEach(item => {
+          ctx.save();
+          ctx.translate(item.x, item.y);
+          ctx.rotate(item.rotation * Math.PI / 180);
+          ctx.globalAlpha = item.opacity;
+          ctx.font = `${item.size}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.shadowColor = 'rgba(0,0,0,0.3)';
+          ctx.shadowBlur = 20;
+          ctx.fillStyle = '#fbbf24';
+          ctx.shadowColor = 'rgba(0,0,0,0.4)';
+          ctx.shadowBlur = 22;
+          ctx.fillText(item.symbol, 0, 0);
+          ctx.shadowBlur = 0;
+          ctx.font = `${item.size * 0.3}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif`;
+          ctx.fillStyle = 'rgba(255,215,0,0.10)';
+          ctx.fillText('✦', item.size * 0.25, -item.size * 0.2);
+          ctx.restore();
+
+          item.x += item.speedX + Math.sin(item.phase + performance.now() * 0.0002) * 0.15;
+          item.y += item.speedY * 0.3 + Math.sin(item.phase + performance.now() * 0.00035) * 0.12;
+          item.rotation += item.rotSpeed;
+
+          if (item.x > w + 60) item.x = -60;
+          if (item.x < -60) item.x = w + 60;
+          if (item.y > h + 60) item.y = -60;
+          if (item.y < -60) item.y = h + 60;
+        });
+
+        requestAnimationFrame(drawItems);
+      }
+
+      function startBackground() {
+        resizeCanvas();
+        initItems();
+        drawItems();
+      }
+
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        items.forEach(item => {
+          item.x = Math.min(Math.max(item.x, 0), w);
+          item.y = Math.min(Math.max(item.y, 0), h);
+        });
+      });
+
+      startBackground();
+    })();
+
     document.getElementById('current-year').textContent = new Date().getFullYear();
   </script>
 </body>
