@@ -3,256 +3,381 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lunzu Secondary School - Student Results Portal</title>
+  <title>Student Results Portal - Lunzu Secondary School</title>
   
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      background-color: #f8f9fa;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      min-height: 100vh;
+      background: #0a1628;
+      position: relative;
+      overflow-x: hidden;
     }
+
+    #bg-canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    #bg-canvas-container canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border-radius: 28px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(255, 215, 0, 0.4);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+    }
+
+    .glass-card .card-body {
+      padding: 30px;
+    }
+
+    .glass-card h4, .glass-card h5 {
+      color: #fff;
+    }
+
+    .glass-card p, .glass-card li {
+      color: #d1e0f0;
+      line-height: 1.8;
+    }
+
+    .glass-card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .glass-card ul li {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-left: 25px;
+      position: relative;
+    }
+
+    .glass-card ul li::before {
+      content: '▸';
+      color: #fbbf24;
+      position: absolute;
+      left: 0;
+    }
+
+    .glass-card ul li:last-child {
+      border-bottom: none;
+    }
+
     .navbar-custom {
-      background-color: #2c3e50; /* Dark blue-gray for navbar */
+      background: rgba(10, 22, 40, 0.85);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+      padding: 15px 0;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
     }
+
     .navbar-custom .navbar-brand,
     .navbar-custom .nav-link {
-      color: white !important;
+      color: #fff !important;
     }
-    .portal-header {
-      background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); /* Blue gradient for header */
-      color: white;
-      padding: 40px 0;
-      margin-bottom: 30px;
-      border-radius: 0 0 20px 20px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-    .card-custom {
-      border: none;
-      border-radius: 15px;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      margin-bottom: 25px;
-      overflow: hidden;
-    }
-    .card-custom:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
-    }
-    .card-custom-header {
-      background-color: #2c3e50; /* Matching navbar color */
-      color: white;
-      padding: 20px;
-      font-weight: 600;
-    }
-    /* Results links styling - different from dashboard */
-    .btn-result-link {
-      background-color: #27ae60; /* Green color for result links */
-      color: white;
-      border-radius: 8px;
-      padding: 12px 20px;
-      font-weight: 500;
-      margin: 5px 0;
-      width: 100%;
-      text-align: left;
-      transition: all 0.3s;
-    }
-    .btn-result-link:hover {
-      background-color: #219653; /* Darker green on hover */
-      transform: translateX(5px);
-    }
-    .btn-result-link i {
-      margin-right: 10px;
-    }
-    /* Dashboard/quick links styling - different from results links */
-    .btn-dashboard {
-      background-color: #3498db; /* Blue color for dashboard links */
-      color: white;
-      border-radius: 8px;
-      padding: 12px 20px;
-      font-weight: 500;
-      margin: 5px 0;
-      width: 100%;
-      text-align: left;
-      transition: all 0.3s;
-    }
-    .btn-dashboard:hover {
-      background-color: #2980b9; /* Darker blue on hover */
-      transform: translateX(5px);
-    }
-    .btn-dashboard i {
-      margin-right: 10px;
-    }
-    .nav-buttons {
-      margin: 20px 0;
-    }
-    .footer {
-      background-color: #343a40;
-      color: white;
-      padding: 20px 0;
-      margin-top: 40px;
-    }
-    .result-link-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 15px;
-    }
-    /* Back to home button styling */
-    .btn-home {
-      background-color: #9b59b6; /* Purple color for home button */
-      color: white;
-    }
-    .btn-home:hover {
-      background-color: #8e44ad; /* Darker purple on hover */
-      color: white;
-    }
-    /* Main Results Link Styling */
-    .main-result-card {
-      background: linear-gradient(135deg, #27ae60 0%, #219653 100%);
-      color: white;
-      border-radius: 15px;
-      padding: 30px;
+
+    .section-title {
+      color: #fff;
       text-align: center;
-      margin-bottom: 30px;
-      box-shadow: 0 8px 25px rgba(39, 174, 96, 0.3);
+      margin-bottom: 50px;
+      position: relative;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
-    .main-result-card h3 {
-      font-size: 1.8rem;
-      margin-bottom: 15px;
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #fbbf24, #f59e0b);
+      margin: 15px auto 0;
+      border-radius: 2px;
     }
-    .main-result-card p {
-      font-size: 1.1rem;
-      opacity: 0.9;
-      margin-bottom: 20px;
+
+    .portal-header {
+      padding: 120px 0 40px;
+      text-align: center;
     }
+
+    .portal-header h1 {
+      color: #fbbf24;
+      font-size: 2.8rem;
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .portal-header p {
+      color: #d1e0f0;
+      font-size: 1.2rem;
+    }
+
     .btn-main-result {
-      background-color: white;
-      color: #27ae60;
-      border: none;
-      border-radius: 8px;
-      padding: 12px 30px;
-      font-weight: 600;
-      font-size: 1.1rem;
+      display: inline-block;
+      padding: 18px 50px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 1.2rem;
       transition: all 0.3s;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: #0a1628;
+      border: none;
+      box-shadow: 0 4px 20px rgba(251, 191, 36, 0.3);
     }
+
     .btn-main-result:hover {
-      background-color: #f8f9fa;
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 40px rgba(251, 191, 36, 0.5);
+      color: #0a1628;
     }
-    /* Responsive adjustments */
+
+    .btn-portal-action {
+      display: block;
+      width: 100%;
+      padding: 15px 20px;
+      border-radius: 14px;
+      font-weight: 600;
+      text-align: left;
+      transition: all 0.3s;
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .btn-portal-action:hover {
+      transform: translateX(10px);
+      background: rgba(251, 191, 36, 0.15);
+      border-color: rgba(251, 191, 36, 0.3);
+      color: #fbbf24;
+    }
+
+    .btn-portal-action i {
+      margin-right: 12px;
+      color: #fbbf24;
+      width: 24px;
+    }
+
+    .btn-outline-gold {
+      background: transparent;
+      color: #fbbf24;
+      border: 2px solid #fbbf24;
+      padding: 10px 25px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn-outline-gold:hover {
+      background: #fbbf24;
+      color: #0a1628;
+    }
+
+    .alert-info {
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      color: #dbeafe;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .alert-warning {
+      background: rgba(251, 191, 36, 0.12);
+      border: 1px solid rgba(251, 191, 36, 0.2);
+      color: #fcd34d;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .footer {
+      background: rgba(10, 22, 40, 0.85);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      color: #d1e0f0;
+      padding: 50px 0 30px;
+      margin-top: 50px;
+      border-top: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .footer a {
+      color: #fbbf24;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: #f59e0b;
+      text-decoration: underline;
+    }
+
+    .modal-content {
+      background: rgba(20, 35, 55, 0.95);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      color: #fff;
+    }
+
+    .modal-header {
+      border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+    }
+
+    .modal-footer {
+      border-top: 1px solid rgba(255, 215, 0, 0.15);
+    }
+
+    .modal-body .accordion-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .modal-body .accordion-button {
+      background: rgba(255, 255, 255, 0.04);
+      color: #fff;
+    }
+
+    .modal-body .accordion-button:not(.collapsed) {
+      background: rgba(251, 191, 36, 0.15);
+      color: #fbbf24;
+    }
+
+    .modal-body .accordion-body {
+      color: #d1e0f0;
+    }
+
     @media (max-width: 768px) {
-      .portal-header {
-        padding: 30px 0;
+      .section-title {
+        font-size: 1.8rem;
       }
-      .main-result-card {
-        padding: 20px;
+      .portal-header h1 {
+        font-size: 2rem;
       }
-      .main-result-card h3 {
-        font-size: 1.5rem;
+      .glass-card {
+        margin-bottom: 20px;
+      }
+      .btn-main-result {
+        padding: 15px 30px;
+        font-size: 1rem;
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
+  <div id="bg-canvas-container">
+    <canvas id="bgCanvas"></canvas>
+  </div>
+
   <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container">
-      <a class="navbar-brand" href="#">
-        <i class="fas fa-user-graduate"></i> Student Results Portal
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-school me-2" style="color: #fbbf24;"></i>Lunzu Secondary School
       </a>
     </div>
   </nav>
 
-  <!-- Header -->
-  <div class="portal-header text-center">
+  <div class="portal-header">
     <div class="container">
-      <h1><i class="fas fa-university"></i> Lunzu Secondary School</h1>
-      <p class="lead">Access Your Academic Results and Information</p>
+      <h1><i class="fas fa-user-graduate me-3" style="color: #fbbf24;"></i>Student Results Portal</h1>
+      <p>Access Your Academic Results and Information</p>
+      <a href="index.html" class="btn btn-outline-gold mt-3">
+        <i class="fas fa-home me-2"></i>Back to Home
+      </a>
     </div>
   </div>
 
-  <!-- Main Content -->
-  <div class="container">
-    <!-- Navigation Buttons -->
-    <div class="nav-buttons text-center">
-      <a href="index.html" class="btn btn-home">
-        <i class="fas fa-home"></i> Back to Home
-      </a>
-    </div>
-    
-    <!-- Main Results Card -->
-    <div class="main-result-card">
-      <h3><i class="fas fa-award"></i> View Your Results</h3>
-      <p>Click the button below to access the results portal where you can search for and view your academic results.</p>
-      <a href="https://lunzusec.github.io/school-results/" 
-         class="btn btn-main-result" target="_blank">
-        <i class="fas fa-external-link-alt"></i> Go to Results Portal
-      </a>
-      <div style="margin-top: 15px; font-size: 0.9rem;">
-        <i class="fas fa-info-circle"></i> You will be redirected to the official results portal
-      </div>
-    </div>
-    
-    <!-- Important Information Card -->
-    <div class="card card-custom">
-      <div class="card-header card-custom-header">
-        <i class="fas fa-info-circle"></i> Important Information
-      </div>
-      <div class="card-body">
-        <div class="alert alert-info">
-          <h5><i class="fas fa-lightbulb"></i> Before You Proceed:</h5>
-          <ul>
-            <li><strong>Requirements:</strong> You'll need your student name, class, and date of birth</li>
-            <li><strong>Browser:</strong> Use Chrome, Firefox, Edge, or Safari for best experience</li>
-            <li><strong>Support:</strong> Contact technical support if you encounter any issues</li>
-            <li><strong>Timing:</strong> Results are available 24/7 during the results period</li>
-          </ul>
+  <div class="container my-4">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="glass-card text-center" style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.12), rgba(245, 158, 11, 0.06));">
+          <div class="card-body">
+            <h4 style="color: #fbbf24; font-size: 2rem; margin-bottom: 15px;">
+              <i class="fas fa-award me-2"></i>View Your Results
+            </h4>
+            <p style="color: #d1e0f0;">Click the button below to access the results portal where you can search for and view your academic results.</p>
+            <a href="https://lunzusec.github.io/school-results/" class="btn-main-result" target="_blank">
+              <i class="fas fa-external-link-alt me-2"></i>Go to Results Portal
+            </a>
+            <p style="color: #bcc9db; margin-top: 15px; font-size: 0.9rem;">
+              <i class="fas fa-info-circle me-1"></i>You will be redirected to the official results portal
+            </p>
+          </div>
         </div>
-        
-        <div class="alert alert-warning">
-          <h5><i class="fas fa-exclamation-triangle"></i> Troubleshooting Tips:</h5>
-          <ul>
-            <li>If the page doesn't load, try refreshing or using a different browser</li>
-            <li>Ensure you have a stable internet connection</li>
-            <li>Check that you're entering your details correctly</li>
-            <li>If issues persist, contact the technical support team</li>
-          </ul>
+
+        <div class="glass-card">
+          <div class="card-body">
+            <h4 style="color: #fbbf24; margin-bottom: 20px;"><i class="fas fa-info-circle me-2"></i>Important Information</h4>
+            <div class="alert-info" style="padding: 20px; border-radius: 12px; margin-bottom: 15px;">
+              <h5 style="color: #dbeafe;"><i class="fas fa-lightbulb me-2"></i>Before You Proceed:</h5>
+              <ul>
+                <li><strong style="color: #fff;">Requirements:</strong> You'll need your student name, class, and date of birth</li>
+                <li><strong style="color: #fff;">Browser:</strong> Use Chrome, Firefox, Edge, or Safari for best experience</li>
+                <li><strong style="color: #fff;">Support:</strong> Contact technical support if you encounter any issues</li>
+                <li><strong style="color: #fff;">Timing:</strong> Results are available 24/7 during the results period</li>
+              </ul>
+            </div>
+
+            <div class="alert-warning" style="padding: 20px; border-radius: 12px;">
+              <h5 style="color: #fcd34d;"><i class="fas fa-exclamation-triangle me-2"></i>Troubleshooting Tips:</h5>
+              <ul>
+                <li>If the page doesn't load, try refreshing or using a different browser</li>
+                <li>Ensure you have a stable internet connection</li>
+                <li>Check that you're entering your details correctly</li>
+                <li>If issues persist, contact the technical support team</li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    
-    <!-- Quick Links Card -->
-    <div class="card card-custom">
-      <div class="card-header card-custom-header">
-        <i class="fas fa-link"></i> Quick Links
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-6">
-            <a href="index.html" class="btn btn-dashboard">
+
+        <div class="glass-card">
+          <div class="card-body">
+            <h4 style="color: #fbbf24; margin-bottom: 20px;"><i class="fas fa-link me-2"></i>Quick Links</h4>
+            <a href="index.html" class="btn-portal-action">
               <i class="fas fa-home"></i> Main Homepage
             </a>
-          </div>
-          <div class="col-md-6">
-            <a href="#contact" class="btn btn-dashboard" data-bs-toggle="modal" data-bs-target="#contactModal">
+            <a href="#" class="btn-portal-action" data-bs-toggle="modal" data-bs-target="#contactModal">
               <i class="fas fa-envelope"></i> Contact Support
             </a>
-          </div>
-          <div class="col-md-6 mt-2">
-            <a href="#instructions" class="btn btn-dashboard" data-bs-toggle="modal" data-bs-target="#instructionsModal">
+            <a href="#" class="btn-portal-action" data-bs-toggle="modal" data-bs-target="#instructionsModal">
               <i class="fas fa-question-circle"></i> How to Use
             </a>
-          </div>
-          <div class="col-md-6 mt-2">
-            <a href="#faq" class="btn btn-dashboard" data-bs-toggle="modal" data-bs-target="#faqModal">
+            <a href="#" class="btn-portal-action" data-bs-toggle="modal" data-bs-target="#faqModal">
               <i class="fas fa-comments"></i> FAQ
             </a>
           </div>
@@ -261,67 +386,57 @@
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="footer text-center" id="contact">
-    <div class="container">
-      <p>&copy; <span id="current-year"></span> Lunzu Secondary School. All rights reserved.</p>
-      <p>For technical support, contact: <a href="https://wa.me/265888866269" style="color: #4fc3f7;" target="_blank">Developer WhatsApp</a></p>
-    </div>
-  </footer>
-
-  <!-- Contact Modal -->
+  <!-- Modals -->
   <div class="modal fade" id="contactModal" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title"><i class="fas fa-envelope"></i> Contact Support</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <h5 class="modal-title" style="color: #fbbf24;"><i class="fas fa-envelope me-2"></i>Contact Support</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" style="filter: invert(1);"></button>
         </div>
         <div class="modal-body">
-          <h6>Technical Support Contact:</h6>
-          <p><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/265888866269" target="_blank">+265 888 866 269</a></p>
-          <p><i class="fas fa-clock"></i> Available: Monday - Friday, 8:00 AM - 5:00 PM</p>
-          <hr>
-          <h6>School Administration:</h6>
-          <p><i class="fas fa-phone"></i> School Office: Contact school administration during working hours</p>
+          <h6 style="color: #fbbf24;">Technical Support Contact:</h6>
+          <p><i class="fab fa-whatsapp" style="color: #25D366;"></i> WhatsApp: <a href="https://wa.me/265888866269" target="_blank" style="color: #fbbf24;">+265 888 866 269</a></p>
+          <p><i class="fas fa-clock" style="color: #fbbf24;"></i> Available: Monday - Friday, 8:00 AM - 5:00 PM</p>
+          <hr style="border-color: rgba(255,215,0,0.1);">
+          <h6 style="color: #fbbf24;">School Administration:</h6>
+          <p><i class="fas fa-phone" style="color: #fbbf24;"></i> School Office: Contact school administration during working hours</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Instructions Modal -->
   <div class="modal fade" id="instructionsModal" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title"><i class="fas fa-question-circle"></i> How to Use the Results Portal</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <h5 class="modal-title" style="color: #fbbf24;"><i class="fas fa-question-circle me-2"></i>How to Use the Results Portal</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" style="filter: invert(1);"></button>
         </div>
         <div class="modal-body">
           <ol>
-            <li><strong>Click the "Go to Results Portal" button</strong> above</li>
-            <li><strong>Select your class</strong> from the dropdown menu</li>
-            <li><strong>Wait for student names to load</strong> (this may take a few seconds)</li>
-            <li><strong>Select your name</strong> from the list or search for it</li>
-            <li><strong>Enter your date of birth</strong> in YYYY-MM-DD format</li>
-            <li><strong>Click "View Results"</strong> to see your results in a new tab</li>
-            <li><strong>Optional:</strong> Click "Download PDF" to save a copy of your results</li>
+            <li><strong style="color: #fbbf24;">Click the "Go to Results Portal" button</strong> above</li>
+            <li><strong style="color: #fbbf24;">Select your class</strong> from the dropdown menu</li>
+            <li><strong style="color: #fbbf24;">Wait for student names to load</strong> (this may take a few seconds)</li>
+            <li><strong style="color: #fbbf24;">Select your name</strong> from the list or search for it</li>
+            <li><strong style="color: #fbbf24;">Enter your date of birth</strong> in YYYY-MM-DD format</li>
+            <li><strong style="color: #fbbf24;">Click "View Results"</strong> to see your results in a new tab</li>
+            <li><strong style="color: #fbbf24;">Optional:</strong> Click "Download PDF" to save a copy of your results</li>
           </ol>
-          <div class="alert alert-info">
-            <i class="fas fa-info-circle"></i> If you can't find your name, please ensure you've selected the correct class.
+          <div class="alert-info" style="padding: 15px; border-radius: 12px;">
+            <i class="fas fa-info-circle me-2"></i> If you can't find your name, please ensure you've selected the correct class.
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- FAQ Modal -->
   <div class="modal fade" id="faqModal" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title"><i class="fas fa-comments"></i> Frequently Asked Questions</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <h5 class="modal-title" style="color: #fbbf24;"><i class="fas fa-comments me-2"></i>Frequently Asked Questions</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" style="filter: invert(1);"></button>
         </div>
         <div class="modal-body">
           <div class="accordion" id="faqAccordion">
@@ -382,22 +497,131 @@
     </div>
   </div>
 
-  <!-- Bootstrap JS Bundle -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 text-center text-lg-start mb-4 mb-lg-0">
+          <h3 style="color: #fff;"><i class="fas fa-school me-2" style="color: #fbbf24;"></i>Lunzu Secondary School</h3>
+          <p class="mb-0">Committed to providing quality education and fostering academic excellence since 1985.</p>
+        </div>
+      </div>
+      <hr style="border-color: rgba(255,215,0,0.1);">
+      <div class="row">
+        <div class="col-md-6 text-center text-md-start">
+          <p class="mb-0">&copy; <span id="current-year">2026</span> Lunzu Secondary School. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <a href="contact.html" class="me-3">Contact</a>
+          <a href="about.html" class="me-3">About</a>
+          <a href="portals.html">Portals</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
   <script>
-    // Set current year in footer
-    document.getElementById('current-year').textContent = new Date().getFullYear();
-    
-    // Add click tracking for analytics (optional)
-    document.addEventListener('DOMContentLoaded', function() {
-      const resultsLink = document.querySelector('.btn-main-result');
-      if (resultsLink) {
-        resultsLink.addEventListener('click', function() {
-          console.log('Results portal accessed at:', new Date().toISOString());
-          // You can add Google Analytics tracking here
-        });
+    (function initBackground() {
+      const canvas = document.getElementById('bgCanvas');
+      const container = document.getElementById('bg-canvas-container');
+      const ctx = canvas.getContext('2d');
+      let w, h;
+      let items = [];
+      const ITEM_COUNT = 30;
+      const symbols = ['🎓', '📜', '📘', '📚', '🏆', '⭐', '📖', '✏️', '📝', '🏅', '🔬', '🧪', '📐', '🧮', '🌍', '⚛️'];
+
+      function resizeCanvas() {
+        const rect = container.getBoundingClientRect();
+        canvas.width = rect.width || window.innerWidth;
+        canvas.height = rect.height || window.innerHeight;
+        w = canvas.width;
+        h = canvas.height;
       }
+
+      function randomItem() {
+        return {
+          x: Math.random() * w,
+          y: Math.random() * h - 20,
+          size: 34 + Math.random() * 42,
+          speedX: (Math.random() - 0.5) * 0.6,
+          speedY: 0.12 + Math.random() * 0.5,
+          rotation: Math.random() * 360,
+          rotSpeed: (Math.random() - 0.5) * 0.02,
+          opacity: 0.18 + Math.random() * 0.30,
+          symbol: symbols[Math.floor(Math.random() * symbols.length)],
+          phase: Math.random() * 100,
+        };
+      }
+
+      function initItems() {
+        items = [];
+        for (let i = 0; i < ITEM_COUNT; i++) {
+          items.push(randomItem());
+        }
+      }
+
+      function drawItems() {
+        ctx.clearRect(0, 0, w, h);
+        const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) * 0.7);
+        grad.addColorStop(0, 'rgba(10, 22, 40, 0.05)');
+        grad.addColorStop(1, 'rgba(10, 22, 40, 0.40)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, w, h);
+
+        items.forEach(item => {
+          ctx.save();
+          ctx.translate(item.x, item.y);
+          ctx.rotate(item.rotation * Math.PI / 180);
+          ctx.globalAlpha = item.opacity;
+          ctx.font = `${item.size}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.shadowColor = 'rgba(0,0,0,0.3)';
+          ctx.shadowBlur = 20;
+          ctx.fillStyle = '#fbbf24';
+          ctx.shadowColor = 'rgba(0,0,0,0.4)';
+          ctx.shadowBlur = 22;
+          ctx.fillText(item.symbol, 0, 0);
+          ctx.shadowBlur = 0;
+          ctx.font = `${item.size * 0.3}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif`;
+          ctx.fillStyle = 'rgba(255,215,0,0.10)';
+          ctx.fillText('✦', item.size * 0.25, -item.size * 0.2);
+          ctx.restore();
+
+          item.x += item.speedX + Math.sin(item.phase + performance.now() * 0.0002) * 0.15;
+          item.y += item.speedY * 0.3 + Math.sin(item.phase + performance.now() * 0.00035) * 0.12;
+          item.rotation += item.rotSpeed;
+
+          if (item.x > w + 60) item.x = -60;
+          if (item.x < -60) item.x = w + 60;
+          if (item.y > h + 60) item.y = -60;
+          if (item.y < -60) item.y = h + 60;
+        });
+
+        requestAnimationFrame(drawItems);
+      }
+
+      function startBackground() {
+        resizeCanvas();
+        initItems();
+        drawItems();
+      }
+
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        items.forEach(item => {
+          item.x = Math.min(Math.max(item.x, 0), w);
+          item.y = Math.min(Math.max(item.y, 0), h);
+        });
+      });
+
+      startBackground();
+    })();
+
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    document.querySelector('.btn-main-result').addEventListener('click', function() {
+      console.log('Results portal accessed at:', new Date().toISOString());
     });
   </script>
 </body>
