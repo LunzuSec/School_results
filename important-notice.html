@@ -1,538 +1,637 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Important Notice - Lunzu Secondary School</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Important Notice - Lunzu Secondary School</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    body {
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      min-height: 100vh;
+      background: #0a1628;
+      position: relative;
+      overflow-x: hidden;
+    }
 
-<!-- Font Awesome for Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-integrity="sha512-pj6VsoMV3Pn0aO5/KE1qPBD6gEijSdykOqYlCkgVgJt+5UrHhHgfKgnA9yGo0A37uj5yK69IaMzuq8wRA3+4qA=="
-crossorigin="anonymous" referrerpolicy="no-referrer" />
+    #bg-canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    #bg-canvas-container canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-<style>
-:root {
---primary-color: #007BFF;
---primary-dark: #0056b3;
---secondary-color: #6c757d;
---accent-color: #17a2b8;
---light-bg: #f8f9fa;
---dark-bg: #343a40;
---success-color: #28a745;
---warning-color: #ffc107;
-}
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border-radius: 28px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      height: 100%;
+    }
 
-* {
-font-family: 'Open Sans', sans-serif;
-}
+    .glass-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(255, 215, 0, 0.4);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+    }
 
-h1, h2, h3, h4, h5, h6, .navbar-brand {
-font-family: 'Poppins', sans-serif;
-font-weight: 600;
-}
+    .glass-card .card-body {
+      padding: 30px;
+    }
 
-body {
-padding-top: 76px;
-}
+    .glass-card h4, .glass-card h5 {
+      color: #fff;
+    }
 
-.navbar-custom {
-background-color: var(--primary-color);
-padding: 15px 0;
-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+    .glass-card p {
+      color: #d1e0f0;
+      line-height: 1.8;
+    }
 
-.navbar-custom .navbar-brand,
-.navbar-custom .nav-link {
-color: white !important;
-}
+    .glass-card ul {
+      color: #d1e0f0;
+      line-height: 1.8;
+    }
 
-.navbar-custom .nav-link {
-margin: 0 8px;
-font-weight: 500;
-transition: color 0.3s;
-}
+    .navbar-custom {
+      background: rgba(10, 22, 40, 0.85);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+      padding: 15px 0;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+    }
 
-.navbar-custom .nav-link:hover {
-color: rgba(255, 255, 255, 0.9) !important;
-}
+    .navbar-custom .navbar-brand,
+    .navbar-custom .nav-link {
+      color: #fff !important;
+    }
 
-.footer {
-background: linear-gradient(135deg, var(--dark-bg) 0%, #212529 100%);
-color: white;
-padding: 50px 0 30px;
-margin-top: 50px;
-}
+    .navbar-custom .nav-link {
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
 
-.card-custom {
-border: none;
-border-radius: 15px;
-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-transition: all 0.3s ease;
-overflow: hidden;
-margin-bottom: 30px;
-height: 100%;
-}
+    .navbar-custom .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: #fbbf24;
+      transition: width 0.3s ease;
+    }
 
-.section-title {
-position: relative;
-margin-bottom: 50px;
-text-align: center;
-}
+    .navbar-custom .nav-link:hover::after {
+      width: 80%;
+    }
 
-.section-title::after {
-content: '';
-position: absolute;
-bottom: -15px;
-left: 50%;
-transform: translateX(-50%);
-width: 80px;
-height: 4px;
-background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-border-radius: 2px;
-}
+    .navbar-custom .nav-link:hover {
+      color: #fbbf24 !important;
+    }
 
-.notice-section {
-background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
-padding: 30px;
-border-radius: 15px;
-margin: 30px 0;
-border-left: 5px solid var(--warning-color);
-animation: pulse 2s infinite;
-}
+    .section-title {
+      color: #fff;
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
 
-@keyframes pulse {
-0% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.4); }
-70% { box-shadow: 0 0 0 10px rgba(255, 193, 7, 0); }
-100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0); }
-}
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #fbbf24, #f59e0b);
+      margin: 15px auto 0;
+      border-radius: 2px;
+    }
 
-.notice-header {
-display: flex;
-align-items: center;
-margin-bottom: 20px;
-}
+    .notice-section {
+      background: rgba(251, 191, 36, 0.12);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border-radius: 20px;
+      padding: 30px;
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      border-left: 5px solid #fbbf24;
+      margin-bottom: 30px;
+    }
 
-.notice-icon {
-width: 60px;
-height: 60px;
-background: #856404;
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-color: white;
-margin-right: 20px;
-font-size: 1.5rem;
-}
+    .notice-section h3 {
+      color: #fbbf24;
+    }
 
-.notice-date {
-background: #856404;
-color: white;
-padding: 5px 15px;
-border-radius: 20px;
-display: inline-block;
-margin-bottom: 15px;
-}
+    .notice-section h4 {
+      color: #fbbf24;
+    }
 
-.notice-item {
-padding: 20px;
-border-bottom: 1px solid #dee2e6;
-}
+    .notice-section p, .notice-section li {
+      color: #d1e0f0;
+    }
 
-.notice-item:last-child {
-border-bottom: none;
-}
+    .notice-section ul {
+      list-style: none;
+      padding-left: 0;
+    }
 
-.notice-priority {
-display: inline-block;
-padding: 3px 10px;
-border-radius: 12px;
-font-size: 0.8rem;
-font-weight: 600;
-margin-left: 10px;
-}
+    .notice-section ul li {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-left: 25px;
+      position: relative;
+    }
 
-.priority-high {
-background: #dc3545;
-color: white;
-}
+    .notice-section ul li::before {
+      content: '▸';
+      color: #fbbf24;
+      position: absolute;
+      left: 0;
+    }
 
-.priority-medium {
-background: #ffc107;
-color: #212529;
-}
+    .notice-section ul li:last-child {
+      border-bottom: none;
+    }
 
-.priority-low {
-background: #28a745;
-color: white;
-}
+    .notice-date {
+      background: rgba(251, 191, 36, 0.15);
+      color: #fbbf24;
+      padding: 5px 15px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 15px;
+      border: 1px solid rgba(251, 191, 36, 0.2);
+      font-size: 0.9rem;
+    }
 
-.notice-list {
-list-style-type: none;
-padding-left: 0;
-}
+    .notice-priority {
+      display: inline-block;
+      padding: 3px 12px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-left: 10px;
+    }
 
-.notice-list li {
-padding: 10px 0;
-border-bottom: 1px dashed #dee2e6;
-position: relative;
-padding-left: 30px;
-}
+    .priority-high {
+      background: #dc3545;
+      color: white;
+    }
 
-.notice-list li:before {
-content: "•";
-color: #856404;
-font-size: 1.5rem;
-position: absolute;
-left: 0;
-top: 5px;
-}
+    .priority-medium {
+      background: #f59e0b;
+      color: #0a1628;
+    }
 
-.notice-list li:last-child {
-border-bottom: none;
-}
+    .priority-low {
+      background: #10b981;
+      color: #0a1628;
+    }
 
-.download-btn {
-background: #856404;
-color: white;
-border: none;
-padding: 10px 20px;
-border-radius: 8px;
-text-decoration: none;
-display: inline-flex;
-align-items: center;
-margin-top: 20px;
-}
+    .btn-gold {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: #0a1628;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
 
-.download-btn:hover {
-background: #715c04;
-color: white;
-}
-</style>
+    .btn-gold:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(251, 191, 36, 0.3);
+      color: #0a1628;
+    }
+
+    .btn-outline-gold {
+      background: transparent;
+      color: #fbbf24;
+      border: 2px solid #fbbf24;
+      padding: 10px 25px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn-outline-gold:hover {
+      background: #fbbf24;
+      color: #0a1628;
+    }
+
+    .footer {
+      background: rgba(10, 22, 40, 0.85);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      color: #d1e0f0;
+      padding: 50px 0 30px;
+      margin-top: 50px;
+      border-top: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .footer a {
+      color: #fbbf24;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: #f59e0b;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .glass-card {
+        margin-bottom: 20px;
+      }
+      .notice-section {
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-<!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-custom fixed-top">
-<div class="container">
-<a class="navbar-brand" href="index.html">
-<i class="fas fa-school me-2"></i>Lunzu Secondary School
-</a>
-<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navbarNav">
-<ul class="navbar-nav ms-auto">
-<li class="nav-item">
-<a class="nav-link" href="index.html">Home</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="about.html" target="_blank">About</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="features.html" target="_blank">Features</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="portals.html" target="_blank">Portals</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="testimonials.html" target="_blank">Testimonials</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="contact.html" target="_blank">Contact</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" href="important-notice.html">
-<i class="fas fa-bullhorn me-1"></i>Notice
-</a>
-</li>
-</ul>
-</div>
-</div>
-</nav>
+  <div id="bg-canvas-container">
+    <canvas id="bgCanvas"></canvas>
+  </div>
 
-<!-- Main Content -->
-<div class="container my-5">
-<h1 class="section-title">Important Notices & Announcements</h1>
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-school me-2" style="color: #fbbf24;"></i>Lunzu Secondary School
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="portals.html">Portals</a></li>
+          <li class="nav-item"><a class="nav-link" href="testimonials.html">Testimonials</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="important-notice.html"><i class="fas fa-bullhorn me-1"></i>Notice</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-<!-- Current Notice -->
-<div class="notice-section">
-<div class="notice-header">
-<div class="notice-icon">
-<i class="fas fa-bullhorn"></i>
-</div>
-<div>
-<h3 class="mb-2" style="color: #856404;">
-<i class="fas fa-exclamation-circle me-2"></i>Important Announcement
-</h3>
-<div class="notice-date">
-<i class="fas fa-calendar-alt me-2"></i>Published: January 3, 2026
-</div>
-</div>
-</div>
+  <div class="container my-5" style="padding-top: 80px;">
+    <h1 class="section-title">Important Notices & Announcements</h1>
 
-<h4 class="mb-3" style="color: #856404;">School Opening for Term 2 - Academic Year 2025/2026</h4>
+    <div class="notice-section">
+      <div class="d-flex align-items-center mb-3">
+        <i class="fas fa-bullhorn fa-2x" style="color: #fbbf24; margin-right: 15px;"></i>
+        <div>
+          <h3 style="color: #fbbf24; margin: 0;">Important Announcement</h3>
+          <div class="notice-date">
+            <i class="fas fa-calendar-alt me-2"></i>Published: January 3, 2026
+          </div>
+        </div>
+      </div>
 
-<p class="lead mb-4" style="color: #856404;">
-School opens for term 3 on <strong>20th April, 2026</strong>. All students are expected to report on <strong>19th April, 2026</strong> with the following requirements:
-</p>
+      <h4 style="color: #fbbf24;">School Opening for Term 3 - Academic Year 2025/2026</h4>
 
-<ul class="notice-list">
-<li><strong>Proof of Payment:</strong> School fees payment receipt or bank deposit slip</li>
-<li><strong>Required Materials:</strong>
-<ul>
-<li>Mosquito nets (for boarding students)</li>
-<li>Pails (2 per student)</li>
-<li>Tissue papers (2 packets)</li>
-<li>Soap and other personal toiletries</li>
-</ul>
-</li>
-<li><strong>Academic Requirements:</strong>
-<ul>
-<li>All textbooks and exercise books</li>
-<li>Mathematical sets and geometry instruments</li>
-<li>School uniform in good condition</li>
-<li>Sports attire</li>
-</ul>
-</li>
-<li><strong>Health Requirements:</strong>
-<ul>
-<li>Medical report for students with special conditions</li>
-            <li>COVID-19 vaccination card (where applicable)</li>
-<li>Personal medication with doctor's prescription</li>
-</ul>
-</li>
-</ul>
+      <p style="color: #d1e0f0; font-size: 1.1rem; margin: 20px 0;">
+        School opens for term 3 on <strong style="color: #fbbf24;">20th April, 2026</strong>. All students are expected to report on <strong style="color: #fbbf24;">19th April, 2026</strong> with the following requirements:
+      </p>
 
-<div class="alert alert-warning mt-4">
-<h5><i class="fas fa-clock me-2"></i>Important Dates</h5>
-<ul class="mb-0">
-<li><strong>Reporting Day:</strong> January 4, 2026 (8:00 AM - 4:00 PM)</li>
-<li><strong>Classes Begin:</strong> January 5, 2026 (7:30 AM)</li>
-          <li><strong>Fee Payment Deadline:</strong> January 15, 2026</li>
-          <li><strong>First Term Exams:</strong> March 15-25, 2026</li>
-          <li><strong>Fee part-payment Deadline:</strong> January 5, 2026</li>
-          <li><strong>First Term Exams:</strong> March 16-April, 1, 2026</li>
-</ul>
-</div>
+      <ul>
+        <li><strong style="color: #fff;">Proof of Payment:</strong> School fees payment receipt or bank deposit slip</li>
+        <li><strong style="color: #fff;">Required Materials:</strong>
+          <ul style="list-style: none; padding-left: 20px; margin-top: 5px;">
+            <li style="border-bottom: none; padding: 3px 0;">• Mosquito nets (for boarding students)</li>
+            <li style="border-bottom: none; padding: 3px 0;">• Pails (2 per student)</li>
+            <li style="border-bottom: none; padding: 3px 0;">• Tissue papers (2 packets)</li>
+            <li style="border-bottom: none; padding: 3px 0;">• Soap and other personal toiletries</li>
+          </ul>
+        </li>
+        <li><strong style="color: #fff;">Academic Requirements:</strong>
+          <ul style="list-style: none; padding-left: 20px; margin-top: 5px;">
+            <li style="border-bottom: none; padding: 3px 0;">• All textbooks and exercise books</li>
+            <li style="border-bottom: none; padding: 3px 0;">• Mathematical sets and geometry instruments</li>
+            <li style="border-bottom: none; padding: 3px 0;">• School uniform in good condition</li>
+          </ul>
+        </li>
+        <li><strong style="color: #fff;">Health Requirements:</strong>
+          <ul style="list-style: none; padding-left: 20px; margin-top: 5px;">
+            <li style="border-bottom: none; padding: 3px 0;">• Medical report for students with special conditions</li>
+            <li style="border-bottom: none; padding: 3px 0;">• COVID-19 vaccination card (where applicable)</li>
+          </ul>
+        </li>
+      </ul>
 
-<a href="#" class="download-btn">
-<i class="fas fa-download me-2"></i>Download Official Notice (PDF)
-</a>
-</div>
+      <div style="background: rgba(251, 191, 36, 0.08); padding: 15px 20px; border-radius: 12px; margin-top: 20px; border: 1px solid rgba(251, 191, 36, 0.15);">
+        <h5 style="color: #fbbf24;"><i class="fas fa-clock me-2"></i>Important Dates</h5>
+        <ul style="margin-bottom: 0;">
+          <li><strong style="color: #fff;">Reporting Day:</strong> April 19, 2026 (8:00 AM - 4:00 PM)</li>
+          <li><strong style="color: #fff;">Classes Begin:</strong> April 20, 2026 (7:30 AM)</li>
+          <li><strong style="color: #fff;">Fee part-payment Deadline:</strong> April 19, 2026</li>
+          <li><strong style="color: #fff;">First Term Exams:</strong> March 16 - April 1, 2026</li>
+        </ul>
+      </div>
 
-<!-- Previous Notices -->
-<div class="row mt-5">
-<div class="col-12">
-<h2 class="section-title">Previous Notices</h2>
-</div>
+      <div class="mt-4">
+        <a href="#" class="btn btn-gold">
+          <i class="fas fa-download me-2"></i>Download Official Notice (PDF)
+        </a>
+      </div>
+    </div>
 
-<div class="col-md-6 mb-4">
-<div class="card card-custom h-100">
-<div class="card-body">
-<div class="d-flex justify-content-between align-items-start mb-3">
-<span class="notice-date">
-<i class="fas fa-calendar-alt me-1"></i>Dec 20, 2025
-</span>
-<span class="notice-priority priority-high">HIGH</span>
-</div>
-<h4>Term 1 Results Available</h4>
-<p>Term 1 examination results are now available on the student portal. Parents and guardians can access results using student admission numbers.</p>
-<div class="mt-3">
-<a href="portals.html" class="btn btn-outline-primary btn-sm" target="_blank">
-<i class="fas fa-external-link-alt me-1"></i>Access Portal
-</a>
-</div>
-</div>
-</div>
-</div>
+    <h2 class="section-title mt-5">Previous Notices</h2>
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <div class="glass-card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <span class="notice-date"><i class="fas fa-calendar-alt me-1"></i>Dec 20, 2025</span>
+              <span class="notice-priority priority-high">HIGH</span>
+            </div>
+            <h4 style="color: #fbbf24;">Term 1 Results Available</h4>
+            <p>Term 1 examination results are now available on the student portal. Parents and guardians can access results using student admission numbers.</p>
+            <a href="portals.html" class="btn btn-outline-gold btn-sm">Access Portal</a>
+          </div>
+        </div>
+      </div>
 
-<div class="col-md-6 mb-4">
-<div class="card card-custom h-100">
-<div class="card-body">
-<div class="d-flex justify-content-between align-items-start mb-3">
-<span class="notice-date">
-<i class="fas fa-calendar-alt me-1"></i>Dec 15, 2025
-</span>
-<span class="notice-priority priority-medium">MEDIUM</span>
-</div>
-<h4>Parent-Teacher Meeting</h4>
-            <p>Annual parent-teacher meeting scheduled for January 10, 2026. All parents are encouraged to attend to discuss student progress.</p>
+      <div class="col-md-6 mb-4">
+        <div class="glass-card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <span class="notice-date"><i class="fas fa-calendar-alt me-1"></i>Dec 15, 2025</span>
+              <span class="notice-priority priority-medium">MEDIUM</span>
+            </div>
+            <h4 style="color: #fbbf24;">Parent-Teacher Meeting</h4>
             <p>Parent-teacher meeting scheduled for February 1, 2026. All parents are encouraged to attend to discuss student progress.</p>
-<div class="mt-3">
-<a href="#" class="btn btn-outline-primary btn-sm">
-<i class="fas fa-calendar-check me-1"></i>View Schedule
-</a>
-</div>
-</div>
-</div>
-</div>
+            <a href="#" class="btn btn-outline-gold btn-sm">View Schedule</a>
+          </div>
+        </div>
+      </div>
 
-<div class="col-md-6 mb-4">
-<div class="card card-custom h-100">
-<div class="card-body">
-<div class="d-flex justify-content-between align-items-start mb-3">
-<span class="notice-date">
-<i class="fas fa-calendar-alt me-1"></i>Dec 10, 2025
-</span>
-<span class="notice-priority priority-high">HIGH</span>
-</div>
-<h4>Fee Payment Reminder</h4>
-            <p>Reminder: Term 2 fees should be paid by January 15, 2026. Late payments will attract a penalty fee of 10%.</p>
+      <div class="col-md-6 mb-4">
+        <div class="glass-card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <span class="notice-date"><i class="fas fa-calendar-alt me-1"></i>Dec 10, 2025</span>
+              <span class="notice-priority priority-high">HIGH</span>
+            </div>
+            <h4 style="color: #fbbf24;">Fee Payment Reminder</h4>
             <p>Reminder: Term 2 part-payment of fees should be paid by January 5, 2026.</p>
-<div class="mt-3">
-<a href="portals.html" class="btn btn-outline-primary btn-sm" target="_blank">
-<i class="fas fa-file-invoice-dollar me-1"></i>Check Fee Balance
-</a>
-</div>
-</div>
-</div>
-</div>
+            <a href="portals.html" class="btn btn-outline-gold btn-sm">Check Fee Balance</a>
+          </div>
+        </div>
+      </div>
 
-<div class="col-md-6 mb-4">
-<div class="card card-custom h-100">
-<div class="card-body">
-<div class="d-flex justify-content-between align-items-start mb-3">
-<span class="notice-date">
-<i class="fas fa-calendar-alt me-1"></i>Dec 5, 2025
-</span>
-<span class="notice-priority priority-low">LOW</span>
-</div>
-<h4>Library Opening Hours</h4>
-            <p>School library will operate from 7:30 AM to 5:00 PM during term time. Students are encouraged to make use of library resources.</p>
+      <div class="col-md-6 mb-4">
+        <div class="glass-card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <span class="notice-date"><i class="fas fa-calendar-alt me-1"></i>Dec 5, 2025</span>
+              <span class="notice-priority priority-low">LOW</span>
+            </div>
+            <h4 style="color: #fbbf24;">Library Opening Hours</h4>
             <p>School library will operate from 7:30 AM to 3:00 PM during term time. Students are encouraged to make use of library resources.</p>
-<div class="mt-3">
-<a href="#" class="btn btn-outline-primary btn-sm">
-<i class="fas fa-book me-1"></i>Library Rules
-</a>
-</div>
-</div>
-</div>
-</div>
-</div>
+            <a href="#" class="btn btn-outline-gold btn-sm">Library Rules</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<!-- Notice Archive -->
-<div class="row mt-5">
-<div class="col-12">
-<div class="card card-custom">
-<div class="card-body">
-<h3 class="mb-4"><i class="fas fa-archive me-2"></i>Notice Archive</h3>
-<div class="table-responsive">
-<table class="table table-hover">
-<thead>
-<tr>
-<th>Date</th>
-<th>Notice Title</th>
-<th>Category</th>
-<th>Status</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Nov 30, 2025</td>
-<td>End of Term 1 Announcement</td>
-<td>Academic</td>
-<td><span class="badge bg-secondary">Archived</span></td>
-<td><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
-</tr>
-<tr>
-<td>Nov 20, 2025</td>
-<td>Sports Day Results</td>
-<td>Sports</td>
-<td><span class="badge bg-secondary">Archived</span></td>
-<td><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
-</tr>
-<tr>
-<td>Nov 15, 2025</td>
-<td>Science Fair Winners</td>
-<td>Academic</td>
-<td><span class="badge bg-secondary">Archived</span></td>
-<td><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
-</tr>
-<tr>
-<td>Nov 10, 2025</td>
-<td>Computer Lab Maintenance</td>
-<td>Facilities</td>
-<td><span class="badge bg-secondary">Archived</span></td>
-<td><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
-</tr>
-<tr>
-<td>Nov 5, 2025</td>
-<td>Health Check-up Schedule</td>
-<td>Health</td>
-<td><span class="badge bg-secondary">Archived</span></td>
-<td><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
+    <div class="row mt-4">
+      <div class="col-12">
+        <div class="glass-card">
+          <div class="card-body">
+            <h4 style="color: #fbbf24; margin-bottom: 20px;"><i class="fas fa-archive me-2"></i>Notice Archive</h4>
+            <div class="table-responsive">
+              <table class="table" style="color: #d1e0f0;">
+                <thead>
+                  <tr style="color: #fbbf24; border-bottom: 1px solid rgba(255,215,0,0.1);">
+                    <th>Date</th>
+                    <th>Notice Title</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td>Nov 30, 2025</td>
+                    <td>End of Term 1 Announcement</td>
+                    <td>Academic</td>
+                    <td><span class="notice-priority priority-low" style="margin-left: 0;">Archived</span></td>
+                    <td><a href="#" class="btn btn-outline-gold btn-sm">View</a></td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td>Nov 20, 2025</td>
+                    <td>Sports Day Results</td>
+                    <td>Sports</td>
+                    <td><span class="notice-priority priority-low" style="margin-left: 0;">Archived</span></td>
+                    <td><a href="#" class="btn btn-outline-gold btn-sm">View</a></td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td>Nov 15, 2025</td>
+                    <td>Science Fair Winners</td>
+                    <td>Academic</td>
+                    <td><span class="notice-priority priority-low" style="margin-left: 0;">Archived</span></td>
+                    <td><a href="#" class="btn btn-outline-gold btn-sm">View</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<!-- Subscribe to Notices -->
-<div class="row mt-5">
-<div class="col-md-8 mx-auto">
-<div class="card card-custom">
-<div class="card-body text-center">
-<h3><i class="fas fa-bell me-2"></i>Get Notifications</h3>
-<p class="mb-4">Subscribe to receive important notices and announcements via email or SMS.</p>
-<div class="row justify-content-center">
-<div class="col-md-8">
-<div class="input-group mb-3">
-<input type="email" class="form-control" placeholder="Enter your email address">
-<button class="btn btn-primary" type="button">Subscribe</button>
-</div>
-<p class="text-muted"><small>We respect your privacy. You can unsubscribe at any time.</small></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+    <div class="row mt-4">
+      <div class="col-lg-8 mx-auto">
+        <div class="glass-card text-center">
+          <div class="card-body">
+            <h4 style="color: #fbbf24;"><i class="fas fa-bell me-2"></i>Get Notifications</h4>
+            <p style="color: #d1e0f0;">Subscribe to receive important notices and announcements via email.</p>
+            <div class="row justify-content-center">
+              <div class="col-md-8">
+                <div class="input-group mb-3">
+                  <input type="email" class="form-control" placeholder="Enter your email address" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,215,0,0.15); color: #fff; border-radius: 12px 0 0 12px;">
+                  <button class="btn btn-gold" type="button" style="border-radius: 0 12px 12px 0;">Subscribe</button>
+                </div>
+                <p style="color: #bcc9db; font-size: 0.85rem;"><small>We respect your privacy. You can unsubscribe at any time.</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<!-- Footer -->
-<footer class="footer">
-<div class="container">
-<div class="row align-items-center">
-<div class="col-lg-8 text-center text-lg-start mb-4 mb-lg-0">
-<h3 class="mb-3"><i class="fas fa-school me-2"></i>Lunzu Secondary School</h3>
-<p class="mb-0">Committed to providing quality education and fostering academic excellence since 1985.</p>
-<p class="mb-0 mt-2">
-<i class="fas fa-certificate me-2"></i>Registered Government Secondary School
-</p>
-</div>
-</div>
-<hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
-<div class="row">
-<div class="col-md-6 text-center text-md-start">
-<p class="mb-0">&copy; <span id="current-year">2026</span> Lunzu Secondary School. All rights reserved.</p>
-</div>
-<div class="col-md-6 text-center text-md-end">
-<a href="contact.html" target="_blank" class="text-white me-3">Contact</a>
-<a href="about.html" target="_blank" class="text-white me-3">About</a>
-<a href="portals.html" target="_blank" class="text-white">Portals</a>
-</div>
-</div>
-</div>
-</footer>
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 text-center text-lg-start mb-4 mb-lg-0">
+          <h3 style="color: #fff;"><i class="fas fa-school me-2" style="color: #fbbf24;"></i>Lunzu Secondary School</h3>
+          <p class="mb-0">Committed to providing quality education and fostering academic excellence since 1985.</p>
+        </div>
+      </div>
+      <hr style="border-color: rgba(255,215,0,0.1);">
+      <div class="row">
+        <div class="col-md-6 text-center text-md-start">
+          <p class="mb-0">&copy; <span id="current-year">2026</span> Lunzu Secondary School. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <a href="contact.html" class="me-3">Contact</a>
+          <a href="about.html" class="me-3">About</a>
+          <a href="portals.html">Portals</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-<!-- Bootstrap JS Bundle -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    (function initBackground() {
+      const canvas = document.getElementById('bgCanvas');
+      const container = document.getElementById('bg-canvas-container');
+      const ctx = canvas.getContext('2d');
+      let w, h;
+      let items = [];
+      const ITEM_COUNT = 30;
+      const symbols = ['🎓', '📜', '📘', '📚', '🏆', '⭐', '📖', '✏️', '📝', '🏅', '🔬', '🧪', '📐', '🧮', '🌍', '⚛️'];
 
-<script>
-// Set current year
-document.getElementById('current-year').textContent = new Date().getFullYear();
-</script>
+      function resizeCanvas() {
+        const rect = container.getBoundingClientRect();
+        canvas.width = rect.width || window.innerWidth;
+        canvas.height = rect.height || window.innerHeight;
+        w = canvas.width;
+        h = canvas.height;
+      }
+
+      function randomItem() {
+        return {
+          x: Math.random() * w,
+          y: Math.random() * h - 20,
+          size: 34 + Math.random() * 42,
+          speedX: (Math.random() - 0.5) * 0.6,
+          speedY: 0.12 + Math.random() * 0.5,
+          rotation: Math.random() * 360,
+          rotSpeed: (Math.random() - 0.5) * 0.02,
+          opacity: 0.18 + Math.random() * 0.30,
+          symbol: symbols[Math.floor(Math.random() * symbols.length)],
+          phase: Math.random() * 100,
+        };
+      }
+
+      function initItems() {
+        items = [];
+        for (let i = 0; i < ITEM_COUNT; i++) {
+          items.push(randomItem());
+        }
+      }
+
+      function drawItems() {
+        ctx.clearRect(0, 0, w, h);
+        const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) * 0.7);
+        grad.addColorStop(0, 'rgba(10, 22, 40, 0.05)');
+        grad.addColorStop(1, 'rgba(10, 22, 40, 0.40)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, w, h);
+
+        items.forEach(item => {
+          ctx.save();
+          ctx.translate(item.x, item.y);
+          ctx.rotate(item.rotation * Math.PI / 180);
+          ctx.globalAlpha = item.opacity;
+          ctx.font = `${item.size}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.shadowColor = 'rgba(0,0,0,0.3)';
+          ctx.shadowBlur = 20;
+          ctx.fillStyle = '#fbbf24';
+          ctx.shadowColor = 'rgba(0,0,0,0.4)';
+          ctx.shadowBlur = 22;
+          ctx.fillText(item.symbol, 0, 0);
+          ctx.shadowBlur = 0;
+          ctx.font = `${item.size * 0.3}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif`;
+          ctx.fillStyle = 'rgba(255,215,0,0.10)';
+          ctx.fillText('✦', item.size * 0.25, -item.size * 0.2);
+          ctx.restore();
+
+          item.x += item.speedX + Math.sin(item.phase + performance.now() * 0.0002) * 0.15;
+          item.y += item.speedY * 0.3 + Math.sin(item.phase + performance.now() * 0.00035) * 0.12;
+          item.rotation += item.rotSpeed;
+
+          if (item.x > w + 60) item.x = -60;
+          if (item.x < -60) item.x = w + 60;
+          if (item.y > h + 60) item.y = -60;
+          if (item.y < -60) item.y = h + 60;
+        });
+
+        requestAnimationFrame(drawItems);
+      }
+
+      function startBackground() {
+        resizeCanvas();
+        initItems();
+        drawItems();
+      }
+
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        items.forEach(item => {
+          item.x = Math.min(Math.max(item.x, 0), w);
+          item.y = Math.min(Math.max(item.y, 0), h);
+        });
+      });
+
+      startBackground();
+    })();
+
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    document.querySelector('.input-group .btn-gold').addEventListener('click', function() {
+      const email = document.querySelector('.input-group input').value;
+      if (email) {
+        alert('Thank you for subscribing! You will receive notifications at: ' + email);
+        document.querySelector('.input-group input').value = '';
+      } else {
+        alert('Please enter a valid email address.');
+      }
+    });
+  </script>
 </body>
-</html>
 </html>
