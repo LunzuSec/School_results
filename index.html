@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
+    /* ===== ALL YOUR EXISTING STYLES HERE ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
@@ -95,6 +96,7 @@
       font-weight: 500;
       transition: color 0.3s;
       position: relative;
+      cursor: pointer;
     }
 
     .navbar-custom .nav-link::after {
@@ -109,11 +111,16 @@
       transition: width 0.3s ease;
     }
 
-    .navbar-custom .nav-link:hover::after {
+    .navbar-custom .nav-link:hover::after,
+    .navbar-custom .nav-link.active::after {
       width: 80%;
     }
 
     .navbar-custom .nav-link:hover {
+      color: #fbbf24 !important;
+    }
+
+    .navbar-custom .nav-link.active {
       color: #fbbf24 !important;
     }
 
@@ -299,6 +306,15 @@
       font-size: 0.9rem;
     }
 
+    /* Page sections - hidden by default */
+    .page-section {
+      display: none;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
     /* Loading spinner */
     .cms-loader {
       text-align: center;
@@ -365,21 +381,22 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container">
-      <a class="navbar-brand" href="index.html" id="schoolName">
-        <i class="fas fa-school me-2" style="color: #fbbf24;"></i>Lunzu Secondary School
+      <a class="navbar-brand" href="#" onclick="showPage('home')">
+        <i class="fas fa-school me-2" style="color: #fbbf24;"></i>
+        <span id="schoolName">Lunzu Secondary School</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto" id="navLinks">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
-          <li class="nav-item"><a class="nav-link" href="portals.html">Portals</a></li>
-          <li class="nav-item"><a class="nav-link" href="testimonials.html">Testimonials</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="important-notice.html"><i class="fas fa-bullhorn me-1"></i>Notice</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#" onclick="showPage('home')">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('about')">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('features')">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('portals')">Portals</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('testimonials')">Testimonials</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('contact')">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('notice')"><i class="fas fa-bullhorn me-1"></i>Notice</a></li>
         </ul>
       </div>
     </div>
@@ -388,45 +405,158 @@
   <!-- Main Content -->
   <div class="container my-5" style="padding-top: 80px;">
     
-    <!-- Hero Section -->
-    <div class="glass-card text-center mb-5">
-      <div class="card-body py-5">
-        <h1 style="color: #fff; font-size: 3rem; font-weight: 700;" id="heroTitle">
-          Welcome to <span style="color: #fbbf24;">Lunzu Secondary School</span>
-        </h1>
-        <p style="color: #d1e0f0; font-size: 1.2rem; max-width: 700px; margin: 20px auto;" id="heroSubtitle">
-          Excellence in Education Since 1985
-        </p>
-        <a href="portals.html" class="btn btn-gold">
-          <i class="fas fa-door-open me-2"></i>Access Portals
-        </a>
+    <!-- ===== HOME PAGE ===== -->
+    <div id="page-home" class="page-section active">
+      <!-- Hero Section -->
+      <div class="glass-card text-center mb-5">
+        <div class="card-body py-5">
+          <h1 style="color: #fff; font-size: 3rem; font-weight: 700;" id="heroTitle">
+            Welcome to <span style="color: #fbbf24;">Lunzu Secondary School</span>
+          </h1>
+          <p style="color: #d1e0f0; font-size: 1.2rem; max-width: 700px; margin: 20px auto;" id="heroSubtitle">
+            Excellence in Education Since 1985
+          </p>
+          <a href="#" onclick="showPage('portals')" class="btn btn-gold">
+            <i class="fas fa-door-open me-2"></i>Access Portals
+          </a>
+        </div>
       </div>
-    </div>
 
-    <!-- Announcements Section -->
-    <div id="announcementsSection">
-      <h2 class="section-title">📢 Announcements</h2>
-      <div id="announcementsContainer">
-        <div class="cms-loader">
-          <div class="spinner"></div>
-          <p>Loading announcements...</p>
+      <!-- Announcements Section -->
+      <div id="announcementsSection">
+        <h2 class="section-title">📢 Announcements</h2>
+        <div id="announcementsContainer">
+          <div class="cms-loader">
+            <div class="spinner"></div>
+            <p>Loading announcements...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Links Section -->
+      <div id="quickLinksSection" class="mt-5">
+        <h2 class="section-title">Quick Links</h2>
+        <div class="row" id="quickLinksContainer">
+          <div class="cms-loader">
+            <div class="spinner"></div>
+            <p>Loading links...</p>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Quick Links Section -->
-    <div id="quickLinksSection" class="mt-5">
-      <h2 class="section-title">Quick Links</h2>
-      <div class="row" id="quickLinksContainer">
-        <div class="cms-loader">
-          <div class="spinner"></div>
-          <p>Loading links...</p>
+    <!-- ===== ABOUT PAGE ===== -->
+    <div id="page-about" class="page-section">
+      <h2 class="section-title">About Our School</h2>
+      <div class="glass-card">
+        <div class="card-body text-start">
+          <h3 style="color: #fbbf24;">A Legacy of Excellence Since 1985</h3>
+          <p style="color: #d1e0f0; line-height: 1.8;">
+            Lunzu Secondary School is a distinguished government-run institution serving both boys and girls in Blantyre Rural. Established in 1985, our school has built a strong reputation for academic excellence and holistic development.
+          </p>
+          <p style="color: #d1e0f0; line-height: 1.8;">
+            We take pride in preparing students for higher education and professional careers, with numerous alumni successfully transitioning to colleges and universities nationwide.
+          </p>
+          <div class="row mt-4">
+            <div class="col-md-6">
+              <div class="feature-icon" style="width:60px; height:60px; margin:0 auto 15px;"><i class="fas fa-bullseye"></i></div>
+              <h4 style="color: #fbbf24; text-align:center;">Our Mission</h4>
+              <p style="color: #d1e0f0; text-align:center;">To provide quality education that empowers students with knowledge, skills, and values to become responsible citizens and leaders in society.</p>
+            </div>
+            <div class="col-md-6">
+              <div class="feature-icon" style="width:60px; height:60px; margin:0 auto 15px;"><i class="fas fa-eye"></i></div>
+              <h4 style="color: #fbbf24; text-align:center;">Our Vision</h4>
+              <p style="color: #d1e0f0; text-align:center;">To be a center of excellence in secondary education, producing well-rounded individuals who contribute positively to national development.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Contact Section (for contact.html) -->
-    <div id="contactSection" style="display: none;">
+    <!-- ===== FEATURES PAGE ===== -->
+    <div id="page-features" class="page-section">
+      <h2 class="section-title">System Features</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="glass-card">
+            <div class="card-body">
+              <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+              <h4>Performance Tracking</h4>
+              <p>Monitor and analyze student performance across various subjects with detailed reports and analytics.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="glass-card">
+            <div class="card-body">
+              <div class="feature-icon"><i class="fas fa-users"></i></div>
+              <h4>User Management</h4>
+              <p>Manage different user roles including Teachers, Parents, and Admins with secure access controls.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="glass-card">
+            <div class="card-body">
+              <div class="feature-icon"><i class="fas fa-file-pdf"></i></div>
+              <h4>Report Generation</h4>
+              <p>Generate comprehensive PDF reports to keep track of academic progress and achievements.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PORTALS PAGE ===== -->
+    <div id="page-portals" class="page-section">
+      <h2 class="section-title">Access Your Portal</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-5 mb-4">
+          <div class="glass-card">
+            <div class="card-body">
+              <div class="feature-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+              <h4>Teachers Portal</h4>
+              <p>Submit scores, manage classes, and track student performance.</p>
+              <a href="teachers-portal.html" class="btn btn-gold" style="display:inline-block; padding:12px 30px; font-size:0.9rem; text-decoration:none;">Access Portal</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5 mb-4">
+          <div class="glass-card">
+            <div class="card-body">
+              <div class="feature-icon"><i class="fas fa-user-graduate"></i></div>
+              <h4>Student Results Portal</h4>
+              <p>View your academic results and download reports.</p>
+              <a href="student-portal.html" class="btn btn-gold" style="display:inline-block; padding:12px 30px; font-size:0.9rem; text-decoration:none;">Access Portal</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5 mb-4">
+          <div class="glass-card">
+            <div class="card-body">
+              <div class="feature-icon" style="background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), rgba(59, 130, 246, 0.1)); border-color: rgba(96, 165, 250, 0.3); color: #60a5fa;"><i class="fas fa-coins"></i></div>
+              <h4>Bursar's Fee Portal</h4>
+              <p>View fee balances, payment history, and account statements.</p>
+              <a href="https://lunzusec.github.io/bursar/" class="btn btn-gold" style="display:inline-block; padding:12px 30px; font-size:0.9rem; text-decoration:none;" target="_blank">Access Portal</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TESTIMONIALS PAGE ===== -->
+    <div id="page-testimonials" class="page-section">
+      <h2 class="section-title">What Our Community Says</h2>
+      <div id="testimonialsContainer">
+        <div class="cms-loader">
+          <div class="spinner"></div>
+          <p>Loading testimonials...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CONTACT PAGE ===== -->
+    <div id="page-contact" class="page-section">
       <h2 class="section-title">Contact Us</h2>
       <div class="row">
         <div class="col-lg-8 mx-auto">
@@ -442,16 +572,18 @@
       </div>
     </div>
 
-    <!-- Testimonials Section (for testimonials.html) -->
-    <div id="testimonialsSection" style="display: none;">
-      <h2 class="section-title">What Our Community Says</h2>
-      <div id="testimonialsContainer">
+    <!-- ===== NOTICE PAGE ===== -->
+    <div id="page-notice" class="page-section">
+      <h2 class="section-title">📢 Important Notices</h2>
+      <div id="noticeContainer">
+        <!-- Will be populated from announcements -->
         <div class="cms-loader">
           <div class="spinner"></div>
-          <p>Loading testimonials...</p>
+          <p>Loading notices...</p>
         </div>
       </div>
     </div>
+
   </div>
 
   <!-- Footer -->
@@ -474,11 +606,11 @@
           <p class="mb-0">&copy; <span id="current-year">2026</span> <span id="footerSchoolNameSmall">Lunzu Secondary School</span>. All rights reserved.</p>
         </div>
         <div class="col-md-6 text-center text-md-end">
-          <a href="contact.html">Contact</a>
+          <a href="#" onclick="showPage('contact')">Contact</a>
           <span class="mx-2">|</span>
-          <a href="about.html">About</a>
+          <a href="#" onclick="showPage('about')">About</a>
           <span class="mx-2">|</span>
-          <a href="portals.html">Portals</a>
+          <a href="#" onclick="showPage('portals')">Portals</a>
         </div>
       </div>
     </div>
@@ -489,10 +621,66 @@
   <script>
   // ============================================================
   // LUNZU SECONDARY SCHOOL - CMS INTEGRATION
-  // Automatically loads content from Google Sheets
   // ============================================================
 
   const CMS_API = 'https://script.google.com/macros/s/AKfycbz5WygXi8dd4i994XzLoDMGzguyEfjWmQuO3thX64A-x1_9FlF09G3GhsLp6jry6gUI/exec';
+
+  // ---------- PAGE NAVIGATION ----------
+  function showPage(pageId) {
+    // Hide all pages
+    document.querySelectorAll('.page-section').forEach(el => {
+      el.classList.remove('active');
+    });
+    
+    // Show selected page
+    const target = document.getElementById('page-' + pageId);
+    if (target) {
+      target.classList.add('active');
+    }
+    
+    // Update nav links
+    document.querySelectorAll('#navLinks .nav-link').forEach(link => {
+      link.classList.remove('active');
+    });
+    
+    // Find and activate matching nav link
+    const navLinks = document.querySelectorAll('#navLinks .nav-link');
+    const pageMap = {
+      'home': 0,
+      'about': 1,
+      'features': 2,
+      'portals': 3,
+      'testimonials': 4,
+      'contact': 5,
+      'notice': 6
+    };
+    const index = pageMap[pageId];
+    if (index !== undefined && navLinks[index]) {
+      navLinks[index].classList.add('active');
+    }
+    
+    // Update URL hash
+    window.location.hash = pageId;
+    
+    // Load content if needed
+    if (pageId === 'testimonials' && document.getElementById('testimonialsContainer').querySelector('.cms-loader')) {
+      loadTestimonials();
+    }
+    if (pageId === 'contact' && document.getElementById('contactsContainer').querySelector('.cms-loader')) {
+      loadContacts();
+    }
+    if (pageId === 'notice') {
+      loadAllNotices();
+    }
+  }
+
+  // Handle hash on load
+  window.addEventListener('hashchange', function() {
+    const hash = window.location.hash.replace('#', '');
+    if (hash && document.getElementById('page-' + hash)) {
+      showPage(hash);
+    }
+  });
 
   // ---------- UTILITY FUNCTIONS ----------
   function getPriorityClass(priority) {
@@ -580,6 +768,53 @@
       });
   }
 
+  // ---------- LOAD ALL NOTICES (for Notice page) ----------
+  function loadAllNotices() {
+    const container = document.getElementById('noticeContainer');
+    if (!container) return;
+
+    fetch(`${CMS_API}?action=announcements`)
+      .then(res => res.json())
+      .then(response => {
+        if (!response.success) throw new Error(response.error);
+        
+        const announcements = response.data;
+        
+        if (announcements.length === 0) {
+          container.innerHTML = `
+            <div style="text-align:center; color: #8a9bb5; padding: 30px;">
+              <i class="fas fa-info-circle" style="font-size: 2rem; color: #fbbf24;"></i>
+              <p style="margin-top: 10px;">No notices available.</p>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = announcements.map(a => `
+          <div class="announcement-item ${getPriorityClass(a.priority)}">
+            <h5>${a.title || 'Notice'}</h5>
+            <p>${a.content || ''}</p>
+            ${a.details ? `<div style="color: #bcc9db; font-size: 0.9rem; margin-bottom: 10px;">${a.details}</div>` : ''}
+            <div class="meta">
+              <span><i class="far fa-calendar-alt me-1"></i>${formatDate(a.published_date)}</span>
+              ${a.category ? `<span class="ms-3"><i class="far fa-tag me-1"></i>${a.category}</span>` : ''}
+              ${a.isActive !== false ? '<span class="ms-3" style="color: #34d399;">● Active</span>' : '<span class="ms-3" style="color: #8a9bb5;">● Archived</span>'}
+              ${a.action_text ? `<span class="ms-3"><a href="${a.action_url || '#'}" style="color: #fbbf24;">${a.action_text}</a></span>` : ''}
+            </div>
+          </div>
+        `).join('');
+      })
+      .catch(error => {
+        console.error('Error loading notices:', error);
+        container.innerHTML = `
+          <div style="text-align:center; color: #f87171; padding: 30px;">
+            <i class="fas fa-exclamation-triangle" style="font-size: 2rem;"></i>
+            <p style="margin-top: 10px;">Failed to load notices.</p>
+          </div>
+        `;
+      });
+  }
+
   // ---------- LOAD QUICK LINKS ----------
   function loadQuickLinks() {
     const container = document.getElementById('quickLinksContainer');
@@ -596,20 +831,28 @@
           return;
         }
 
-        container.innerHTML = links.map(link => `
+        container.innerHTML = links.map(link => {
+          // Check if URL is a hash link (starts with #)
+          const isHashLink = link.url && link.url.startsWith('#');
+          const pageName = isHashLink ? link.url.replace('#', '') : '';
+          
+          return `
           <div class="col-md-4 mb-4">
             <div class="glass-card h-100">
               <div class="card-body">
                 <div class="feature-icon"><i class="fas ${link.icon || 'fa-link'}"></i></div>
                 <h4>${link.title || 'Link'}</h4>
                 <p>${link.description || ''}</p>
-                <a href="${link.url || '#'}" class="btn-gold" style="display:inline-block; padding:10px 30px; font-size:0.9rem; text-decoration:none;">
+                <a href="${link.url || '#'}" 
+                   ${!isHashLink ? 'target="_blank"' : ''}
+                   onclick="${isHashLink ? `showPage('${pageName}'); return false;` : ''}"
+                   class="btn-gold" style="display:inline-block; padding:10px 30px; font-size:0.9rem; text-decoration:none;">
                   Learn More
                 </a>
               </div>
             </div>
           </div>
-        `).join('');
+        `}).join('');
       })
       .catch(error => {
         console.error('Error loading quick links:', error);
@@ -696,29 +939,24 @@
         
         const settings = response.data;
         
-        // Update school name
         if (settings.school_name) {
           document.querySelectorAll('#schoolName, #footerSchoolName, #footerSchoolNameSmall')
             .forEach(el => el.textContent = settings.school_name);
           
-          // Update hero title
           const heroTitle = document.getElementById('heroTitle');
           if (heroTitle) {
             heroTitle.innerHTML = `Welcome to <span style="color: #fbbf24;">${settings.school_name}</span>`;
           }
         }
         
-        // Update footer text
         if (settings.footer_text) {
           document.getElementById('footerText').textContent = settings.footer_text;
         }
         
-        // Update year
         if (settings.current_year) {
           document.getElementById('current-year').textContent = settings.current_year;
         }
         
-        // Update motto/subtitle
         if (settings.motto) {
           const subtitle = document.getElementById('heroSubtitle');
           if (subtitle) subtitle.textContent = settings.motto;
@@ -729,25 +967,22 @@
       });
   }
 
-  // ---------- DETERMINE PAGE AND LOAD ----------
+  // ---------- INITIALIZE ----------
   document.addEventListener('DOMContentLoaded', function() {
-    const path = window.location.pathname.split('/').pop() || 'index.html';
+    // Check URL hash for initial page
+    const hash = window.location.hash.replace('#', '');
+    if (hash && document.getElementById('page-' + hash)) {
+      showPage(hash);
+    } else {
+      showPage('home');
+    }
     
-    // Always load these
+    // Load all content
     loadAnnouncements();
     loadQuickLinks();
     loadSettings();
-    
-    // Page-specific content
-    if (path.includes('contact') || path === 'contact.html') {
-      document.getElementById('contactSection').style.display = 'block';
-      loadContacts();
-    }
-    
-    if (path.includes('testimonials') || path === 'testimonials.html') {
-      document.getElementById('testimonialsSection').style.display = 'block';
-      loadTestimonials();
-    }
+    loadTestimonials();
+    loadContacts();
   });
 
   // ---------- BACKGROUND ANIMATION ----------
