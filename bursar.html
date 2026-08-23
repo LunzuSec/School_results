@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bursar's Fee Portal - Lunzu Secondary School</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      min-height: 100vh;
+      background: #0a1628;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    #bg-canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    #bg-canvas-container canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border-radius: 28px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(255, 215, 0, 0.4);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+    }
+
+    .glass-card .card-body {
+      padding: 30px;
+    }
+
+    .glass-card h4, .glass-card h5 {
+      color: #fff;
+    }
+
+    .glass-card p, .glass-card li {
+      color: #d1e0f0;
+      line-height: 1.8;
+    }
+
+    .glass-card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .glass-card ul li {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-left: 25px;
+      position: relative;
+    }
+
+    .glass-card ul li::before {
+      content: '▸';
+      color: #60a5fa;
+      position: absolute;
+      left: 0;
+    }
+
+    .glass-card ul li:last-child {
+      border-bottom: none;
+    }
+
+    .navbar-custom {
+      background: rgba(10, 22, 40, 0.85);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+      padding: 15px 0;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .navbar-custom .navbar-brand,
+    .navbar-custom .nav-link {
+      color: #fff !important;
+    }
+
+    .section-title {
+      color: #fff;
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #60a5fa, #3b82f6);
+      margin: 15px auto 0;
+      border-radius: 2px;
+    }
+
+    .portal-header {
+      padding: 120px 0 40px;
+      text-align: center;
+    }
+
+    .portal-header h1 {
+      color: #60a5fa;
+      font-size: 2.8rem;
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .portal-header p {
+      color: #d1e0f0;
+      font-size: 1.2rem;
+    }
+
+    .btn-main-fee {
+      display: inline-block;
+      padding: 18px 50px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      transition: all 0.3s;
+      background: linear-gradient(135deg, #60a5fa, #3b82f6);
+      color: #fff;
+      border: none;
+      box-shadow: 0 4px 20px rgba(96, 165, 250, 0.3);
+      text-decoration: none;
+    }
+
+    .btn-main-fee:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 40px rgba(96, 165, 250, 0.5);
+      color: #fff;
+    }
+
+    .btn-portal-action {
+      display: block;
+      width: 100%;
+      padding: 15px 20px;
+      border-radius: 14px;
+      font-weight: 600;
+      text-align: left;
+      transition: all 0.3s;
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      margin-bottom: 10px;
+      text-decoration: none;
+    }
+
+    .btn-portal-action:hover {
+      transform: translateX(10px);
+      background: rgba(96, 165, 250, 0.15);
+      border-color: rgba(96, 165, 250, 0.3);
+      color: #60a5fa;
+    }
+
+    .btn-portal-action i {
+      margin-right: 12px;
+      color: #60a5fa;
+      width: 24px;
+    }
+
+    .btn-outline-blue {
+      background: transparent;
+      color: #60a5fa;
+      border: 2px solid #60a5fa;
+      padding: 10px 25px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .btn-outline-blue:hover {
+      background: #60a5fa;
+      color: #0a1628;
+    }
+
+    .alert-info {
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      color: #dbeafe;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .alert-warning {
+      background: rgba(251, 191, 36, 0.12);
+      border: 1px solid rgba(251, 191, 36, 0.2);
+      color: #fcd34d;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .alert-success {
+      background: rgba(52, 211, 153, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.2);
+      color: #6ee7b7;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .footer {
+      background: rgba(10, 22, 40, 0.85);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      color: #d1e0f0;
+      padding: 50px 0 30px;
+      margin-top: 50px;
+      border-top: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .footer a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: #3b82f6;
+      text-decoration: underline;
+    }
+
+    .modal-content {
+      background: rgba(20, 35, 55, 0.95);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      color: #fff;
+    }
+
+    .modal-header {
+      border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+    }
+
+    .modal-footer {
+      border-top: 1px solid rgba(255, 215, 0, 0.15);
+    }
+
+    .modal-body .accordion-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .modal-body .accordion-button {
+      background: rgba(255, 255, 255, 0.04);
+      color: #fff;
+    }
+
+    .modal-body .accordion-button:not(.collapsed) {
+      background: rgba(96, 165, 250, 0.15);
+      color: #60a5fa;
+    }
+
+    .modal-body .accordion-body {
+      color: #d1e0f0;
+    }
+
+    .fee-stat {
+      text-align: center;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .fee-stat .number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #60a5fa;
+    }
+
+    .fee-stat .label {
+      color: #d1e0f0;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .portal-header h1 {
+        font-size: 2rem;
+      }
+      .glass-card {
+        margin-bottom: 20px;
+      }
+      .btn-main-fee {
+        padding: 15px 30px;
+        font-size: 1rem;
+        width: 100%;
+      }
+      .fee-stat .number {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="bg-canvas-container">
+    <canvas id="bgCanvas"></canvas>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-school me-2" style="color: #60a5fa;"></i>Lunzu Secondary School
+      </a>
+    </div>
+  </nav>
+
+  <div class="portal-header">
+    <div class="container">
+      <h1><i class="fas fa-coins me-3" style="color: #60a5fa;"></i>Bursar's Fee Portal</h1>
+      <p>View Fee Balances, Payment History, and Account Statements</p>
+      <a href="index.html" class="btn-outline-blue mt-3" style="display: inline-block;">
+        <i class="fas fa-home me-2"></i>Back to Home
+      </a>
+    </div>
+  </div>
+
+  <div class="container my-4">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="glass-card text-center" style="background: linear-gradient(135deg, rgba(96, 165, 250, 0.12), rgba(59, 130, 246, 0.06));">
+          <div class="card-body">
+            <h4 style="color: #60a5fa; font-size: 2rem; margin-bottom: 15px;">
+              <i class="fas fa-file-invoice-dollar me-2"></i>Access Fee Records
+            </h4>
+            <p style="color: #d1e0f0;">Click the button below to access the fee portal where you can view your fee balances, payment history, and account statements.</p>
+            <button onclick="window.open('https://lunzusec.github.io/bursar/', '_blank');" class="btn-main-fee">
+              <i class="fas fa-external-link-alt me-2"></i>Go to Fee Portal
+            </button>
+            <p style="color: #bcc9db; margin-top: 15px; font-size: 0.9rem;">
+              <i class="fas fa-info-circle me-1"></i>You will be redirected to the official fee portal
+            </p>
+          </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <div class="fee-stat">
+              <div class="number"><i class="fas fa-credit-card me-2" style="font-size: 1.5rem;"></i>24/7</div>
+              <div class="label">Access Available</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="fee-stat">
+              <div class="number"><i class="fas fa-shield-alt me-2" style="font-size: 1.5rem;"></i>Secure</div>
+              <div class="label">Encrypted Portal</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="fee-stat">
+              <div class="number"><i class="fas fa-clock me-2" style="font-size: 1.5rem;"></i>Real-time</div>
+              <div class="label">Updated Records</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <div class="card-body">
+            <h4 style="color: #60a5fa; margin-bottom: 20px;"><i class="fas fa-info-circle me-2"></i>Important Information</h4>
+            <div class="alert-info" style="padding: 20px; border-radius: 12px; margin-bottom: 15px;">
+              <h5 style="color: #dbeafe;"><i class="fas fa-lightbulb me-2"></i>Before You Proceed:</h5>
+              <ul>
+                <li><strong style="color: #fff;">Requirements:</strong> You'll need your student name, class, and date of birth</li>
+                <li><strong style="color: #fff;">Browser:</strong> Use Chrome, Firefox, Edge, or Safari for best experience</li>
+                <li><strong style="color: #fff;">Support:</strong> Contact the accounts office for fee-related inquiries</li>
+                <li><strong style="color: #fff;">Timing:</strong> Fee records are available 24/7 throughout the year</li>
+              </ul>
+            </div>
+
+            <div class="alert-success" style="padding: 20px; border-radius: 12px; margin-bottom: 15px;">
+              <h5 style="color: #6ee7b7;"><i class="fas fa-check-circle me-2"></i>What You Can Do:</h5>
+              <ul>
+                <li>View current fee balance and payment history</li>
+                <li>Download account statements and receipts</li>
+                <li>Track installment payments and remaining balance</li>
+                <li>Identify any discrepancies in your fee records</li>
+              </ul>
+            </div>
+
+            <div class="alert-warning" style="padding: 20px; border-radius: 12px;">
+              <h5 style="color: #fcd34d;"><i class="fas fa-exclamation-triangle me-2"></i>Troubleshooting Tips:</h5>
+              <ul>
+                <li>If the page doesn't load, try refreshing or using a different browser</li>
+                <li>Ensure you have a stable internet connection</li>
+                <li>Check that you're entering your details correctly</li>
+                <li>If issues persist, contact the accounts office</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <div class="card-body">
+            <h4 style="color: #60a5fa; margin-bottom: 20px;"><i class="fas fa-link me-2"></i>Quick Links</h4>
+            <a href="index.html" class="btn-portal-action">
+              <i class="fas fa-home"></i> Main Homepage
+            </a>
+            <a href="#" class="btn-portal-action" data-bs-toggle="modal" data-bs-target="#contactModal">
+              <i class="fas fa-envelope"></i> Contact Accounts Office
+            </a>
+            <a href="#" class="btn-portal-action" data-bs-toggle="modal" data-bs-target="#instructionsModal">
+              <i class="fas fa-question-circle"></i> How to Use
+            </a>
+            <a href="#" class="btn-portal-action" data-bs-toggle="modal" data-bs-target="#faqModal">
+              <i class="fas fa-comments"></i> FAQ
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <div class="modal fade" id="contactModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" style="color: #60a5fa;"><i class="fas fa-envelope me-2"></i>Contact Accounts Office</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" style="filter: invert(1);"></button>
+        </div>
+        <div class="modal-body">
+          <h6 style="color: #60a5fa;">Accounts Office Contact:</h6>
+          <p><i class="fab fa-whatsapp" style="color: #25D366;"></i> WhatsApp: <a href="https://wa.me/265888866269" target="_blank" style="color: #60a5fa;">+265 888 866 269</a></p>
+          <p><i class="fas fa-phone" style="color: #60a5fa;"></i> Phone: Contact school administration during working hours</p>
+          <p><i class="fas fa-clock" style="color: #60a5fa;"></i> Available: Monday - Friday, 8:00 AM - 5:00 PM</p>
+          <hr style="border-color: rgba(255,215,0,0.1);">
+          <h6 style="color: #60a5fa;">Fee Inquiry:</h6>
+          <p><i class="fas fa-info-circle" style="color: #60a5fa;"></i> For any fee-related questions or discrepancies, please contact the accounts office directly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="instructionsModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" style="color: #60a5fa;"><i class="fas fa-question-circle me-2"></i>How to Use the Fee Portal</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" style="filter: invert(1);"></button>
+        </div>
+        <div class="modal-body">
+          <ol>
+            <li><strong style="color: #60a5fa;">Click the "Go to Fee Portal" button</strong> above</li>
+            <li><strong style="color: #60a5fa;">Select the term</strong> you want to view fee records for</li>
+            <li><strong style="color: #60a5fa;">Select your name</strong> from the student list</li>
+            <li><strong style="color: #60a5fa;">Enter your date of birth</strong> in YYYY-MM-DD format</li>
+            <li><strong style="color: #60a5fa;">Click "View Fee Report"</strong> to see your fee details</li>
+            <li><strong style="color: #60a5fa;">Optional:</strong> Click "Download Report" to save a copy</li>
+          </ol>
+          <div class="alert-info" style="padding: 15px; border-radius: 12px;">
+            <i class="fas fa-info-circle me-2"></i> If you can't find your name, please ensure you've selected the correct class and term.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="faqModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" style="color: #60a5fa;"><i class="fas fa-comments me-2"></i>Frequently Asked Questions</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" style="filter: invert(1);"></button>
+        </div>
+        <div class="modal-body">
+          <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                  What information can I view in the fee portal?
+                </button>
+              </h2>
+              <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  You can view your current fee balance, complete payment history, installment breakdown, and download account statements.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                  What date format should I use?
+                </button>
+              </h2>
+              <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Use the format YYYY-MM-DD (e.g., 2010-05-15 for May 15, 2010).
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                  The page is not loading, what should I do?
+                </button>
+              </h2>
+              <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  1. Refresh the page<br>
+                  2. Try a different browser (Chrome, Firefox, Edge)<br>
+                  3. Check your internet connection<br>
+                  4. If problems persist, contact the accounts office
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                  Can I download my fee statement?
+                </button>
+              </h2>
+              <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Yes! After viewing your fee report, click the "Download Report" button to save a copy on your device.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                  What should I do if there's a discrepancy in my fees?
+                </button>
+              </h2>
+              <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Contact the accounts office immediately with your payment receipts and any relevant documentation for verification.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 text-center text-lg-start mb-4 mb-lg-0">
+          <h3 style="color: #fff;"><i class="fas fa-school me-2" style="color: #60a5fa;"></i>Lunzu Secondary School</h3>
+          <p class="mb-0">Committed to providing quality education and fostering academic excellence since 1985.</p>
+        </div>
+      </div>
+      <hr style="border-color: rgba(255,215,0,0.1);">
+      <div class="row">
+        <div class="col-md-6 text-center text-md-start">
+          <p class="mb-0">&copy; <span id="current-year">2026</span> Lunzu Secondary School. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <a href="contact.html" class="me-3">Contact</a>
+          <a href="about.html" class="me-3">About</a>
+          <a href="portals.html">Portals</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    (function initBackground() {
+      const canvas = document.getElementById('bgCanvas');
+      const container = document.getElementById('bg-canvas-container');
+      const ctx = canvas.getContext('2d');
+      let w, h;
+      let items = [];
+      const ITEM_COUNT = 30;
+      const symbols = ['🎓', '📜', '📘', '📚', '🏆', '⭐', '📖', '✏️', '📝', '🏅', '🔬', '🧪', '📐', '🧮', '🌍', '⚛️'];
+
+      function resizeCanvas() {
+        const rect = container.getBoundingClientRect();
+        canvas.width = rect.width || window.innerWidth;
+        canvas.height = rect.height || window.innerHeight;
+        w = canvas.width;
+        h = canvas.height;
+      }
+
+      function randomItem() {
+        return {
+          x: Math.random() * w,
+          y: Math.random() * h - 20,
+          size: 34 + Math.random() * 42,
+          speedX: (Math.random() - 0.5) * 0.6,
+          speedY: 0.12 + Math.random() * 0.5,
+          rotation: Math.random() * 360,
+          rotSpeed: (Math.random() - 0.5) * 0.02,
+          opacity: 0.18 + Math.random() * 0.30,
+          symbol: symbols[Math.floor(Math.random() * symbols.length)],
+          phase: Math.random() * 100,
+        };
+      }
+
+      function initItems() {
+        items = [];
+        for (let i = 0; i < ITEM_COUNT; i++) {
+          items.push(randomItem());
+        }
+      }
+
+      function drawItems() {
+        ctx.clearRect(0, 0, w, h);
+        const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) * 0.7);
+        grad.addColorStop(0, 'rgba(10, 22, 40, 0.05)');
+        grad.addColorStop(1, 'rgba(10, 22, 40, 0.40)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, w, h);
+
+        items.forEach(item => {
+          ctx.save();
+          ctx.translate(item.x, item.y);
+          ctx.rotate(item.rotation * Math.PI / 180);
+          ctx.globalAlpha = item.opacity;
+          ctx.font = `${item.size}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.shadowColor = 'rgba(0,0,0,0.3)';
+          ctx.shadowBlur = 20;
+          ctx.fillStyle = '#60a5fa';
+          ctx.shadowColor = 'rgba(0,0,0,0.4)';
+          ctx.shadowBlur = 22;
+          ctx.fillText(item.symbol, 0, 0);
+          ctx.shadowBlur = 0;
+          ctx.font = `${item.size * 0.3}px "Segoe UI Emoji", "Apple Color Emoji", sans-serif`;
+          ctx.fillStyle = 'rgba(96,165,250,0.10)';
+          ctx.fillText('✦', item.size * 0.25, -item.size * 0.2);
+          ctx.restore();
+
+          item.x += item.speedX + Math.sin(item.phase + performance.now() * 0.0002) * 0.15;
+          item.y += item.speedY * 0.3 + Math.sin(item.phase + performance.now() * 0.00035) * 0.12;
+          item.rotation += item.rotSpeed;
+
+          if (item.x > w + 60) item.x = -60;
+          if (item.x < -60) item.x = w + 60;
+          if (item.y > h + 60) item.y = -60;
+          if (item.y < -60) item.y = h + 60;
+        });
+
+        requestAnimationFrame(drawItems);
+      }
+
+      function startBackground() {
+        resizeCanvas();
+        initItems();
+        drawItems();
+      }
+
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        items.forEach(item => {
+          item.x = Math.min(Math.max(item.x, 0), w);
+          item.y = Math.min(Math.max(item.y, 0), h);
+        });
+      });
+
+      startBackground();
+    })();
+
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    document.querySelector('.btn-main-fee').addEventListener('click', function() {
+      console.log('Fee portal accessed at:', new Date().toISOString());
+    });
+  </script>
+</body>
+</html>
