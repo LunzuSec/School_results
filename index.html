@@ -152,12 +152,32 @@
       border-radius: 14px;
       font-weight: 600;
       transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
     }
 
     .btn-gold:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 30px rgba(251, 191, 36, 0.3);
       color: #0a1628;
+    }
+
+    .btn-blue {
+      background: linear-gradient(135deg, #60a5fa, #3b82f6);
+      color: #fff;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 14px;
+      font-weight: 600;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-blue:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(96, 165, 250, 0.3);
+      color: #fff;
     }
 
     .feature-icon {
@@ -172,6 +192,12 @@
       color: #fbbf24;
       font-size: 1.8rem;
       border: 2px solid rgba(251, 191, 36, 0.3);
+    }
+
+    .feature-icon.blue {
+      background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), rgba(59, 130, 246, 0.1));
+      border-color: rgba(96, 165, 250, 0.3);
+      color: #60a5fa;
     }
 
     /* Announcement styles */
@@ -416,7 +442,7 @@
           <p style="color: #d1e0f0; font-size: 1.2rem; max-width: 700px; margin: 20px auto;" id="heroSubtitle">
             Excellence in Education Since 1985
           </p>
-          <a href="#" onclick="showPage('portals')" class="btn btn-gold">
+          <a href="#" onclick="showPage('portals')" class="btn-gold">
             <i class="fas fa-door-open me-2"></i>Access Portals
           </a>
         </div>
@@ -517,7 +543,7 @@
               <div class="feature-icon"><i class="fas fa-chalkboard-teacher"></i></div>
               <h4>Teachers Portal</h4>
               <p>Submit scores, manage classes, and track student performance.</p>
-              <a href="teachers-portal.html" class="btn btn-gold" style="display:inline-block; padding:12px 30px; font-size:0.9rem; text-decoration:none;">Access Portal</a>
+              <a href="teachers-portal.html" class="btn-gold" style="display:inline-block; padding:12px 30px; font-size:0.9rem; text-decoration:none;">Access Portal</a>
             </div>
           </div>
         </div>
@@ -527,17 +553,19 @@
               <div class="feature-icon"><i class="fas fa-user-graduate"></i></div>
               <h4>Student Results Portal</h4>
               <p>View your academic results and download reports.</p>
-              <a href="student-portal.html" class="btn btn-gold" style="display:inline-block; padding:12px 30px; font-size:0.9rem; text-decoration:none;">Access Portal</a>
+              <a href="student-portal.html" class="btn-gold" style="display:inline-block; padding:12px 30px; font-size:0.9rem; text-decoration:none;">Access Portal</a>
             </div>
           </div>
         </div>
         <div class="col-md-5 mb-4">
           <div class="glass-card">
             <div class="card-body">
-              <div class="feature-icon" style="background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), rgba(59, 130, 246, 0.1)); border-color: rgba(96, 165, 250, 0.3); color: #60a5fa;"><i class="fas fa-coins"></i></div>
+              <div class="feature-icon blue"><i class="fas fa-coins"></i></div>
               <h4>Bursar's Fee Portal</h4>
               <p>View fee balances, payment history, and account statements.</p>
-              <a href="" class="btn btn-gold" style="display:inline-block; padding:12px 30px; font-size:0.9rem; text-decoration:none;" target="_blank">Access Portal</a>
+              <button onclick="window.open('bursar.html', '_blank');" class="btn-blue" style="display:inline-block; padding:12px 30px; font-size:0.9rem; border:none; cursor:pointer;">
+                <i class="fas fa-external-link-alt me-2"></i>Access Portal
+              </button>
             </div>
           </div>
         </div>
@@ -576,7 +604,6 @@
     <div id="page-notice" class="page-section">
       <h2 class="section-title">📢 Important Notices</h2>
       <div id="noticeContainer">
-        <!-- Will be populated from announcements -->
         <div class="cms-loader">
           <div class="spinner"></div>
           <p>Loading notices...</p>
