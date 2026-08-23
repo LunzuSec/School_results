@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
+    /* ===== RESET & BASE ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
@@ -19,6 +20,7 @@
       overflow-x: hidden;
     }
 
+    /* ===== BACKGROUND ===== */
     #bg-canvas-container {
       position: fixed;
       top: 0;
@@ -42,6 +44,7 @@
       margin: 0 auto;
     }
 
+    /* ===== GLASS CARD ===== */
     .glass-card {
       background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(14px) saturate(180%);
@@ -96,6 +99,7 @@
       border-bottom: none;
     }
 
+    /* ===== NAVBAR ===== */
     .navbar-custom {
       background: rgba(10, 22, 40, 0.85);
       backdrop-filter: blur(14px) saturate(180%);
@@ -112,6 +116,7 @@
       color: #fff !important;
     }
 
+    /* ===== SECTION TITLE ===== */
     .section-title {
       color: #fff;
       text-align: center;
@@ -132,23 +137,25 @@
       border-radius: 2px;
     }
 
-    .portal-header {
+    /* ===== PORTAL HEADER ===== */
+    .bursar-header {
       padding: 120px 0 40px;
       text-align: center;
     }
 
-    .portal-header h1 {
+    .bursar-header h1 {
       color: #60a5fa;
       font-size: 2.8rem;
       font-weight: 700;
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     }
 
-    .portal-header p {
+    .bursar-header p {
       color: #d1e0f0;
       font-size: 1.2rem;
     }
 
+    /* ===== BUTTONS ===== */
     .btn-main-fee {
       display: inline-block;
       padding: 18px 50px;
@@ -161,6 +168,7 @@
       border: none;
       box-shadow: 0 4px 20px rgba(96, 165, 250, 0.3);
       text-decoration: none;
+      cursor: pointer;
     }
 
     .btn-main-fee:hover {
@@ -169,7 +177,25 @@
       color: #fff;
     }
 
-    .btn-portal-action {
+    .btn-outline-blue {
+      background: transparent;
+      color: #60a5fa;
+      border: 2px solid #60a5fa;
+      padding: 10px 25px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-outline-blue:hover {
+      background: #60a5fa;
+      color: #0a1628;
+    }
+
+    /* Portal action buttons - renamed to avoid conflict */
+    .btn-portal-action-bursar {
       display: block;
       width: 100%;
       padding: 15px 20px;
@@ -184,36 +210,36 @@
       text-decoration: none;
     }
 
-    .btn-portal-action:hover {
+    .btn-portal-action-bursar:hover {
       transform: translateX(10px);
       background: rgba(96, 165, 250, 0.15);
       border-color: rgba(96, 165, 250, 0.3);
       color: #60a5fa;
     }
 
-    .btn-portal-action i {
+    .btn-portal-action-bursar i {
       margin-right: 12px;
       color: #60a5fa;
       width: 24px;
     }
 
-    .btn-outline-blue {
-      background: transparent;
+    /* ===== FEATURE ICON ===== */
+    .feature-icon-bursar {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), rgba(59, 130, 246, 0.1));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
       color: #60a5fa;
-      border: 2px solid #60a5fa;
-      padding: 10px 25px;
-      border-radius: 12px;
-      font-weight: 600;
-      transition: all 0.3s;
-      text-decoration: none;
+      font-size: 1.8rem;
+      border: 2px solid rgba(96, 165, 250, 0.3);
     }
 
-    .btn-outline-blue:hover {
-      background: #60a5fa;
-      color: #0a1628;
-    }
-
-    .alert-info {
+    /* ===== ALERTS ===== */
+    .alert-info-bursar {
       background: rgba(59, 130, 246, 0.15);
       border: 1px solid rgba(59, 130, 246, 0.2);
       color: #dbeafe;
@@ -221,7 +247,7 @@
       padding: 20px;
     }
 
-    .alert-warning {
+    .alert-warning-bursar {
       background: rgba(251, 191, 36, 0.12);
       border: 1px solid rgba(251, 191, 36, 0.2);
       color: #fcd34d;
@@ -229,7 +255,7 @@
       padding: 20px;
     }
 
-    .alert-success {
+    .alert-success-bursar {
       background: rgba(52, 211, 153, 0.12);
       border: 1px solid rgba(52, 211, 153, 0.2);
       color: #6ee7b7;
@@ -237,6 +263,27 @@
       padding: 20px;
     }
 
+    /* ===== FEE STATS ===== */
+    .fee-stat {
+      text-align: center;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .fee-stat .number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #60a5fa;
+    }
+
+    .fee-stat .label {
+      color: #d1e0f0;
+      font-size: 0.9rem;
+    }
+
+    /* ===== FOOTER ===== */
     .footer {
       background: rgba(10, 22, 40, 0.85);
       backdrop-filter: blur(14px) saturate(180%);
@@ -257,6 +304,7 @@
       text-decoration: underline;
     }
 
+    /* ===== MODALS ===== */
     .modal-content {
       background: rgba(20, 35, 55, 0.95);
       backdrop-filter: blur(14px);
@@ -292,30 +340,34 @@
       color: #d1e0f0;
     }
 
-    .fee-stat {
+    /* ===== LOADING SPINNER ===== */
+    .cms-loader {
       text-align: center;
-      padding: 15px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 215, 0, 0.1);
-    }
-
-    .fee-stat .number {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #60a5fa;
-    }
-
-    .fee-stat .label {
+      padding: 40px;
       color: #d1e0f0;
-      font-size: 0.9rem;
     }
 
+    .cms-loader .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(96, 165, 250, 0.1);
+      border-top: 4px solid #60a5fa;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .section-title {
         font-size: 1.8rem;
       }
-      .portal-header h1 {
+      .bursar-header h1 {
         font-size: 2rem;
       }
       .glass-card {
@@ -333,31 +385,50 @@
   </style>
 </head>
 <body>
+  <!-- Background Canvas -->
   <div id="bg-canvas-container">
     <canvas id="bgCanvas"></canvas>
   </div>
 
+  <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
         <i class="fas fa-school me-2" style="color: #60a5fa;"></i>Lunzu Secondary School
       </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="portals.html">Portals</a></li>
+          <li class="nav-item"><a class="nav-link" href="testimonials.html">Testimonials</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="important-notice.html"><i class="fas fa-bullhorn me-1"></i>Notice</a></li>
+        </ul>
+      </div>
     </div>
   </nav>
 
-  <div class="portal-header">
+  <!-- Header -->
+  <div class="bursar-header">
     <div class="container">
       <h1><i class="fas fa-coins me-3" style="color: #60a5fa;"></i>Bursar's Fee Portal</h1>
       <p>View Fee Balances, Payment History, and Account Statements</p>
-      <a href="index.html" class="btn-outline-blue mt-3" style="display: inline-block;">
+      <a href="index.html" class="btn-outline-blue mt-3">
         <i class="fas fa-home me-2"></i>Back to Home
       </a>
     </div>
   </div>
 
+  <!-- Main Content -->
   <div class="container my-4">
     <div class="row">
       <div class="col-lg-8 mx-auto">
+        <!-- Main Call to Action -->
         <div class="glass-card text-center" style="background: linear-gradient(135deg, rgba(96, 165, 250, 0.12), rgba(59, 130, 246, 0.06));">
           <div class="card-body">
             <h4 style="color: #60a5fa; font-size: 2rem; margin-bottom: 15px;">
@@ -395,10 +466,12 @@
           </div>
         </div>
 
+        <!-- Important Information -->
         <div class="glass-card">
           <div class="card-body">
             <h4 style="color: #60a5fa; margin-bottom: 20px;"><i class="fas fa-info-circle me-2"></i>Important Information</h4>
-            <div class="alert-info" style="padding: 20px; border-radius: 12px; margin-bottom: 15px;">
+            
+            <div class="alert-info-bursar" style="padding: 20px; border-radius: 12px; margin-bottom: 15px;">
               <h5 style="color: #dbeafe;"><i class="fas fa-lightbulb me-2"></i>Before You Proceed:</h5>
               <ul>
                 <li><strong style="color: #fff;">Requirements:</strong> You'll need your student name, class, and date of birth</li>
@@ -408,7 +481,7 @@
               </ul>
             </div>
 
-            <div class="alert-success" style="padding: 20px; border-radius: 12px; margin-bottom: 15px;">
+            <div class="alert-success-bursar" style="padding: 20px; border-radius: 12px; margin-bottom: 15px;">
               <h5 style="color: #6ee7b7;"><i class="fas fa-check-circle me-2"></i>What You Can Do:</h5>
               <ul>
                 <li>View current fee balance and payment history</li>
@@ -418,7 +491,7 @@
               </ul>
             </div>
 
-            <div class="alert-warning" style="padding: 20px; border-radius: 12px;">
+            <div class="alert-warning-bursar" style="padding: 20px; border-radius: 12px;">
               <h5 style="color: #fcd34d;"><i class="fas fa-exclamation-triangle me-2"></i>Troubleshooting Tips:</h5>
               <ul>
                 <li>If the page doesn't load, try refreshing or using a different browser</li>
@@ -430,19 +503,20 @@
           </div>
         </div>
 
+        <!-- Quick Links -->
         <div class="glass-card">
           <div class="card-body">
             <h4 style="color: #60a5fa; margin-bottom: 20px;"><i class="fas fa-link me-2"></i>Quick Links</h4>
-            <a href="index.html" class="btn-portal-action">
+            <a href="index.html" class="btn-portal-action-bursar">
               <i class="fas fa-home"></i> Main Homepage
             </a>
-            <a href="#" class="btn-portal-action" data-bs-toggle="modal" data-bs-target="#contactModal">
+            <a href="#" class="btn-portal-action-bursar" data-bs-toggle="modal" data-bs-target="#contactModal">
               <i class="fas fa-envelope"></i> Contact Accounts Office
             </a>
-            <a href="#" class="btn-portal-action" data-bs-toggle="modal" data-bs-target="#instructionsModal">
+            <a href="#" class="btn-portal-action-bursar" data-bs-toggle="modal" data-bs-target="#instructionsModal">
               <i class="fas fa-question-circle"></i> How to Use
             </a>
-            <a href="#" class="btn-portal-action" data-bs-toggle="modal" data-bs-target="#faqModal">
+            <a href="#" class="btn-portal-action-bursar" data-bs-toggle="modal" data-bs-target="#faqModal">
               <i class="fas fa-comments"></i> FAQ
             </a>
           </div>
@@ -451,7 +525,9 @@
     </div>
   </div>
 
-  <!-- Modals -->
+  <!-- ===== MODALS ===== -->
+  
+  <!-- Contact Modal -->
   <div class="modal fade" id="contactModal" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -472,6 +548,7 @@
     </div>
   </div>
 
+  <!-- Instructions Modal -->
   <div class="modal fade" id="instructionsModal" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -488,7 +565,7 @@
             <li><strong style="color: #60a5fa;">Click "View Fee Report"</strong> to see your fee details</li>
             <li><strong style="color: #60a5fa;">Optional:</strong> Click "Download Report" to save a copy</li>
           </ol>
-          <div class="alert-info" style="padding: 15px; border-radius: 12px;">
+          <div class="alert-info-bursar" style="padding: 15px; border-radius: 12px;">
             <i class="fas fa-info-circle me-2"></i> If you can't find your name, please ensure you've selected the correct class and term.
           </div>
         </div>
@@ -496,6 +573,7 @@
     </div>
   </div>
 
+  <!-- FAQ Modal -->
   <div class="modal fade" id="faqModal" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -574,6 +652,7 @@
     </div>
   </div>
 
+  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="row">
@@ -598,6 +677,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
+    // ===== BACKGROUND ANIMATION =====
     (function initBackground() {
       const canvas = document.getElementById('bgCanvas');
       const container = document.getElementById('bg-canvas-container');
@@ -695,8 +775,10 @@
       startBackground();
     })();
 
+    // ===== CURRENT YEAR =====
     document.getElementById('current-year').textContent = new Date().getFullYear();
 
+    // ===== TRACK PORTAL ACCESS =====
     document.querySelector('.btn-main-fee').addEventListener('click', function() {
       console.log('Fee portal accessed at:', new Date().toISOString());
     });
